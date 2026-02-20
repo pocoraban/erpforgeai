@@ -94,7 +94,10 @@
     .section-h{font-family:'Syne',sans-serif;font-size:clamp(32px,4vw,52px);font-weight:800;letter-spacing:-1.5px;text-align:center;margin-bottom:60px;line-height:1.1}
 
     /* === STEPS === */
-    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1060px;margin:0 auto}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1060px;margin:0 auto;position:relative}
+    .steps::before{content:'';position:absolute;top:50%;left:calc(33.33% + 10px);right:calc(33.33% + 10px);height:2px;background:linear-gradient(90deg,var(--orange),var(--cyan),var(--orange));opacity:0.2;z-index:0;transform:translateY(-50%)}
+    .step-arrow{display:none;position:absolute;top:50%;font-size:20px;color:var(--orange);opacity:0.5;transform:translateY(-50%);z-index:2}
+    @media(min-width:769px){.step-arrow{display:block}.step-arrow.a1{left:calc(33.33% - 10px)}.step-arrow.a2{left:calc(66.66% - 10px)}}
     .step{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:36px 28px;position:relative;overflow:hidden;transition:all 0.4s}
     .step:hover{border-color:rgba(255,107,43,0.25);transform:translateY(-4px);background:var(--card-hover)}
     .step-num{font-family:'Syne',sans-serif;font-size:64px;font-weight:800;color:rgba(255,107,43,0.05);position:absolute;top:-8px;right:12px;line-height:1}
@@ -203,6 +206,18 @@
     @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
     @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
     @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+    @keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+
+    /* Scroll-triggered fade-in */
+    .fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
+    .fade-in.visible{opacity:1;transform:translateY(0)}
+
+    /* Enhanced micro-interactions */
+    .step:hover .step-icon{animation:float 1.5s ease infinite}
+    .pc:hover{box-shadow:0 12px 40px rgba(0,0,0,0.3)}
+    .pc.feat:hover{box-shadow:0 12px 40px rgba(255,107,43,0.15)}
+    .cmp-card.new:hover{border-color:rgba(255,107,43,0.4);box-shadow:0 8px 32px rgba(255,107,43,0.1)}
+    .code-window:hover{border-color:rgba(255,107,43,0.2);box-shadow:0 40px 80px rgba(0,0,0,0.6),0 0 40px rgba(255,107,43,0.05)}
 
     /* === MOBILE === */
     @media(max-width:768px){
@@ -289,10 +304,12 @@
     </section>
 
     <!-- HOW IT WORKS -->
-    <section class="section" id="how">
+    <section class="section fade-in" id="how">
       <div class="section-tag" data-i18n="how_label">How It Works</div>
       <h2 class="section-h" data-i18n="how_title">Three Steps. Done.</h2>
       <div class="steps">
+        <span class="step-arrow a1">→</span>
+        <span class="step-arrow a2">→</span>
         <div class="step"><div class="step-num">01</div><div class="step-icon">📋</div><div class="step-title" data-i18n="step1_title">Profile Your System</div><div class="step-text" data-i18n="step1_desc">Run our free diagnostic tool in SE38. It auto-detects release, SP level, features, components, and tables. Takes 30 seconds.</div></div>
         <div class="step"><div class="step-num">02</div><div class="step-icon">💬</div><div class="step-title" data-i18n="step2_title">Describe What You Need</div><div class="step-text" data-i18n="step2_desc">Write your requirement in plain language: "I need a report showing open POs by vendor with aging analysis." That's it.</div></div>
         <div class="step"><div class="step-num">03</div><div class="step-icon">⚡</div><div class="step-title" data-i18n="step3_title">Get Forged Code</div><div class="step-text" data-i18n="step3_desc">AI generates code matched to your exact system. Expert ABAP review on every line. Paste into SE38 and run.</div></div>
@@ -300,7 +317,7 @@
     </section>
 
     <!-- DOWNLOAD -->
-    <section class="dl-section" id="download">
+    <section class="dl-section fade-in" id="download">
       <div class="dl-box">
         <div style="font-size:40px;margin-bottom:16px">🔧</div>
         <h3 data-i18n="dl_title">Free System Profiler</h3>
@@ -328,7 +345,7 @@
     </section>
 
     <!-- WHY US -->
-    <section class="section" id="why">
+    <section class="section fade-in" id="why">
       <div class="section-tag" data-i18n="why_label">Why ERPforgeAI</div>
       <h2 class="section-h" data-i18n="why_title">The Old Way Is Broken</h2>
       <div class="cmp-grid">
@@ -358,7 +375,7 @@
     </section>
 
     <!-- PRICING -->
-    <section class="pricing-section" id="pricing">
+    <section class="pricing-section fade-in" id="pricing">
       <div class="section-tag" data-i18n="price_label">Pricing</div>
       <h2 class="section-h" data-i18n="price_title">Simple & Transparent</h2>
       <div class="pricing-grid">
@@ -382,7 +399,7 @@
     </section>
 
     <!-- ABOUT -->
-    <section class="about-section" id="about">
+    <section class="about-section fade-in" id="about">
       <div class="section-tag" data-i18n="about_label">Who We Are</div>
       <h2 class="section-h" data-i18n="about_title">Built by SAP Veterans</h2>
       <div class="about-box">
@@ -403,7 +420,7 @@
     </section>
 
     <!-- CONTACT -->
-    <section class="contact-section" id="contact">
+    <section class="contact-section fade-in" id="contact">
       <div class="contact-box">
         <h3 data-i18n="contact_title">Get In Touch</h3>
         <p data-i18n="contact_desc">Question about your project? We reply within 24h.</p>
@@ -571,6 +588,10 @@
       try{localStorage.setItem('lang',l)}catch(e){}
     }
     (function(){try{const s=localStorage.getItem('lang');if(s){setLang(s)}else{const n=navigator.language||'';if(n.startsWith('de')){setLang('de')}}}catch(e){}})();
+
+    // Scroll-triggered animations
+    const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.15});
+    document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
   </script>
 </body>
 </html>
