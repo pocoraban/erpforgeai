@@ -11,7 +11,7 @@
   <style>
     :root{--bg-primary:#0a0a0c;--bg-secondary:#111116;--bg-card:#16161c;--bg-card-hover:#1c1c24;--ember-500:#f97316;--ember-400:#fb923c;--ember-300:#fdba74;--ember-600:#ea580c;--ember-glow:rgba(249,115,22,0.15);--steel-100:#f1f5f9;--steel-200:#e2e8f0;--steel-300:#cbd5e1;--steel-400:#94a3b8;--steel-500:#64748b;--steel-600:#475569;--steel-700:#334155;--steel-800:#1e293b;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-muted:#64748b;--border:rgba(148,163,184,0.08);--radius:12px;--radius-lg:20px}
     *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
-    body{font-family:'Outfit',sans-serif;background:var(--bg-primary);color:var(--text-primary);overflow-x:hidden;line-height:1.6}
+    body{padding-bottom:56px;font-family:'Outfit',sans-serif;background:var(--bg-primary);color:var(--text-primary);overflow-x:hidden;line-height:1.6}
     body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
     nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,12,0.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
     .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
@@ -130,6 +130,12 @@
   </style>
 </head>
 <body>
+  <div id="launchBanner" style="position:fixed;bottom:0;left:0;right:0;z-index:200;background:linear-gradient(135deg,#f97316,#ea580c);padding:14px 24px;display:flex;align-items:center;justify-content:center;gap:12px;font-size:14px;font-weight:600;color:#fff;box-shadow:0 -4px 20px rgba(0,0,0,0.3)">
+    <span style="font-size:18px">🚀</span>
+    <span data-i18n="banner_text">We launch soon! Join the waitlist to be among the first.</span>
+    <a href="#start" onclick="showMain()" style="background:rgba(255,255,255,0.2);color:#fff;padding:6px 16px;border-radius:6px;text-decoration:none;font-size:13px;font-weight:700;border:1px solid rgba(255,255,255,0.3);white-space:nowrap" data-i18n="banner_btn">Join Waitlist →</a>
+    <button onclick="this.parentElement.style.display='none'" style="background:none;border:none;color:rgba(255,255,255,0.7);cursor:pointer;font-size:18px;margin-left:8px;padding:4px">✕</button>
+  </div>
   <nav>
     <a href="#" class="nav-logo" onclick="showMain();return false;"><div class="nav-logo-icon">{}</div><div class="nav-logo-text">ERPforge<span>AI</span></div></a>
     <div class="nav-links">
@@ -418,7 +424,7 @@
         contact_title:"Contact Us",contact_desc:"Have a question or want to discuss your project? Send us a message.",
         cf_name:"Name",cf_email:"Email",cf_subject:"Subject",cf_msg:"Message",cf_send:"Send Message →",cf_ok:"✓ Message sent! We'll get back to you within 24 hours.",
         cf_subj1:"Project Inquiry",cf_subj2:"General Question",cf_subj3:"Steckbrief Help",cf_subj4:"Other",
-        footer_contact:"Contact"
+        footer_contact:"Contact",banner_text:"We launch soon! Join the waitlist to be among the first.",banner_btn:"Join Waitlist →"
       },
       de:{
         nav_how:"So funktioniert's",nav_why:"Warum wir",nav_pricing:"Preise",nav_contact:"Kontakt",nav_cta:"Jetzt starten →",
@@ -445,7 +451,7 @@
         contact_title:"Kontakt",contact_desc:"Haben Sie eine Frage oder möchten Sie Ihr Projekt besprechen? Schreiben Sie uns.",
         cf_name:"Name",cf_email:"E-Mail",cf_subject:"Betreff",cf_msg:"Nachricht",cf_send:"Nachricht senden →",cf_ok:"✓ Nachricht gesendet! Wir melden uns innerhalb von 24 Stunden.",
         cf_subj1:"Projektanfrage",cf_subj2:"Allgemeine Frage",cf_subj3:"Steckbrief-Hilfe",cf_subj4:"Sonstiges",
-        footer_contact:"Kontakt"
+        footer_contact:"Kontakt",banner_text:"Wir starten bald! Jetzt auf die Warteliste setzen.",banner_btn:"Warteliste beitreten →"
       }
     };
     let curLang='en';
