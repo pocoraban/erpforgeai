@@ -5,9 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ERPforgeAI — AI-Powered SAP Code, Tailored to Your System</title>
   <meta name="description" content="Get production-ready SAP ABAP code tailored to your exact system. No freelancer needed. Starting at €99.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23ff6b2b'/><text x='50' y='68' font-size='50' font-family='monospace' font-weight='bold' fill='white' text-anchor='middle'>{}</text></svg>">
+  <meta property="og:title" content="ERPforgeAI — AI-Powered SAP Code, Tailored to Your System">
+  <meta property="og:description" content="Get production-ready SAP ABAP code tailored to your exact system. No freelancer needed. Starting at €99.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://erpforgeai.com">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ERPforgeAI — AI-Powered SAP ABAP Code">
+  <meta name="twitter:description" content="Production-ready ABAP code tailored to your exact SAP system. From €99.">
+  <link rel="canonical" href="https://erpforgeai.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Skip nav for accessibility */
+    .skip-nav{position:absolute;top:-100%;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;padding:12px 24px;border-radius:0 0 8px 8px;font-weight:700;z-index:999;text-decoration:none;transition:top 0.3s}
+    .skip-nav:focus{top:0}
+  </style>
   <style>
     :root{
       --bg:#06060a;--bg2:#0c0c14;--bg3:#12121e;--card:#161625;--card-hover:#1a1a2e;
@@ -240,9 +254,35 @@
     .cmp-card.new:hover{border-color:rgba(255,107,43,0.4);box-shadow:0 8px 32px rgba(255,107,43,0.1)}
     .code-window:hover{border-color:rgba(255,107,43,0.2);box-shadow:0 40px 80px rgba(0,0,0,0.6),0 0 40px rgba(255,107,43,0.05)}
 
+    /* === FOCUS STYLES (Accessibility) === */
+    *:focus-visible{outline:2px solid var(--orange);outline-offset:2px;border-radius:4px}
+    button:focus-visible,.pc-btn:focus-visible,.nav-cta:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+
+    /* === HAMBURGER MENU === */
+    .hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px;z-index:201}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all 0.3s}
+    .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+    /* === GDPR CHECKBOX === */
+    .fg-check{display:flex;align-items:flex-start;gap:8px;margin:16px 0}
+    .fg-check input[type="checkbox"]{margin-top:3px;accent-color:var(--orange);width:16px;height:16px;flex-shrink:0;cursor:pointer}
+    .fg-check label{font-size:12px;color:var(--text2);line-height:1.5;cursor:pointer}
+    .fg-check label a{color:var(--orange-light);text-decoration:none}
+    .fg-check label a:hover{text-decoration:underline}
+
     /* === MOBILE === */
     @media(max-width:768px){
-      nav{padding:12px 16px;top:36px}.nav-right{display:none}
+      nav{padding:12px 16px;top:36px}
+      .hamburger{display:flex}
+      .nav-right{position:fixed;top:0;right:-280px;width:280px;height:100vh;background:var(--bg2);border-left:1px solid var(--border);flex-direction:column;gap:0;padding:80px 24px 24px;transition:right 0.3s ease;z-index:200;display:flex}
+      .nav-right.open{right:0}
+      .nav-right a{padding:14px 0;border-bottom:1px solid var(--border);font-size:15px}
+      .nav-right .lang-toggle{margin-top:16px;align-self:flex-start}
+      .nav-right .nav-cta{margin-top:16px;text-align:center;display:block}
+      .mobile-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:199}
+      .mobile-overlay.open{display:block}
       .steps,.pricing-grid{grid-template-columns:1fr}.cmp-grid{grid-template-columns:1fr}
       .proof{flex-direction:column;gap:20px}.hero-cta{flex-direction:column}
       .countdown{gap:8px}.cd-unit{min-width:60px;padding:12px 10px}.cd-num{font-size:28px}
@@ -252,6 +292,7 @@
   </style>
 </head>
 <body>
+  <a href="#start" class="skip-nav">Skip to content</a>
   <!-- LAUNCH BANNER -->
   <div class="launch-banner" id="launchBanner">
     <span data-i18n="banner_text">🚀 Launching Q2 2026 — Early access for waitlist members</span>
@@ -261,8 +302,10 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo" onclick="showMain();return false"><div class="nav-mark">{}</div><div class="nav-wordmark">ERPforge<em>AI</em></div></a>
-    <div class="nav-right">
+    <a href="#" class="nav-logo" onclick="showMain();return false"><div class="nav-mark" aria-hidden="true">{}</div><div class="nav-wordmark">ERPforge<em>AI</em></div></a>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>
+    <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMenu()"></div>
+    <div class="nav-right" id="navRight">
       <a href="#how" onclick="showMain()" data-i18n="nav_how">How It Works</a>
       <a href="#why" onclick="showMain()" data-i18n="nav_why">Why Us</a>
       <a href="#pricing" onclick="showMain()" data-i18n="nav_pricing">Pricing</a>
@@ -291,10 +334,14 @@
       </div>
 
       <form class="hero-cta" id="waitlistForm" action="https://formspree.io/f/xvzbbwka" method="POST">
-        <input type="email" name="waitlist_email" class="hero-input" autocomplete="new-password" placeholder="your@company.com" required>
+        <input type="email" name="waitlist_email" class="hero-input" autocomplete="email" placeholder="your@company.com" required>
         <input type="hidden" name="_subject" value="ERPforgeAI Waitlist Signup">
         <button type="submit" class="hero-submit" data-i18n="hero_btn">Join Waitlist →</button>
       </form>
+      <div class="fg-check" style="max-width:460px;width:100%;animation:fadeUp .8s .45s ease both;position:relative;z-index:1">
+        <input type="checkbox" id="waitlistConsent" required form="waitlistForm">
+        <label for="waitlistConsent" data-i18n="gdpr_waitlist">I agree to the <a href="#" onclick="showPage('datenschutzPage');return false">Privacy Policy</a>. My email will be used only to notify me about the launch.</label>
+      </div>
       <div class="hero-success" id="waitlistOk" data-i18n="hero_ok">✓ You're on the list! We'll email you before launch.</div>
       <p class="hero-note" data-i18n="hero_note"><span>→</span> Free early access · No credit card · Cancel anytime</p>
 
@@ -437,11 +484,11 @@
           <input type="hidden" name="_subject" value="🔥 New ERPforgeAI Order">
 
           <div class="fg-row">
-            <div class="fg"><label data-i18n="of_name">Name *</label><input type="text" name="customer_name" required autocomplete="new-password"></div>
-            <div class="fg"><label data-i18n="of_email">Email *</label><input type="email" name="customer_email" required autocomplete="new-password"></div>
+            <div class="fg"><label data-i18n="of_name">Name *</label><input type="text" name="customer_name" required autocomplete="name"></div>
+            <div class="fg"><label data-i18n="of_email">Email *</label><input type="email" name="customer_email" required autocomplete="email"></div>
           </div>
           <div class="fg-row">
-            <div class="fg"><label data-i18n="of_company">Company</label><input type="text" name="company" autocomplete="new-password"></div>
+            <div class="fg"><label data-i18n="of_company">Company</label><input type="text" name="company" autocomplete="organization"></div>
             <div class="fg"><label data-i18n="of_sap">SAP System ID</label><input type="text" name="sap_system_id" placeholder="e.g. PRD, QAS" autocomplete="off"></div>
           </div>
 
@@ -468,6 +515,11 @@
           <div class="fg">
             <label data-i18n="of_notes">Additional Notes</label>
             <textarea name="notes" placeholder="Budget constraints, deadline, special requirements..."></textarea>
+          </div>
+
+          <div class="fg-check">
+            <input type="checkbox" id="orderConsent" required>
+            <label for="orderConsent" data-i18n="gdpr_order">I agree to the <a href="#" onclick="showPage('datenschutzPage');return false">Privacy Policy</a>. My data will be processed to fulfill this order as described in the privacy policy.</label>
           </div>
 
           <button type="submit" class="btn-send" data-i18n="of_submit">🚀 Submit Order →</button>
@@ -505,9 +557,13 @@
         <form id="contactForm" action="https://formspree.io/f/xvzbbwka" method="POST">
           <input type="hidden" name="_subject" value="ERPforgeAI Contact">
           <div class="fg"><label data-i18n="cf_name">Name</label><input type="text" name="name" required></div>
-          <div class="fg"><label data-i18n="cf_email">Email</label><input type="email" name="contact_email" required autocomplete="new-password"></div>
+          <div class="fg"><label data-i18n="cf_email">Email</label><input type="email" name="contact_email" required autocomplete="email"></div>
           <div class="fg"><label data-i18n="cf_subject">Subject</label><select name="subject"><option value="Project Inquiry" data-i18n="cf_subj1">Project Inquiry</option><option value="Question" data-i18n="cf_subj2">General Question</option><option value="Steckbrief" data-i18n="cf_subj3">Steckbrief Help</option><option value="Other" data-i18n="cf_subj4">Other</option></select></div>
           <div class="fg"><label data-i18n="cf_msg">Message</label><textarea name="message" required></textarea></div>
+          <div class="fg-check">
+            <input type="checkbox" id="contactConsent" required>
+            <label for="contactConsent" data-i18n="gdpr_contact">I agree to the <a href="#" onclick="showPage('datenschutzPage');return false">Privacy Policy</a>.</label>
+          </div>
           <button type="submit" class="btn-send" data-i18n="cf_send">Send Message →</button>
         </form>
         <div class="contact-ok" id="contactOk" data-i18n="cf_ok">✓ Sent! We'll reply within 24 hours.</div>
@@ -570,6 +626,8 @@
   <script>
     function showPage(id){document.getElementById('mainContent').style.display='none';document.querySelectorAll('.legal-page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
     function showMain(){document.getElementById('mainContent').style.display='block';document.querySelectorAll('.legal-page').forEach(p=>p.classList.remove('active'))}
+    function toggleMenu(){document.querySelector('.hamburger').classList.toggle('open');document.getElementById('navRight').classList.toggle('open');document.getElementById('mobileOverlay').classList.toggle('open')}
+    document.querySelectorAll('.nav-right a:not(.nav-cta)').forEach(a=>{a.addEventListener('click',()=>{if(window.innerWidth<=768){toggleMenu()}})})
 
     // Forms
     ['waitlistForm','contactForm','orderForm'].forEach(fid=>{
@@ -577,9 +635,13 @@
       if(!f)return;
       f.addEventListener('submit',async function(e){
         e.preventDefault();
+        const btn=f.querySelector('button[type="submit"]');
+        const origText=btn.textContent;
+        btn.disabled=true;btn.style.opacity='0.6';btn.textContent='Sending...';
         try{const r=await fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}});
         if(r.ok){f.style.display='none';document.getElementById(fid==='waitlistForm'?'waitlistOk':fid==='contactForm'?'contactOk':'orderOk').style.display='block'}
-        else{alert('Error — please email info@erpforgeai.com')}}catch(err){alert('Error — please email info@erpforgeai.com')}
+        else{btn.disabled=false;btn.style.opacity='1';btn.textContent=origText;alert('Error — please email info@erpforgeai.com')}}
+        catch(err){btn.disabled=false;btn.style.opacity='1';btn.textContent=origText;alert('Error — please email info@erpforgeai.com')}
       });
     });
 
@@ -593,8 +655,7 @@
       document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
       document.getElementById('cd-s').textContent=String(s).padStart(2,'0');
     }
-    updateCD();setInterval(updateCD,1000);
-    document.querySelectorAll('input[type="email"]').forEach(i=>{i.value='';});
+    updateCD();const cdInterval=setInterval(()=>{updateCD();if(new Date('2026-04-01T09:00:00+02:00')-new Date()<=0)clearInterval(cdInterval)},1000);
     const STECKBRIEF = "*&---------------------------------------------------------------------*\n*& Report Z_SYSTEM_STECKBRIEF\n*&---------------------------------------------------------------------*\n*& System-Steckbrief V4 - Sequentiell, optimiert, robust\n*& Kompatibel mit 7.40 SP02+ (alle Features laut Steckbrief)\n*&---------------------------------------------------------------------*\nREPORT z_system_steckbrief.\n\nDATA: gt_output TYPE TABLE OF string,\n      gv_line   TYPE string.\n\n*----------------------------------------------------------------------*\nSELECTION-SCREEN BEGIN OF BLOCK b01 WITH FRAME TITLE gt_b01.\n  SELECTION-SCREEN BEGIN OF LINE.\n    PARAMETERS p_sys AS CHECKBOX DEFAULT 'X'.\n    SELECTION-SCREEN COMMENT 3(40) t_sys.\n  SELECTION-SCREEN END OF LINE.\n  SELECTION-SCREEN BEGIN OF LINE.\n    PARAMETERS p_abap AS CHECKBOX DEFAULT 'X'.\n    SELECTION-SCREEN COMMENT 3(40) t_abap.\n  SELECTION-SCREEN END OF LINE.\n  SELECTION-SCREEN BEGIN OF LINE.\n    PARAMETERS p_comp AS CHECKBOX DEFAULT 'X'.\n    SELECTION-SCREEN COMMENT 3(40) t_comp.\n  SELECTION-SCREEN END OF LINE.\n  SELECTION-SCREEN BEGIN OF LINE.\n    PARAMETERS p_fuba AS CHECKBOX DEFAULT 'X'.\n    SELECTION-SCREEN COMMENT 3(40) t_fuba.\n  SELECTION-SCREEN END OF LINE.\nSELECTION-SCREEN END OF BLOCK b01.\n\nSELECTION-SCREEN BEGIN OF BLOCK b02 WITH FRAME TITLE gt_b02.\n  SELECTION-SCREEN BEGIN OF LINE.\n    PARAMETERS p_dd AS CHECKBOX DEFAULT ' '.\n    SELECTION-SCREEN COMMENT 3(40) t_dd.\n  SELECTION-SCREEN END OF LINE.\n  SELECT-OPTIONS s_tab FOR sy-tcode VISIBLE LENGTH 40.\n  SELECTION-SCREEN BEGIN OF LINE.\n    PARAMETERS p_cktab AS CHECKBOX DEFAULT 'X'.\n    SELECTION-SCREEN COMMENT 3(40) t_cktab.\n  SELECTION-SCREEN END OF LINE.\nSELECTION-SCREEN END OF BLOCK b02.\n\nSELECTION-SCREEN BEGIN OF BLOCK b03 WITH FRAME TITLE gt_b03.\n  SELECTION-SCREEN BEGIN OF LINE.\n    PARAMETERS p_ckfb AS CHECKBOX DEFAULT ' '.\n    SELECTION-SCREEN COMMENT 3(40) t_ckfb.\n  SELECTION-SCREEN END OF LINE.\n  SELECT-OPTIONS s_fuba FOR sy-tcode VISIBLE LENGTH 40.\nSELECTION-SCREEN END OF BLOCK b03.\n\nINITIALIZATION.\n  gt_b01 = 'System-Informationen'.\n  gt_b02 = 'Data Dictionary'.\n  gt_b03 = 'Funktionsbausteine pruefen'.\n  t_sys   = 'Release, Kernel, SP-Stand'.\n  t_abap  = 'ABAP Sprachfeatures testen'.\n  t_comp  = 'Installierte Komponenten'.\n  t_fuba  = 'Wichtige FuBas pruefen'.\n  t_dd    = 'DD-Felder exportieren (Tabellen unten)'.\n  t_cktab = 'Tabellen auf Existenz pruefen'.\n  t_ckfb  = 'FuBas auf Existenz pruefen'.\n\n*----------------------------------------------------------------------*\nSTART-OF-SELECTION.\n\n  APPEND '================================================================' TO gt_output.\n  APPEND '  SAP SYSTEM-STECKBRIEF FUER ABAP-ENTWICKLUNG' TO gt_output.\n  CONCATENATE '  Erstellt: ' sy-datum ' ' sy-uzeit INTO gv_line.\n  APPEND gv_line TO gt_output.\n  CONCATENATE '  System:   ' sy-sysid ' / Mandant: ' sy-mandt INTO gv_line.\n  APPEND gv_line TO gt_output.\n  CONCATENATE '  Benutzer: ' sy-uname INTO gv_line.\n  APPEND gv_line TO gt_output.\n  APPEND '================================================================' TO gt_output.\n  APPEND '' TO gt_output.\n\n  IF p_sys  = 'X'. PERFORM collect_system_info.   ENDIF.\n  IF p_abap = 'X'. PERFORM collect_abap_features. ENDIF.\n  IF p_comp = 'X'. PERFORM collect_components.     ENDIF.\n  IF p_fuba = 'X'. PERFORM collect_fuba_check.     ENDIF.\n  IF p_cktab = 'X'. PERFORM collect_table_check.   ENDIF.\n  IF p_dd   = 'X'. PERFORM collect_dd_export.      ENDIF.\n  IF p_ckfb = 'X'. PERFORM collect_custom_fuba.    ENDIF.\n\n  PERFORM export_file.\n  PERFORM display_result.\n\n\n*&=====================================================================*\n*& 1. System-Informationen\n*&=====================================================================*\nFORM collect_system_info.\n  DATA: lv_release TYPE c LENGTH 10, lv_sp TYPE c LENGTH 10.\n\n  APPEND '--- SYSTEM-RELEASE ---' TO gt_output.\n  CONCATENATE '  SAP System ID:       ' sy-sysid INTO gv_line. APPEND gv_line TO gt_output.\n  CONCATENATE '  Mandant:             ' sy-mandt INTO gv_line. APPEND gv_line TO gt_output.\n  CONCATENATE '  Host:                ' sy-host INTO gv_line. APPEND gv_line TO gt_output.\n  CONCATENATE '  Datenbank:           ' sy-dbsys INTO gv_line. APPEND gv_line TO gt_output.\n  CONCATENATE '  Betriebssystem:      ' sy-opsys INTO gv_line. APPEND gv_line TO gt_output.\n  CONCATENATE '  SAP Release:         ' sy-saprl INTO gv_line. APPEND gv_line TO gt_output.\n\n  SELECT SINGLE release extrelease FROM cvers INTO (lv_release, lv_sp)\n    WHERE component = 'SAP_BASIS'.\n  IF sy-subrc = 0.\n    CONCATENATE '  SAP_BASIS Release:   ' lv_release INTO gv_line. APPEND gv_line TO gt_output.\n    CONCATENATE '  SAP_BASIS ExtRelease:' lv_sp INTO gv_line. APPEND gv_line TO gt_output.\n  ENDIF.\n  CLEAR: lv_release, lv_sp.\n  SELECT SINGLE release extrelease FROM cvers INTO (lv_release, lv_sp)\n    WHERE component = 'SAP_ABA'.\n  IF sy-subrc = 0.\n    CONCATENATE '  SAP_ABA Release:     ' lv_release INTO gv_line. APPEND gv_line TO gt_output.\n    CONCATENATE '  SAP_ABA ExtRelease:  ' lv_sp INTO gv_line. APPEND gv_line TO gt_output.\n  ENDIF.\n\n  DATA: BEGIN OF ls_cv, component TYPE c LENGTH 30, release TYPE c LENGTH 10,\n          extrelease TYPE c LENGTH 10, comp_type TYPE c LENGTH 1,\n        END OF ls_cv, lt_cv LIKE TABLE OF ls_cv.\n  SELECT component release extrelease comp_type FROM cvers INTO TABLE lt_cv\n    WHERE component IN ('SAP_BASIS','SAP_ABA','SAP_APPL','SAP_HR',\n          'EA-HR','EA-APPL','SAP_BW','PI_BASIS','SAP_GWFND','SAP_UI','SAP_FIORI')\n    ORDER BY component.\n  APPEND '' TO gt_output.\n  APPEND '--- HAUPTKOMPONENTEN (CVERS) ---' TO gt_output.\n  APPEND '  Komponente          | Release  | Ext.Rel  | Typ' TO gt_output.\n  APPEND '  --------------------|----------|----------|----' TO gt_output.\n  LOOP AT lt_cv INTO ls_cv.\n    CONCATENATE '  ' ls_cv-component '|' ls_cv-release '|' ls_cv-extrelease '|' ls_cv-comp_type\n      INTO gv_line SEPARATED BY space.\n    APPEND gv_line TO gt_output.\n  ENDLOOP.\n  APPEND '' TO gt_output.\nENDFORM.\n\n\n*&=====================================================================*\n*& 2. ABAP Sprachfeatures\n*&=====================================================================*\nFORM collect_abap_features.\n  DATA: lv_source TYPE TABLE OF string, lv_msg TYPE string,\n        lv_word TYPE string, lv_lin TYPE i,\n        lv_result TYPE c LENGTH 4, lv_code TYPE string.\n\n  APPEND '--- ABAP SPRACHFEATURES ---' TO gt_output.\n  APPEND '  (Getestet durch dynamische Syntax-Pruefung)' TO gt_output.\n  APPEND '' TO gt_output.\n\n  DEFINE test_feature.\n    CLEAR: lv_source, lv_msg.\n    APPEND 'REPORT ztest.' TO lv_source.\n    lv_code = &2.\n    APPEND lv_code TO lv_source.\n    SYNTAX-CHECK FOR lv_source MESSAGE lv_msg LINE lv_lin WORD lv_word PROGRAM sy-repid.\n    IF lv_msg IS INITIAL. lv_result = 'JA'. ELSE. lv_result = 'NEIN'. ENDIF.\n    CONCATENATE '  ' &1 ': ' lv_result INTO gv_line.\n    APPEND gv_line TO gt_output.\n  END-OF-DEFINITION.\n\n  test_feature 'Inline DATA(...)  [7.40 SP02]' 'DATA(lv_x) = 1.'.\n  test_feature 'Inline FS <..>    [7.40 SP02]'\n    'DATA lt TYPE TABLE OF i. LOOP AT lt ASSIGNING FIELD-SYMBOL(<f>). ENDLOOP.'.\n  test_feature 'String Templates  [7.40 SP02]' 'DATA lv TYPE string. lv = |hello|.'.\n  test_feature 'String Tmpl {..}  [7.40 SP02]' 'DATA lv TYPE string. lv = |test { sy-uname }|.'.\n  test_feature 'CONV Ausdruck     [7.40 SP05]' 'DATA lv TYPE string. lv = CONV string( 123 ).'.\n  test_feature 'COND Ausdruck     [7.40 SP08]'\n    'DATA lv TYPE i. lv = COND #( WHEN 1 = 1 THEN 1 ELSE 2 ).'.\n  test_feature 'SWITCH Ausdruck   [7.40 SP08]'\n    'DATA lv TYPE i. lv = SWITCH #( 1 WHEN 1 THEN 1 ELSE 2 ).'.\n  test_feature 'NEW Operator      [7.40 SP02]'\n    'CLASS lcl DEFINITION. PUBLIC SECTION. ENDCLASS. CLASS lcl IMPLEMENTATION. ENDCLASS. DATA lo TYPE REF TO lcl. lo = NEW #( ).'.\n  test_feature 'VALUE Operator    [7.40 SP08]'\n    'TYPES ty TYPE TABLE OF i WITH DEFAULT KEY. DATA lt TYPE ty. lt = VALUE #( ( 1 ) ( 2 ) ).'.\n  test_feature 'FOR ... IN        [7.40 SP05]'\n    'TYPES ty TYPE TABLE OF i WITH DEFAULT KEY. DATA lt TYPE ty. lt = VALUE #( FOR i = 1 UNTIL i > 3 ( i ) ).'.\n  test_feature 'CORRESPONDING     [7.40 SP05]'\n    'TYPES: BEGIN OF t1, a TYPE i, END OF t1. DATA ls1 TYPE t1. DATA(ls2) = CORRESPONDING t1( ls1 ).'.\n  test_feature 'REDUCE Ausdruck   [7.40 SP08]'\n    'TYPES ty TYPE TABLE OF i WITH DEFAULT KEY. DATA(lv) = REDUCE i( INIT s = 0 FOR x IN VALUE ty( ( 1 ) ) NEXT s = s + x ).'.\n  test_feature 'LOOP GROUP BY     [7.40 SP08]'\n    'TYPES: BEGIN OF ty, g TYPE c LENGTH 1, END OF ty. DATA lt TYPE TABLE OF ty. LOOP AT lt INTO DATA(ls) GROUP BY ls-g. ENDLOOP.'.\n  test_feature 'ENUM Typ          [7.51]'\n    'TYPES: BEGIN OF ENUM t_color, red, green, blue, END OF ENUM t_color.'.\n\n  APPEND '' TO gt_output.\n  APPEND '  -> Nur Features mit JA verwenden!' TO gt_output.\n  APPEND '' TO gt_output.\nENDFORM.\n\n\n*&=====================================================================*\n*& 3. Komponenten\n*&=====================================================================*\nFORM collect_components.\n  DATA: BEGIN OF ls_cv, component TYPE c LENGTH 30, release TYPE c LENGTH 10,\n          extrelease TYPE c LENGTH 10, comp_type TYPE c LENGTH 1,\n        END OF ls_cv, lt_cv LIKE TABLE OF ls_cv.\n\n  SELECT component release extrelease comp_type FROM cvers INTO TABLE lt_cv ORDER BY component.\n\n  APPEND '--- ALLE INSTALLIERTEN KOMPONENTEN ---' TO gt_output.\n  DATA: lv_cnt TYPE i, lv_cnt_str TYPE c LENGTH 10.\n  lv_cnt = lines( lt_cv ). lv_cnt_str = lv_cnt. CONDENSE lv_cnt_str.\n  CONCATENATE '  Anzahl: ' lv_cnt_str INTO gv_line. APPEND gv_line TO gt_output.\n  APPEND '  Komponente          | Release  | Ext.Rel  | Typ' TO gt_output.\n  APPEND '  --------------------|----------|----------|----' TO gt_output.\n  LOOP AT lt_cv INTO ls_cv.\n    CONCATENATE '  ' ls_cv-component '|' ls_cv-release '|' ls_cv-extrelease '|' ls_cv-comp_type\n      INTO gv_line SEPARATED BY space.\n    APPEND gv_line TO gt_output.\n  ENDLOOP.\n  APPEND '' TO gt_output.\nENDFORM.\n\n\n*&=====================================================================*\n*& 4. Standard FuBas\n*&=====================================================================*\nFORM collect_fuba_check.\n  DATA: lv_fn TYPE rs38l-name, lv_status TYPE c LENGTH 20.\n  APPEND '--- FUNKTIONSBAUSTEINE (Standard) ---' TO gt_output.\n\n  DEFINE check_fuba.\n    lv_fn = &1.\n    CALL FUNCTION 'FUNCTION_EXISTS'\n      EXPORTING funcname = lv_fn\n      EXCEPTIONS function_not_exist = 1 OTHERS = 2.\n    IF sy-subrc = 0. lv_status = 'VORHANDEN'. ELSE. lv_status = 'NICHT VORHANDEN'. ENDIF.\n    CONCATENATE '  ' &1 ': ' lv_status INTO gv_line.\n    APPEND gv_line TO gt_output.\n  END-OF-DEFINITION.\n\n  check_fuba 'DELIVERY_GET_INSTALLED_COMP'.\n  check_fuba 'TH_SERVER_LIST'.\n  check_fuba 'RFC_READ_TABLE'.\n  check_fuba 'GUI_DOWNLOAD'.\n  check_fuba 'SAPWL_WORKLOAD_GET_STATISTIC'.\n  check_fuba 'SAPWL_STATREC_READ_RFC_C'.\n  check_fuba 'SWNC_GET_WORKLOAD_SNAPSHOT'.\n  check_fuba 'IDOC_STATUS_WRITE_TO_DATABASE'.\n  check_fuba 'MASTER_IDOC_DISTRIBUTE'.\n  check_fuba 'SXMB_GET_MESSAGE_LIST'.\n  check_fuba 'ARCHIV_GET_CONNECTIONS'.\n  check_fuba 'SWO_QUERY_OBJTYPES'.\n  check_fuba 'SO_NEW_DOCUMENT_SEND_API1'.\n  APPEND '' TO gt_output.\nENDFORM.\n\n\n*&=====================================================================*\n*& 5. Tabellen Existenz (Wildcards erlaubt)\n*&=====================================================================*\nFORM collect_table_check.\n  DATA: lt_tabs TYPE TABLE OF dd02l-tabname, lv_tab TYPE dd02l-tabname.\n  DATA: lv_cnt TYPE i, lv_cnt_str TYPE c LENGTH 10.\n\n  IF s_tab[] IS INITIAL. RETURN. ENDIF.\n\n  APPEND '--- TABELLEN EXISTENZ-CHECK ---' TO gt_output.\n\n  SELECT tabname FROM dd02l INTO TABLE lt_tabs\n    WHERE tabname IN s_tab AND as4local = 'A'\n    ORDER BY tabname.\n\n  lv_cnt = lines( lt_tabs ). lv_cnt_str = lv_cnt. CONDENSE lv_cnt_str.\n  CONCATENATE '  Gefunden: ' lv_cnt_str ' Tabellen' INTO gv_line.\n  APPEND gv_line TO gt_output.\n\n  IF lv_cnt <= 200.\n    LOOP AT lt_tabs INTO lv_tab.\n      CONCATENATE '  ' lv_tab INTO gv_line.\n      APPEND gv_line TO gt_output.\n    ENDLOOP.\n  ELSE.\n    APPEND '  (Liste zu lang - nur Anzahl angezeigt)' TO gt_output.\n  ENDIF.\n  APPEND '' TO gt_output.\nENDFORM.\n\n\n*&=====================================================================*\n*& 6. DD Export - optimiert mit FOR ALL ENTRIES\n*&=====================================================================*\nFORM collect_dd_export.\n  DATA: BEGIN OF ls_dd,\n          tabname   TYPE dd03l-tabname,\n          fieldname TYPE dd03l-fieldname,\n          position  TYPE dd03l-position,\n          datatype  TYPE dd03l-datatype,\n          leng      TYPE dd03l-leng,\n          decimals  TYPE dd03l-decimals,\n          rollname  TYPE dd03l-rollname,\n          keyflag   TYPE dd03l-keyflag,\n          ddtext    TYPE dd04t-ddtext,\n        END OF ls_dd.\n  DATA: lt_dd LIKE TABLE OF ls_dd.\n  DATA: lt_tabs TYPE TABLE OF dd03l-tabname.\n  DATA: lv_cnt TYPE i, lv_cnt_str TYPE c LENGTH 10.\n\n  IF s_tab[] IS INITIAL.\n    APPEND '--- DATA DICTIONARY: Keine Tabellen angegeben ---' TO gt_output.\n    APPEND '' TO gt_output. RETURN.\n  ENDIF.\n\n* Pruefen wieviele Tabellen betroffen\n  SELECT DISTINCT tabname FROM dd03l INTO TABLE lt_tabs\n    WHERE tabname IN s_tab AND as4local = 'A'.\n  lv_cnt = lines( lt_tabs ).\n\n  IF lv_cnt > 500.\n    lv_cnt_str = lv_cnt. CONDENSE lv_cnt_str.\n    CONCATENATE '  DD EXPORT: ' lv_cnt_str ' Tabellen - bitte einschraenken (max 500).' INTO gv_line.\n    APPEND gv_line TO gt_output.\n    APPEND '' TO gt_output. RETURN.\n  ENDIF.\n\n* Felder laden\n  SELECT tabname fieldname position datatype leng decimals rollname keyflag\n    FROM dd03l INTO CORRESPONDING FIELDS OF TABLE lt_dd\n    WHERE tabname IN s_tab AND as4local = 'A'\n      AND fieldname NOT LIKE '.%'\n    ORDER BY tabname position.\n\n* Beschreibungen per Massen-SELECT\n  DATA: lt_rollnames TYPE TABLE OF rollname, lv_roll TYPE rollname.\n  LOOP AT lt_dd INTO ls_dd WHERE rollname IS NOT INITIAL.\n    lv_roll = ls_dd-rollname. COLLECT lv_roll INTO lt_rollnames.\n  ENDLOOP.\n\n  IF lt_rollnames IS NOT INITIAL.\n    DATA: BEGIN OF ls_txt, rollname TYPE rollname, ddtext TYPE dd04t-ddtext,\n          END OF ls_txt, lt_txt LIKE TABLE OF ls_txt.\n    SELECT rollname ddtext FROM dd04t INTO TABLE lt_txt\n      FOR ALL ENTRIES IN lt_rollnames\n      WHERE rollname = lt_rollnames-table_line\n        AND ddlanguage = sy-langu AND as4local = 'A'.\n    LOOP AT lt_dd ASSIGNING FIELD-SYMBOL(<d>) WHERE rollname IS NOT INITIAL.\n      READ TABLE lt_txt INTO ls_txt WITH KEY rollname = <d>-rollname.\n      IF sy-subrc = 0. <d>-ddtext = ls_txt-ddtext. ENDIF.\n    ENDLOOP.\n  ENDIF.\n\n* Formatieren\n  APPEND '--- DATA DICTIONARY FELDER ---' TO gt_output.\n  lv_cnt_str = lv_cnt. CONDENSE lv_cnt_str.\n  CONCATENATE '  ' lv_cnt_str ' Tabellen,' INTO gv_line.\n  DATA: lv_fcnt TYPE i, lv_fcnt_str TYPE c LENGTH 10.\n  lv_fcnt = lines( lt_dd ). lv_fcnt_str = lv_fcnt. CONDENSE lv_fcnt_str.\n  CONCATENATE gv_line ' ' lv_fcnt_str ' Felder' INTO gv_line.\n  APPEND gv_line TO gt_output.\n\n  DATA: lv_prev TYPE dd03l-tabname, lv_leng TYPE c LENGTH 6.\n  LOOP AT lt_dd INTO ls_dd.\n    IF ls_dd-tabname <> lv_prev.\n      IF lv_prev IS NOT INITIAL. APPEND '' TO gt_output. ENDIF.\n      CONCATENATE '  [TABELLE] ' ls_dd-tabname INTO gv_line. APPEND gv_line TO gt_output.\n      lv_prev = ls_dd-tabname.\n    ENDIF.\n    lv_leng = ls_dd-leng.\n    CONCATENATE '    ' ls_dd-fieldname ' | ' ls_dd-datatype ' | ' lv_leng\n                ' | Key=' ls_dd-keyflag ' | ' ls_dd-ddtext INTO gv_line.\n    APPEND gv_line TO gt_output.\n  ENDLOOP.\n  APPEND '' TO gt_output.\nENDFORM.\n\n\n*&=====================================================================*\n*& 7. Benutzerdefinierte FuBas\n*&=====================================================================*\nFORM collect_custom_fuba.\n  DATA: lv_fn TYPE rs38l-name, lv_status TYPE c LENGTH 20.\n  IF s_fuba[] IS INITIAL. RETURN. ENDIF.\n\n  APPEND '--- FUNKTIONSBAUSTEINE (Benutzerdefiniert) ---' TO gt_output.\n  DATA: ls_range LIKE LINE OF s_fuba.\n  LOOP AT s_fuba INTO ls_range WHERE sign = 'I' AND option = 'EQ'.\n    lv_fn = ls_range-low.\n    CALL FUNCTION 'FUNCTION_EXISTS'\n      EXPORTING funcname = lv_fn\n      EXCEPTIONS function_not_exist = 1 OTHERS = 2.\n    IF sy-subrc = 0. lv_status = 'VORHANDEN'. ELSE. lv_status = 'NICHT VORHANDEN'. ENDIF.\n    CONCATENATE '  ' ls_range-low ': ' lv_status INTO gv_line.\n    APPEND gv_line TO gt_output.\n  ENDLOOP.\n  APPEND '' TO gt_output.\nENDFORM.\n\n\n*&=====================================================================*\n*& Export\n*&=====================================================================*\nFORM export_file.\n  DATA: lv_fp TYPE string, lv_fn TYPE string, lv_p TYPE string, lv_a TYPE i.\n  DATA: lv_default TYPE string.\n\n  CONCATENATE 'SAP_Steckbrief_' sy-sysid '_' sy-datum INTO lv_default.\n  cl_gui_frontend_services=>file_save_dialog(\n    EXPORTING window_title = 'Steckbrief speichern'\n      default_extension = 'txt' default_file_name = lv_default\n      file_filter = 'Text (*.txt)|*.txt|All|*.*'\n    CHANGING filename = lv_fn path = lv_p fullpath = lv_fp user_action = lv_a\n    EXCEPTIONS OTHERS = 4 ).\n  IF sy-subrc <> 0 OR lv_a <> 0. RETURN. ENDIF.\n\n  cl_gui_frontend_services=>gui_download(\n    EXPORTING filename = lv_fp filetype = 'ASC' codepage = '4110'\n    CHANGING data_tab = gt_output EXCEPTIONS OTHERS = 22 ).\n  IF sy-subrc = 0.\n    CONCATENATE 'Steckbrief exportiert: ' lv_fp INTO gv_line.\n    MESSAGE gv_line TYPE 'S'.\n  ENDIF.\nENDFORM.\n\n\n*&=====================================================================*\n*& Anzeige\n*&=====================================================================*\nFORM display_result.\n  DATA: lv_out TYPE string.\n  LOOP AT gt_output INTO lv_out.\n    WRITE: / lv_out.\n  ENDLOOP.\nENDFORM.\n";
     function downloadSteckbrief(){const b=new Blob([STECKBRIEF],{type:'text/plain'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='Z_SYSTEM_STECKBRIEF.abap';a.click();URL.revokeObjectURL(u)}
 
@@ -630,7 +691,10 @@
         order_hint:'Don\'t have a Steckbrief yet? <a href="#download" onclick="showMain()">Download the free profiler</a>, run it in SE38, then paste the <code>.txt</code> output below.',
         of_name:"Name *",of_email:"Email *",of_company:"Company",of_sap:"SAP System ID",of_tier:"Project Tier *",of_discuss:"Let's talk",
         of_req:"Requirement Description *",of_steckbrief:"System Steckbrief (paste .txt content) *",of_notes:"Additional Notes",of_submit:"🚀 Submit Order →",of_ok:"✓ Order received! We'll review your Steckbrief and reply within 24 hours with a detailed quote and timeline.",
-        about_label:"Who We Are",about_title:"Built by SAP Veterans",about_name:"The ERPforgeAI Team",about_role:"SAP Consulting · AI Engineering · ABAP Development",about_bio:"Every line of code is reviewed by senior SAP consultants with 10+ years of hands-on ABAP experience across ECC, S/4HANA, and industry solutions. We combine deep SAP expertise with cutting-edge AI to deliver code that compiles, follows best practices, and matches your exact system."
+        about_label:"Who We Are",about_title:"Built by SAP Veterans",about_name:"The ERPforgeAI Team",about_role:"SAP Consulting · AI Engineering · ABAP Development",about_bio:"Every line of code is reviewed by senior SAP consultants with 10+ years of hands-on ABAP experience across ECC, S/4HANA, and industry solutions. We combine deep SAP expertise with cutting-edge AI to deliver code that compiles, follows best practices, and matches your exact system.",
+        gdpr_waitlist:'I agree to the <a href="#" onclick="showPage(\'datenschutzPage\');return false">Privacy Policy</a>. My email will be used only to notify me about the launch.',
+        gdpr_order:'I agree to the <a href="#" onclick="showPage(\'datenschutzPage\');return false">Privacy Policy</a>. My data will be processed to fulfill this order as described in the privacy policy.',
+        gdpr_contact:'I agree to the <a href="#" onclick="showPage(\'datenschutzPage\');return false">Privacy Policy</a>.'
       },
       de:{
         nav_how:"So geht's",nav_why:"Warum wir",nav_pricing:"Preise",nav_order:"Bestellen",nav_contact:"Kontakt",nav_cta:"Jetzt bestellen",
@@ -662,7 +726,10 @@
         order_hint:'Noch keinen Steckbrief? <a href="#download" onclick="showMain()">Kostenlosen Profiler herunterladen</a>, in SE38 ausführen, dann den <code>.txt</code>-Output unten einfügen.',
         of_name:"Name *",of_email:"E-Mail *",of_company:"Unternehmen",of_sap:"SAP System ID",of_tier:"Projekt-Tier *",of_discuss:"Sprechen wir",
         of_req:"Anforderungsbeschreibung *",of_steckbrief:"System-Steckbrief (.txt-Inhalt einfügen) *",of_notes:"Zusätzliche Hinweise",of_submit:"🚀 Bestellung absenden →",of_ok:"✓ Bestellung eingegangen! Wir prüfen Ihren Steckbrief und antworten innerhalb von 24 Stunden mit einem detaillierten Angebot.",
-        about_label:"Wer wir sind",about_title:"Von SAP-Veteranen gebaut",about_name:"Das ERPforgeAI Team",about_role:"SAP Beratung · KI-Entwicklung · ABAP-Programmierung",about_bio:"Jede Zeile Code wird von erfahrenen SAP-Beratern mit 10+ Jahren praktischer ABAP-Erfahrung in ECC, S/4HANA und Branchenlösungen geprüft. Wir kombinieren tiefes SAP-Know-how mit modernster KI für Code, der kompiliert, Best Practices folgt und exakt zu Ihrem System passt."
+        about_label:"Wer wir sind",about_title:"Von SAP-Veteranen gebaut",about_name:"Das ERPforgeAI Team",about_role:"SAP Beratung · KI-Entwicklung · ABAP-Programmierung",about_bio:"Jede Zeile Code wird von erfahrenen SAP-Beratern mit 10+ Jahren praktischer ABAP-Erfahrung in ECC, S/4HANA und Branchenlösungen geprüft. Wir kombinieren tiefes SAP-Know-how mit modernster KI für Code, der kompiliert, Best Practices folgt und exakt zu Ihrem System passt.",
+        gdpr_waitlist:'Ich stimme der <a href="#" onclick="showPage(\'datenschutzPage\');return false">Datenschutzerklärung</a> zu. Meine E-Mail wird nur zur Benachrichtigung über den Launch verwendet.',
+        gdpr_order:'Ich stimme der <a href="#" onclick="showPage(\'datenschutzPage\');return false">Datenschutzerklärung</a> zu. Meine Daten werden zur Auftragsabwicklung gemäß der Datenschutzerklärung verarbeitet.',
+        gdpr_contact:'Ich stimme der <a href="#" onclick="showPage(\'datenschutzPage\');return false">Datenschutzerklärung</a> zu.'
       }
     };
     let curLang='en';
