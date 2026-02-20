@@ -47,8 +47,8 @@
     .hero-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 8px;background:var(--card);border:1px solid var(--border2);border-radius:100px;font-size:12px;font-weight:500;color:var(--text2);margin-bottom:40px;animation:fadeUp .8s ease both;position:relative;z-index:1}
     .hero-pill-dot{width:8px;height:8px;background:var(--orange);border-radius:50%;animation:blink 2s infinite}
     .hero-pill-tag{background:var(--orange);color:#fff;padding:2px 8px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
-    .hero h1{font-family:'Syne',sans-serif;font-size:clamp(44px,7vw,96px);font-weight:800;line-height:1;letter-spacing:-3px;margin-bottom:28px;animation:fadeUp .8s .1s ease both;position:relative;z-index:1}
-    .hero h1 .accent{color:var(--orange);position:relative}
+    .hero h1{font-family:'Syne',sans-serif;font-size:clamp(40px,6vw,80px);font-weight:800;line-height:1;letter-spacing:-3px;margin-bottom:28px;animation:fadeUp .8s .1s ease both;position:relative;z-index:1}
+    .hero h1 .accent{display:inline-block;max-width:100%;color:var(--orange);position:relative}
     .hero h1 .accent::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:4px;background:var(--orange);border-radius:2px;opacity:0.4}
     .hero-sub{font-size:clamp(16px,1.8vw,20px);font-weight:400;color:var(--text2);max-width:560px;line-height:1.7;margin-bottom:48px;animation:fadeUp .8s .2s ease both;position:relative;z-index:1}
 
@@ -234,7 +234,7 @@
       </div>
 
       <form class="hero-cta" id="waitlistForm" action="https://formspree.io/f/xvzbbwka" method="POST">
-        <input type="email" name="email" class="hero-input" autocomplete="off" placeholder="your@company.com" required>
+        <input type="email" name="waitlist_email" class="hero-input" autocomplete="new-password" placeholder="your@company.com" required>
         <input type="hidden" name="_subject" value="ERPforgeAI Waitlist Signup">
         <button type="submit" class="hero-submit" data-i18n="hero_btn">Join Waitlist →</button>
       </form>
@@ -357,7 +357,7 @@
         <form id="contactForm" action="https://formspree.io/f/xvzbbwka" method="POST">
           <input type="hidden" name="_subject" value="ERPforgeAI Contact">
           <div class="fg"><label data-i18n="cf_name">Name</label><input type="text" name="name" required></div>
-          <div class="fg"><label data-i18n="cf_email">Email</label><input type="email" name="email" required autocomplete="off"></div>
+          <div class="fg"><label data-i18n="cf_email">Email</label><input type="email" name="contact_email" required autocomplete="new-password"></div>
           <div class="fg"><label data-i18n="cf_subject">Subject</label><select name="subject"><option value="Project Inquiry" data-i18n="cf_subj1">Project Inquiry</option><option value="Question" data-i18n="cf_subj2">General Question</option><option value="Steckbrief" data-i18n="cf_subj3">Steckbrief Help</option><option value="Other" data-i18n="cf_subj4">Other</option></select></div>
           <div class="fg"><label data-i18n="cf_msg">Message</label><textarea name="message" required></textarea></div>
           <button type="submit" class="btn-send" data-i18n="cf_send">Send Message →</button>
@@ -479,7 +479,7 @@
       de:{
         nav_how:"So geht's",nav_why:"Warum wir",nav_pricing:"Preise",nav_contact:"Kontakt",nav_cta:"Warteliste",
         banner_text:"🚀 Launch Q2 2026 — Frühzugang für Warteliste",banner_btn:"Jetzt eintragen",
-        hero_badge:"SAP ABAP · Fiori · UI5 · S/4HANA · ECC",hero_h1_1:"SAP Code,",hero_h1_2:"geschmiedet mit KI.",
+        hero_badge:"SAP ABAP · Fiori · UI5 · S/4HANA · ECC",hero_h1_1:"SAP Code,",hero_h1_2:"KI-geschmiedet.",
         hero_sub:"Beschreiben Sie Ihre Anforderung. Laden Sie Ihr Systemprofil hoch. Erhalten Sie produktionsreifen ABAP-Code — exakt für Ihr SAP-Release. Kein Freelancer. Kein VPN. Kein Rätselraten.",
         hero_btn:"Warteliste beitreten →",hero_ok:"✓ Sie sind dabei! Wir melden uns vor dem Launch.",hero_note:"<span>→</span> Kostenloser Frühzugang · Keine Kreditkarte · Jederzeit kündbar",
         cd_label:"Launch Countdown",cd_days:"Tage",cd_hrs:"Std",cd_min:"Min",cd_sec:"Sek",
