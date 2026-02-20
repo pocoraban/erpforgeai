@@ -18,9 +18,12 @@
     .nav-logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--ember-500),var(--ember-600));border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;color:#fff;box-shadow:0 0 20px var(--ember-glow)}
     .nav-logo-text{font-weight:700;font-size:20px;color:var(--text-primary);letter-spacing:-0.5px}
     .nav-logo-text span{color:var(--ember-500)}
-    .nav-links{display:flex;gap:32px;align-items:center}
+    .nav-links{display:flex;gap:24px;align-items:center}
     .nav-links a{text-decoration:none;color:var(--text-secondary);font-size:14px;font-weight:500;transition:color 0.2s;letter-spacing:0.3px}
     .nav-links a:hover{color:var(--text-primary)}
+    .lang-switch{display:flex;align-items:center;gap:2px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:2px;margin-left:8px}
+    .lang-btn{padding:6px 12px;border:none;background:transparent;color:var(--text-muted);font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;cursor:pointer;border-radius:6px;transition:all 0.2s;letter-spacing:0.5px}
+    .lang-btn.active{background:var(--ember-500);color:#fff}
     .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:linear-gradient(135deg,var(--ember-500),var(--ember-600));color:#fff;font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;border:none;border-radius:10px;cursor:pointer;text-decoration:none;transition:all 0.3s;box-shadow:0 4px 20px rgba(249,115,22,0.3);letter-spacing:0.3px}
     .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(249,115,22,0.4)}
     .btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:transparent;color:var(--text-primary);font-family:'Outfit',sans-serif;font-weight:500;font-size:14px;border:1px solid var(--steel-700);border-radius:10px;cursor:pointer;text-decoration:none;transition:all 0.3s}
@@ -117,25 +120,29 @@
   <nav>
     <a href="#" class="nav-logo" onclick="showMain();return false;"><div class="nav-logo-icon">{}</div><div class="nav-logo-text">ERPforge<span>AI</span></div></a>
     <div class="nav-links">
-      <a href="#how" onclick="showMain()">How It Works</a>
-      <a href="#why" onclick="showMain()">Why Us</a>
-      <a href="#pricing" onclick="showMain()">Pricing</a>
-      <a href="#start" class="btn-primary" onclick="showMain()">Get Started →</a>
+      <a href="#how" onclick="showMain()" data-i18n="nav_how">How It Works</a>
+      <a href="#why" onclick="showMain()" data-i18n="nav_why">Why Us</a>
+      <a href="#pricing" onclick="showMain()" data-i18n="nav_pricing">Pricing</a>
+      <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('de')">DE</button>
+      </div>
+      <a href="#start" class="btn-primary" onclick="showMain()" data-i18n="nav_cta">Get Started →</a>
     </div>
   </nav>
   <div id="mainContent">
     <section class="hero">
-      <div class="hero-badge"><div class="hero-badge-dot"></div>Now serving SAP ABAP · Fiori · UI5 · S/4HANA · ECC</div>
-      <h1>ERP Code,<br><span class="gradient-text">Forged by AI.</span></h1>
-      <p class="hero-sub">Describe what you need in plain language. Upload your system profile. Get production-ready, syntax-error-free code — tailored to your exact SAP system.</p>
+      <div class="hero-badge"><div class="hero-badge-dot"></div><span data-i18n="hero_badge">Now serving SAP ABAP · Fiori · UI5 · S/4HANA · ECC</span></div>
+      <h1><span data-i18n="hero_h1_1">ERP Code,</span><br><span class="gradient-text" data-i18n="hero_h1_2">Forged by AI.</span></h1>
+      <p class="hero-sub" data-i18n="hero_sub">Describe what you need in plain language. Upload your system profile. Get production-ready, syntax-error-free code — tailored to your exact SAP system.</p>
       <div class="hero-actions">
-        <a href="#start" class="btn-primary">⚡ Start Your First Project</a>
-        <a href="#download" class="btn-secondary">⬇ Download System Profiler</a>
+        <a href="#start" class="btn-primary" data-i18n="hero_btn1">⚡ Start Your First Project</a>
+        <a href="#download" class="btn-secondary" data-i18n="hero_btn2">⬇ Download System Profiler</a>
       </div>
       <div class="hero-stats">
-        <div class="hero-stat"><div class="hero-stat-value">10×</div><div class="hero-stat-label">Faster Than Freelancers</div></div>
-        <div class="hero-stat"><div class="hero-stat-value">90%</div><div class="hero-stat-label">Cost Reduction</div></div>
-        <div class="hero-stat"><div class="hero-stat-value">7.00+</div><div class="hero-stat-label">SAP Releases Supported</div></div>
+        <div class="hero-stat"><div class="hero-stat-value">10×</div><div class="hero-stat-label" data-i18n="stat1">Faster Than Freelancers</div></div>
+        <div class="hero-stat"><div class="hero-stat-value">90%</div><div class="hero-stat-label" data-i18n="stat2">Cost Reduction</div></div>
+        <div class="hero-stat"><div class="hero-stat-value">7.00+</div><div class="hero-stat-label" data-i18n="stat3">SAP Releases Supported</div></div>
       </div>
     </section>
     <section class="code-section">
@@ -155,85 +162,85 @@
       </div>
     </section>
     <section class="how-section" id="how">
-      <div class="section-header"><div class="section-label">How It Works</div><h2 class="section-title">Three Steps. Done.</h2></div>
+      <div class="section-header"><div class="section-label" data-i18n="how_label">How It Works</div><h2 class="section-title" data-i18n="how_title">Three Steps. Done.</h2></div>
       <div class="steps-grid">
-        <div class="step-card"><div class="step-number">01</div><div class="step-icon">📋</div><div class="step-title">Profile Your System</div><div class="step-desc">Run our free diagnostic tool in SE38. It auto-detects your release, SP level, available features, installed components, and tables. Takes 30 seconds.</div></div>
-        <div class="step-card"><div class="step-number">02</div><div class="step-icon">💬</div><div class="step-title">Describe What You Need</div><div class="step-desc">Write your requirement in plain language: "I need a report that shows all open purchase orders by vendor with aging analysis." That's it.</div></div>
-        <div class="step-card"><div class="step-number">03</div><div class="step-icon">⚡</div><div class="step-title">Get Forged Code</div><div class="step-desc">Our AI generates code matched to your exact system. A senior ABAP expert reviews every line. You get production-ready code — paste into SE38 and run.</div></div>
+        <div class="step-card"><div class="step-number">01</div><div class="step-icon">📋</div><div class="step-title" data-i18n="step1_title">Profile Your System</div><div class="step-desc" data-i18n="step1_desc">Run our free diagnostic tool in SE38. It auto-detects your release, SP level, available features, installed components, and tables. Takes 30 seconds.</div></div>
+        <div class="step-card"><div class="step-number">02</div><div class="step-icon">💬</div><div class="step-title" data-i18n="step2_title">Describe What You Need</div><div class="step-desc" data-i18n="step2_desc">Write your requirement in plain language: "I need a report that shows all open purchase orders by vendor with aging analysis." That's it.</div></div>
+        <div class="step-card"><div class="step-number">03</div><div class="step-icon">⚡</div><div class="step-title" data-i18n="step3_title">Get Forged Code</div><div class="step-desc" data-i18n="step3_desc">Our AI generates code matched to your exact system. A senior ABAP expert reviews every line. You get production-ready code — paste into SE38 and run.</div></div>
       </div>
     </section>
     <section class="download-section" id="download">
       <div class="download-box">
         <div class="download-icon">🔧</div>
-        <h3>Free System Profiler</h3>
-        <p>Download our ABAP program and run it in SE38. It creates a complete system profile (Steckbrief) that we use to generate code perfectly matched to your SAP system. No installation needed — just copy, paste, run.</p>
+        <h3 data-i18n="dl_title">Free System Profiler</h3>
+        <p data-i18n="dl_desc">Download our ABAP program and run it in SE38. It creates a complete system profile (Steckbrief) that we use to generate code perfectly matched to your SAP system. No installation needed — just copy, paste, run.</p>
         <div class="download-steps">
-          <div class="download-step"><div class="download-step-num">1</div><span>Download the ABAP source code below</span></div>
-          <div class="download-step"><div class="download-step-num">2</div><span>Create a new report in SE38 and paste the code</span></div>
-          <div class="download-step"><div class="download-step-num">3</div><span>Run it — save the generated .txt file</span></div>
-          <div class="download-step"><div class="download-step-num">4</div><span>Upload the Steckbrief when you order code from us</span></div>
+          <div class="download-step"><div class="download-step-num">1</div><span data-i18n="dl_s1">Download the ABAP source code below</span></div>
+          <div class="download-step"><div class="download-step-num">2</div><span data-i18n="dl_s2">Create a new report in SE38 and paste the code</span></div>
+          <div class="download-step"><div class="download-step-num">3</div><span data-i18n="dl_s3">Run it — save the generated .txt file</span></div>
+          <div class="download-step"><div class="download-step-num">4</div><span data-i18n="dl_s4">Upload the Steckbrief when you order code from us</span></div>
         </div>
-        <button class="btn-primary" onclick="downloadSteckbrief()" style="font-size:16px;padding:16px 40px;">⬇ Download Z_SYSTEM_STECKBRIEF.abap</button>
+        <button class="btn-primary" onclick="downloadSteckbrief()" style="font-size:16px;padding:16px 40px;" data-i18n="dl_btn">⬇ Download Z_SYSTEM_STECKBRIEF.abap</button>
         <div class="download-filename">Z_SYSTEM_STECKBRIEF.abap · 425 lines · Compatible with SAP 7.00+</div>
       </div>
     </section>
     <section class="why-section" id="why">
-      <div class="section-header"><div class="section-label">Why ERPforgeAI</div><h2 class="section-title">The Old Way Is Broken</h2></div>
+      <div class="section-header"><div class="section-label" data-i18n="why_label">Why ERPforgeAI</div><h2 class="section-title" data-i18n="why_title">The Old Way Is Broken</h2></div>
       <div class="comparison-grid">
         <div class="comparison-card old">
-          <div class="comparison-label">❌ Traditional Approach</div>
+          <div class="comparison-label" data-i18n="old_label">❌ Traditional Approach</div>
           <ul class="comparison-list">
-            <li><span class="icon">⏳</span>Weeks to find an ABAP freelancer</li>
-            <li><span class="icon">💸</span>€800 – €1,500 per day</li>
-            <li><span class="icon">🔒</span>VPN access to your system required</li>
-            <li><span class="icon">🐛</span>Multiple iterations &amp; bug fixes</li>
-            <li><span class="icon">📄</span>Extensive specs needed upfront</li>
-            <li><span class="icon">🤷</span>No guarantee it works first time</li>
+            <li><span class="icon">⏳</span><span data-i18n="old1">Weeks to find an ABAP freelancer</span></li>
+            <li><span class="icon">💸</span><span data-i18n="old2">€800 – €1,500 per day</span></li>
+            <li><span class="icon">🔒</span><span data-i18n="old3">VPN access to your system required</span></li>
+            <li><span class="icon">🐛</span><span data-i18n="old4">Multiple iterations & bug fixes</span></li>
+            <li><span class="icon">📄</span><span data-i18n="old5">Extensive specs needed upfront</span></li>
+            <li><span class="icon">🤷</span><span data-i18n="old6">No guarantee it works first time</span></li>
           </ul>
         </div>
         <div class="comparison-card new">
-          <div class="comparison-label">⚡ ERPforgeAI</div>
+          <div class="comparison-label" data-i18n="new_label">⚡ ERPforgeAI</div>
           <ul class="comparison-list">
-            <li><span class="icon">🚀</span>Code delivered within 24 hours</li>
-            <li><span class="icon">💰</span>Starting at €99 per program</li>
-            <li><span class="icon">🛡️</span>No system access needed</li>
-            <li><span class="icon">✅</span>Syntax-checked for YOUR system</li>
-            <li><span class="icon">💬</span>Describe in plain language</li>
-            <li><span class="icon">👨‍💻</span>Expert-reviewed, production-ready</li>
+            <li><span class="icon">🚀</span><span data-i18n="new1">Code delivered within 24 hours</span></li>
+            <li><span class="icon">💰</span><span data-i18n="new2">Starting at €99 per program</span></li>
+            <li><span class="icon">🛡️</span><span data-i18n="new3">No system access needed</span></li>
+            <li><span class="icon">✅</span><span data-i18n="new4">Syntax-checked for YOUR system</span></li>
+            <li><span class="icon">💬</span><span data-i18n="new5">Describe in plain language</span></li>
+            <li><span class="icon">👨‍💻</span><span data-i18n="new6">Expert-reviewed, production-ready</span></li>
           </ul>
         </div>
       </div>
     </section>
     <section class="pricing-section" id="pricing">
-      <div class="section-header"><div class="section-label">Pricing</div><h2 class="section-title">Simple &amp; Transparent</h2></div>
+      <div class="section-header"><div class="section-label" data-i18n="price_label">Pricing</div><h2 class="section-title" data-i18n="price_title">Simple & Transparent</h2></div>
       <div class="pricing-grid">
         <div class="price-card">
-          <div class="price-tier">Report</div><div class="price-value">€99 <span>/ program</span></div><div class="price-desc">Simple reports, lists, data exports</div>
-          <ul class="price-features"><li>ALV reports &amp; data extracts</li><li>Selection screen with parameters</li><li>System-profile matched code</li><li>Expert review included</li><li>1 revision round</li></ul>
-          <a href="#start" class="btn-secondary" style="width:100%;justify-content:center;">Get Started</a>
+          <div class="price-tier">Report</div><div class="price-value">€99 <span>/ program</span></div><div class="price-desc" data-i18n="p1_desc">Simple reports, lists, data exports</div>
+          <ul class="price-features"><li data-i18n="p1_f1">ALV reports & data extracts</li><li data-i18n="p1_f2">Selection screen with parameters</li><li data-i18n="p1_f3">System-profile matched code</li><li data-i18n="p1_f4">Expert review included</li><li data-i18n="p1_f5">1 revision round</li></ul>
+          <a href="#start" class="btn-secondary" style="width:100%;justify-content:center;" data-i18n="price_btn">Get Started</a>
         </div>
         <div class="price-card featured">
-          <div class="price-card-badge">Most Popular</div>
-          <div class="price-tier">Interface</div><div class="price-value">€249 <span>/ program</span></div><div class="price-desc">Interfaces, uploads, integrations</div>
-          <ul class="price-features"><li>Everything in Report</li><li>File upload/download logic</li><li>RFC/BAPI integrations</li><li>Error handling &amp; logging</li><li>2 revision rounds</li></ul>
-          <a href="#start" class="btn-primary" style="width:100%;justify-content:center;">Get Started</a>
+          <div class="price-card-badge" data-i18n="popular">Most Popular</div>
+          <div class="price-tier">Interface</div><div class="price-value">€249 <span>/ program</span></div><div class="price-desc" data-i18n="p2_desc">Interfaces, uploads, integrations</div>
+          <ul class="price-features"><li data-i18n="p2_f1">Everything in Report</li><li data-i18n="p2_f2">File upload/download logic</li><li data-i18n="p2_f3">RFC/BAPI integrations</li><li data-i18n="p2_f4">Error handling & logging</li><li data-i18n="p2_f5">2 revision rounds</li></ul>
+          <a href="#start" class="btn-primary" style="width:100%;justify-content:center;" data-i18n="price_btn">Get Started</a>
         </div>
         <div class="price-card">
-          <div class="price-tier">Complex</div><div class="price-value">€499 <span>/ program</span></div><div class="price-desc">Enhancements, workflows, multi-module</div>
-          <ul class="price-features"><li>Everything in Interface</li><li>User Exits / BAdIs</li><li>Multi-table logic</li><li>Fiori/UI5 components</li><li>3 revision rounds</li></ul>
-          <a href="#start" class="btn-secondary" style="width:100%;justify-content:center;">Get Started</a>
+          <div class="price-tier">Complex</div><div class="price-value">€499 <span>/ program</span></div><div class="price-desc" data-i18n="p3_desc">Enhancements, workflows, multi-module</div>
+          <ul class="price-features"><li data-i18n="p3_f1">Everything in Interface</li><li data-i18n="p3_f2">User Exits / BAdIs</li><li data-i18n="p3_f3">Multi-table logic</li><li data-i18n="p3_f4">Fiori/UI5 components</li><li data-i18n="p3_f5">3 revision rounds</li></ul>
+          <a href="#start" class="btn-secondary" style="width:100%;justify-content:center;" data-i18n="price_btn">Get Started</a>
         </div>
       </div>
     </section>
     <section class="cta-section" id="start">
-      <h2>Ready to Forge<br>Your First Program?</h2>
-      <p>Join the waitlist. Be first when we launch.</p>
+      <h2 data-i18n="cta_h2">Ready to Forge<br>Your First Program?</h2>
+      <p data-i18n="cta_sub">Join the waitlist. Be first when we launch.</p>
       <form class="cta-form" id="waitlistForm" action="https://formspree.io/f/xvzbbwka" method="POST">
         <input type="email" name="email" class="cta-input" placeholder="your@company.com" required>
         <input type="hidden" name="_subject" value="New ERPforgeAI Waitlist Signup">
-        <button type="submit" class="btn-primary">Join Waitlist →</button>
+        <button type="submit" class="btn-primary" data-i18n="cta_btn">Join Waitlist →</button>
       </form>
-      <div class="cta-success" id="waitlistSuccess">✓ Thank you! We'll notify you when we launch. Check your inbox.</div>
+      <div class="cta-success" id="waitlistSuccess" data-i18n="cta_ok">✓ Thank you! We'll notify you when we launch.</div>
     </section>
   </div>
   <div class="legal-page" id="impressumPage">
@@ -249,7 +256,7 @@
     <p><strong>Haftung für Inhalte:</strong> Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.</p>
     <p><strong>Haftung für Links:</strong> Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen.</p>
     <h2>Urheberrecht</h2>
-    <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+    <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht.</p>
   </div>
   <div class="legal-page" id="datenschutzPage">
     <a href="#" class="legal-back" onclick="showMain();return false;">← Back to Home</a>
@@ -257,23 +264,17 @@
     <h2>1. Verantwortlicher</h2>
     <p>Youssef Boukachabine<br>50679 Köln<br>E-Mail: <a href="mailto:info@erpforgeai.com">info@erpforgeai.com</a></p>
     <h2>2. Erhebung und Speicherung personenbezogener Daten</h2>
-    <p>Beim Besuch unserer Website werden automatisch folgende Daten erhoben, die Ihr Browser übermittelt (Server-Logfiles):</p>
-    <ul><li>Browsertyp und -version</li><li>Verwendetes Betriebssystem</li><li>Referrer URL</li><li>Hostname des zugreifenden Rechners</li><li>Uhrzeit der Serveranfrage</li><li>IP-Adresse</li></ul>
-    <p>Diese Daten sind nicht bestimmten Personen zuordenbar. Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.</p>
+    <p>Beim Besuch unserer Website werden automatisch Daten erhoben, die Ihr Browser übermittelt (Server-Logfiles): Browsertyp, Betriebssystem, Referrer URL, Hostname, Uhrzeit, IP-Adresse. Diese Daten sind nicht bestimmten Personen zuordenbar.</p>
     <h2>3. Kontaktformular / Waitlist</h2>
-    <p>Wenn Sie sich für unsere Waitlist anmelden, werden folgende Daten übermittelt und gespeichert:</p>
-    <ul><li>E-Mail-Adresse</li></ul>
-    <p>Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO (Einwilligung). Die Daten werden über den Dienst <strong>Formspree</strong> (Formspree Inc., USA) verarbeitet. Formspree ist gemäß EU-U.S. Data Privacy Framework zertifiziert. Weitere Informationen: <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener">Formspree Privacy Policy</a>.</p>
+    <p>Bei der Waitlist-Anmeldung wird Ihre E-Mail-Adresse gespeichert (Art. 6 Abs. 1 lit. a DSGVO). Verarbeitung über <strong>Formspree</strong> (USA, EU-U.S. Data Privacy Framework). <a href="https://formspree.io/legal/privacy-policy/" target="_blank">Formspree Privacy Policy</a>.</p>
     <h2>4. Hosting</h2>
-    <p>Diese Website wird bei <strong>Vercel Inc.</strong> (USA) gehostet. Vercel kann Zugriffsdaten in Server-Logfiles erheben. Vercel ist gemäß EU-U.S. Data Privacy Framework zertifiziert. Weitere Informationen: <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">Vercel Privacy Policy</a>.</p>
+    <p>Hosting bei <strong>Vercel Inc.</strong> (USA, EU-U.S. Data Privacy Framework). <a href="https://vercel.com/legal/privacy-policy" target="_blank">Vercel Privacy Policy</a>.</p>
     <h2>5. Ihre Rechte</h2>
-    <p>Sie haben folgende Rechte hinsichtlich Ihrer gespeicherten personenbezogenen Daten:</p>
-    <ul><li>Recht auf Auskunft</li><li>Recht auf Berichtigung oder Löschung</li><li>Recht auf Einschränkung der Verarbeitung</li><li>Recht auf Widerspruch gegen die Verarbeitung</li><li>Recht auf Datenübertragbarkeit</li><li>Recht auf Widerruf einer erteilten Einwilligung</li></ul>
-    <p>Zur Ausübung Ihrer Rechte wenden Sie sich bitte an: <a href="mailto:info@erpforgeai.com">info@erpforgeai.com</a></p>
+    <p>Auskunft, Berichtigung, Löschung, Einschränkung, Widerspruch, Datenübertragbarkeit, Widerruf. Kontakt: <a href="mailto:info@erpforgeai.com">info@erpforgeai.com</a></p>
     <h2>6. Cookies</h2>
-    <p>Diese Website verwendet <strong>keine Cookies</strong> und kein Tracking. Es werden keine Analyse-Tools wie Google Analytics eingesetzt.</p>
-    <h2>7. Änderung der Datenschutzerklärung</h2>
-    <p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen. Die aktuelle Fassung finden Sie stets auf dieser Seite. Stand: Februar 2026.</p>
+    <p>Diese Website verwendet <strong>keine Cookies</strong> und kein Tracking.</p>
+    <h2>7. Änderung</h2>
+    <p>Stand: Februar 2026.</p>
   </div>
   <footer>
     <div class="footer-text">© 2026 <span>ERPforgeAI</span>. Forging enterprise code with intelligence.</div>
@@ -286,9 +287,74 @@
   <script>
     function showPage(id){document.getElementById('mainContent').style.display='none';document.getElementById('impressumPage').classList.remove('active');document.getElementById('datenschutzPage').classList.remove('active');document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
     function showMain(){document.getElementById('mainContent').style.display='block';document.getElementById('impressumPage').classList.remove('active');document.getElementById('datenschutzPage').classList.remove('active')}
-    document.getElementById('waitlistForm').addEventListener('submit',async function(e){e.preventDefault();const f=this;try{const r=await fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}});if(r.ok){f.style.display='none';document.getElementById('waitlistSuccess').style.display='block'}else{alert('Something went wrong. Please try again or contact info@erpforgeai.com')}}catch(err){alert('Something went wrong. Please contact info@erpforgeai.com')}});
+    document.getElementById('waitlistForm').addEventListener('submit',async function(e){e.preventDefault();const f=this;try{const r=await fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}});if(r.ok){f.style.display='none';document.getElementById('waitlistSuccess').style.display='block'}else{alert('Something went wrong. Please contact info@erpforgeai.com')}}catch(err){alert('Something went wrong. Please contact info@erpforgeai.com')}});
     const STECKBRIEF = "*&---------------------------------------------------------------------*\n*& Report Z_SYSTEM_STECKBRIEF\n*&---------------------------------------------------------------------*\n*& System-Steckbrief V4 - Sequentiell, optimiert, robust\n*& Kompatibel mit 7.40 SP02+ (alle Features laut Steckbrief)\n*&---------------------------------------------------------------------*\nREPORT z_system_steckbrief.\n\nDATA: gt_output TYPE TABLE OF string,\n      gv_line   TYPE string.\n\n*----------------------------------------------------------------------*\nSELECTION-SCREEN BEGIN OF BLOCK b01 WITH FRAME TITLE gt_b01.\n  SELECTION-SCREEN BEGIN OF LINE.\n    PARAMETERS p_sys AS CHECKBOX DEFAULT 'X'.\n    SELECTION-SCREEN COMMENT 3(40) t_sys.\n  SELECTION-SCREEN END OF LINE.\n  SELECTION-SCREEN BEGIN OF LINE.\n    PARAMETERS p_abap AS CHECKBOX DEFAULT 'X'.\n    SELECTION-SCREEN COMMENT 3(40) t_abap.\n  SELECTION-SCREEN END OF LINE.\n  SELECTION-SCREEN BEGIN OF LINE.\n    PARAMETERS p_comp AS CHECKBOX DEFAULT 'X'.\n    SELECTION-SCREEN COMMENT 3(40) t_comp.\n  SELECTION-SCREEN END OF LINE.\n  SELECTION-SCREEN BEGIN OF LINE.\n    PARAMETERS p_fuba AS CHECKBOX DEFAULT 'X'.\n    SELECTION-SCREEN COMMENT 3(40) t_fuba.\n  SELECTION-SCREEN END OF LINE.\nSELECTION-SCREEN END OF BLOCK b01.\n\nSELECTION-SCREEN BEGIN OF BLOCK b02 WITH FRAME TITLE gt_b02.\n  SELECTION-SCREEN BEGIN OF LINE.\n    PARAMETERS p_dd AS CHECKBOX DEFAULT ' '.\n    SELECTION-SCREEN COMMENT 3(40) t_dd.\n  SELECTION-SCREEN END OF LINE.\n  SELECT-OPTIONS s_tab FOR sy-tcode VISIBLE LENGTH 40.\n  SELECTION-SCREEN BEGIN OF LINE.\n    PARAMETERS p_cktab AS CHECKBOX DEFAULT 'X'.\n    SELECTION-SCREEN COMMENT 3(40) t_cktab.\n  SELECTION-SCREEN END OF LINE.\nSELECTION-SCREEN END OF BLOCK b02.\n\nSELECTION-SCREEN BEGIN OF BLOCK b03 WITH FRAME TITLE gt_b03.\n  SELECTION-SCREEN BEGIN OF LINE.\n    PARAMETERS p_ckfb AS CHECKBOX DEFAULT ' '.\n    SELECTION-SCREEN COMMENT 3(40) t_ckfb.\n  SELECTION-SCREEN END OF LINE.\n  SELECT-OPTIONS s_fuba FOR sy-tcode VISIBLE LENGTH 40.\nSELECTION-SCREEN END OF BLOCK b03.\n\nINITIALIZATION.\n  gt_b01 = 'System-Informationen'.\n  gt_b02 = 'Data Dictionary'.\n  gt_b03 = 'Funktionsbausteine pruefen'.\n  t_sys   = 'Release, Kernel, SP-Stand'.\n  t_abap  = 'ABAP Sprachfeatures testen'.\n  t_comp  = 'Installierte Komponenten'.\n  t_fuba  = 'Wichtige FuBas pruefen'.\n  t_dd    = 'DD-Felder exportieren (Tabellen unten)'.\n  t_cktab = 'Tabellen auf Existenz pruefen'.\n  t_ckfb  = 'FuBas auf Existenz pruefen'.\n\n*----------------------------------------------------------------------*\nSTART-OF-SELECTION.\n\n  APPEND '================================================================' TO gt_output.\n  APPEND '  SAP SYSTEM-STECKBRIEF FUER ABAP-ENTWICKLUNG' TO gt_output.\n  CONCATENATE '  Erstellt: ' sy-datum ' ' sy-uzeit INTO gv_line.\n  APPEND gv_line TO gt_output.\n  CONCATENATE '  System:   ' sy-sysid ' / Mandant: ' sy-mandt INTO gv_line.\n  APPEND gv_line TO gt_output.\n  CONCATENATE '  Benutzer: ' sy-uname INTO gv_line.\n  APPEND gv_line TO gt_output.\n  APPEND '================================================================' TO gt_output.\n  APPEND '' TO gt_output.\n\n  IF p_sys  = 'X'. PERFORM collect_system_info.   ENDIF.\n  IF p_abap = 'X'. PERFORM collect_abap_features. ENDIF.\n  IF p_comp = 'X'. PERFORM collect_components.     ENDIF.\n  IF p_fuba = 'X'. PERFORM collect_fuba_check.     ENDIF.\n  IF p_cktab = 'X'. PERFORM collect_table_check.   ENDIF.\n  IF p_dd   = 'X'. PERFORM collect_dd_export.      ENDIF.\n  IF p_ckfb = 'X'. PERFORM collect_custom_fuba.    ENDIF.\n\n  PERFORM export_file.\n  PERFORM display_result.\n\n\n*&=====================================================================*\n*& 1. System-Informationen\n*&=====================================================================*\nFORM collect_system_info.\n  DATA: lv_release TYPE c LENGTH 10, lv_sp TYPE c LENGTH 10.\n\n  APPEND '--- SYSTEM-RELEASE ---' TO gt_output.\n  CONCATENATE '  SAP System ID:       ' sy-sysid INTO gv_line. APPEND gv_line TO gt_output.\n  CONCATENATE '  Mandant:             ' sy-mandt INTO gv_line. APPEND gv_line TO gt_output.\n  CONCATENATE '  Host:                ' sy-host INTO gv_line. APPEND gv_line TO gt_output.\n  CONCATENATE '  Datenbank:           ' sy-dbsys INTO gv_line. APPEND gv_line TO gt_output.\n  CONCATENATE '  Betriebssystem:      ' sy-opsys INTO gv_line. APPEND gv_line TO gt_output.\n  CONCATENATE '  SAP Release:         ' sy-saprl INTO gv_line. APPEND gv_line TO gt_output.\n\n  SELECT SINGLE release extrelease FROM cvers INTO (lv_release, lv_sp)\n    WHERE component = 'SAP_BASIS'.\n  IF sy-subrc = 0.\n    CONCATENATE '  SAP_BASIS Release:   ' lv_release INTO gv_line. APPEND gv_line TO gt_output.\n    CONCATENATE '  SAP_BASIS ExtRelease:' lv_sp INTO gv_line. APPEND gv_line TO gt_output.\n  ENDIF.\n  CLEAR: lv_release, lv_sp.\n  SELECT SINGLE release extrelease FROM cvers INTO (lv_release, lv_sp)\n    WHERE component = 'SAP_ABA'.\n  IF sy-subrc = 0.\n    CONCATENATE '  SAP_ABA Release:     ' lv_release INTO gv_line. APPEND gv_line TO gt_output.\n    CONCATENATE '  SAP_ABA ExtRelease:  ' lv_sp INTO gv_line. APPEND gv_line TO gt_output.\n  ENDIF.\n\n  DATA: BEGIN OF ls_cv, component TYPE c LENGTH 30, release TYPE c LENGTH 10,\n          extrelease TYPE c LENGTH 10, comp_type TYPE c LENGTH 1,\n        END OF ls_cv, lt_cv LIKE TABLE OF ls_cv.\n  SELECT component release extrelease comp_type FROM cvers INTO TABLE lt_cv\n    WHERE component IN ('SAP_BASIS','SAP_ABA','SAP_APPL','SAP_HR',\n          'EA-HR','EA-APPL','SAP_BW','PI_BASIS','SAP_GWFND','SAP_UI','SAP_FIORI')\n    ORDER BY component.\n  APPEND '' TO gt_output.\n  APPEND '--- HAUPTKOMPONENTEN (CVERS) ---' TO gt_output.\n  APPEND '  Komponente          | Release  | Ext.Rel  | Typ' TO gt_output.\n  APPEND '  --------------------|----------|----------|----' TO gt_output.\n  LOOP AT lt_cv INTO ls_cv.\n    CONCATENATE '  ' ls_cv-component '|' ls_cv-release '|' ls_cv-extrelease '|' ls_cv-comp_type\n      INTO gv_line SEPARATED BY space.\n    APPEND gv_line TO gt_output.\n  ENDLOOP.\n  APPEND '' TO gt_output.\nENDFORM.\n\n\n*&=====================================================================*\n*& 2. ABAP Sprachfeatures\n*&=====================================================================*\nFORM collect_abap_features.\n  DATA: lv_source TYPE TABLE OF string, lv_msg TYPE string,\n        lv_word TYPE string, lv_lin TYPE i,\n        lv_result TYPE c LENGTH 4, lv_code TYPE string.\n\n  APPEND '--- ABAP SPRACHFEATURES ---' TO gt_output.\n  APPEND '  (Getestet durch dynamische Syntax-Pruefung)' TO gt_output.\n  APPEND '' TO gt_output.\n\n  DEFINE test_feature.\n    CLEAR: lv_source, lv_msg.\n    APPEND 'REPORT ztest.' TO lv_source.\n    lv_code = &2.\n    APPEND lv_code TO lv_source.\n    SYNTAX-CHECK FOR lv_source MESSAGE lv_msg LINE lv_lin WORD lv_word PROGRAM sy-repid.\n    IF lv_msg IS INITIAL. lv_result = 'JA'. ELSE. lv_result = 'NEIN'. ENDIF.\n    CONCATENATE '  ' &1 ': ' lv_result INTO gv_line.\n    APPEND gv_line TO gt_output.\n  END-OF-DEFINITION.\n\n  test_feature 'Inline DATA(...)  [7.40 SP02]' 'DATA(lv_x) = 1.'.\n  test_feature 'Inline FS <..>    [7.40 SP02]'\n    'DATA lt TYPE TABLE OF i. LOOP AT lt ASSIGNING FIELD-SYMBOL(<f>). ENDLOOP.'.\n  test_feature 'String Templates  [7.40 SP02]' 'DATA lv TYPE string. lv = |hello|.'.\n  test_feature 'String Tmpl {..}  [7.40 SP02]' 'DATA lv TYPE string. lv = |test { sy-uname }|.'.\n  test_feature 'CONV Ausdruck     [7.40 SP05]' 'DATA lv TYPE string. lv = CONV string( 123 ).'.\n  test_feature 'COND Ausdruck     [7.40 SP08]'\n    'DATA lv TYPE i. lv = COND #( WHEN 1 = 1 THEN 1 ELSE 2 ).'.\n  test_feature 'SWITCH Ausdruck   [7.40 SP08]'\n    'DATA lv TYPE i. lv = SWITCH #( 1 WHEN 1 THEN 1 ELSE 2 ).'.\n  test_feature 'NEW Operator      [7.40 SP02]'\n    'CLASS lcl DEFINITION. PUBLIC SECTION. ENDCLASS. CLASS lcl IMPLEMENTATION. ENDCLASS. DATA lo TYPE REF TO lcl. lo = NEW #( ).'.\n  test_feature 'VALUE Operator    [7.40 SP08]'\n    'TYPES ty TYPE TABLE OF i WITH DEFAULT KEY. DATA lt TYPE ty. lt = VALUE #( ( 1 ) ( 2 ) ).'.\n  test_feature 'FOR ... IN        [7.40 SP05]'\n    'TYPES ty TYPE TABLE OF i WITH DEFAULT KEY. DATA lt TYPE ty. lt = VALUE #( FOR i = 1 UNTIL i > 3 ( i ) ).'.\n  test_feature 'CORRESPONDING     [7.40 SP05]'\n    'TYPES: BEGIN OF t1, a TYPE i, END OF t1. DATA ls1 TYPE t1. DATA(ls2) = CORRESPONDING t1( ls1 ).'.\n  test_feature 'REDUCE Ausdruck   [7.40 SP08]'\n    'TYPES ty TYPE TABLE OF i WITH DEFAULT KEY. DATA(lv) = REDUCE i( INIT s = 0 FOR x IN VALUE ty( ( 1 ) ) NEXT s = s + x ).'.\n  test_feature 'LOOP GROUP BY     [7.40 SP08]'\n    'TYPES: BEGIN OF ty, g TYPE c LENGTH 1, END OF ty. DATA lt TYPE TABLE OF ty. LOOP AT lt INTO DATA(ls) GROUP BY ls-g. ENDLOOP.'.\n  test_feature 'ENUM Typ          [7.51]'\n    'TYPES: BEGIN OF ENUM t_color, red, green, blue, END OF ENUM t_color.'.\n\n  APPEND '' TO gt_output.\n  APPEND '  -> Nur Features mit JA verwenden!' TO gt_output.\n  APPEND '' TO gt_output.\nENDFORM.\n\n\n*&=====================================================================*\n*& 3. Komponenten\n*&=====================================================================*\nFORM collect_components.\n  DATA: BEGIN OF ls_cv, component TYPE c LENGTH 30, release TYPE c LENGTH 10,\n          extrelease TYPE c LENGTH 10, comp_type TYPE c LENGTH 1,\n        END OF ls_cv, lt_cv LIKE TABLE OF ls_cv.\n\n  SELECT component release extrelease comp_type FROM cvers INTO TABLE lt_cv ORDER BY component.\n\n  APPEND '--- ALLE INSTALLIERTEN KOMPONENTEN ---' TO gt_output.\n  DATA: lv_cnt TYPE i, lv_cnt_str TYPE c LENGTH 10.\n  lv_cnt = lines( lt_cv ). lv_cnt_str = lv_cnt. CONDENSE lv_cnt_str.\n  CONCATENATE '  Anzahl: ' lv_cnt_str INTO gv_line. APPEND gv_line TO gt_output.\n  APPEND '  Komponente          | Release  | Ext.Rel  | Typ' TO gt_output.\n  APPEND '  --------------------|----------|----------|----' TO gt_output.\n  LOOP AT lt_cv INTO ls_cv.\n    CONCATENATE '  ' ls_cv-component '|' ls_cv-release '|' ls_cv-extrelease '|' ls_cv-comp_type\n      INTO gv_line SEPARATED BY space.\n    APPEND gv_line TO gt_output.\n  ENDLOOP.\n  APPEND '' TO gt_output.\nENDFORM.\n\n\n*&=====================================================================*\n*& 4. Standard FuBas\n*&=====================================================================*\nFORM collect_fuba_check.\n  DATA: lv_fn TYPE rs38l-name, lv_status TYPE c LENGTH 20.\n  APPEND '--- FUNKTIONSBAUSTEINE (Standard) ---' TO gt_output.\n\n  DEFINE check_fuba.\n    lv_fn = &1.\n    CALL FUNCTION 'FUNCTION_EXISTS'\n      EXPORTING funcname = lv_fn\n      EXCEPTIONS function_not_exist = 1 OTHERS = 2.\n    IF sy-subrc = 0. lv_status = 'VORHANDEN'. ELSE. lv_status = 'NICHT VORHANDEN'. ENDIF.\n    CONCATENATE '  ' &1 ': ' lv_status INTO gv_line.\n    APPEND gv_line TO gt_output.\n  END-OF-DEFINITION.\n\n  check_fuba 'DELIVERY_GET_INSTALLED_COMP'.\n  check_fuba 'TH_SERVER_LIST'.\n  check_fuba 'RFC_READ_TABLE'.\n  check_fuba 'GUI_DOWNLOAD'.\n  check_fuba 'SAPWL_WORKLOAD_GET_STATISTIC'.\n  check_fuba 'SAPWL_STATREC_READ_RFC_C'.\n  check_fuba 'SWNC_GET_WORKLOAD_SNAPSHOT'.\n  check_fuba 'IDOC_STATUS_WRITE_TO_DATABASE'.\n  check_fuba 'MASTER_IDOC_DISTRIBUTE'.\n  check_fuba 'SXMB_GET_MESSAGE_LIST'.\n  check_fuba 'ARCHIV_GET_CONNECTIONS'.\n  check_fuba 'SWO_QUERY_OBJTYPES'.\n  check_fuba 'SO_NEW_DOCUMENT_SEND_API1'.\n  APPEND '' TO gt_output.\nENDFORM.\n\n\n*&=====================================================================*\n*& 5. Tabellen Existenz (Wildcards erlaubt)\n*&=====================================================================*\nFORM collect_table_check.\n  DATA: lt_tabs TYPE TABLE OF dd02l-tabname, lv_tab TYPE dd02l-tabname.\n  DATA: lv_cnt TYPE i, lv_cnt_str TYPE c LENGTH 10.\n\n  IF s_tab[] IS INITIAL. RETURN. ENDIF.\n\n  APPEND '--- TABELLEN EXISTENZ-CHECK ---' TO gt_output.\n\n  SELECT tabname FROM dd02l INTO TABLE lt_tabs\n    WHERE tabname IN s_tab AND as4local = 'A'\n    ORDER BY tabname.\n\n  lv_cnt = lines( lt_tabs ). lv_cnt_str = lv_cnt. CONDENSE lv_cnt_str.\n  CONCATENATE '  Gefunden: ' lv_cnt_str ' Tabellen' INTO gv_line.\n  APPEND gv_line TO gt_output.\n\n  IF lv_cnt <= 200.\n    LOOP AT lt_tabs INTO lv_tab.\n      CONCATENATE '  ' lv_tab INTO gv_line.\n      APPEND gv_line TO gt_output.\n    ENDLOOP.\n  ELSE.\n    APPEND '  (Liste zu lang - nur Anzahl angezeigt)' TO gt_output.\n  ENDIF.\n  APPEND '' TO gt_output.\nENDFORM.\n\n\n*&=====================================================================*\n*& 6. DD Export - optimiert mit FOR ALL ENTRIES\n*&=====================================================================*\nFORM collect_dd_export.\n  DATA: BEGIN OF ls_dd,\n          tabname   TYPE dd03l-tabname,\n          fieldname TYPE dd03l-fieldname,\n          position  TYPE dd03l-position,\n          datatype  TYPE dd03l-datatype,\n          leng      TYPE dd03l-leng,\n          decimals  TYPE dd03l-decimals,\n          rollname  TYPE dd03l-rollname,\n          keyflag   TYPE dd03l-keyflag,\n          ddtext    TYPE dd04t-ddtext,\n        END OF ls_dd.\n  DATA: lt_dd LIKE TABLE OF ls_dd.\n  DATA: lt_tabs TYPE TABLE OF dd03l-tabname.\n  DATA: lv_cnt TYPE i, lv_cnt_str TYPE c LENGTH 10.\n\n  IF s_tab[] IS INITIAL.\n    APPEND '--- DATA DICTIONARY: Keine Tabellen angegeben ---' TO gt_output.\n    APPEND '' TO gt_output. RETURN.\n  ENDIF.\n\n* Pruefen wieviele Tabellen betroffen\n  SELECT DISTINCT tabname FROM dd03l INTO TABLE lt_tabs\n    WHERE tabname IN s_tab AND as4local = 'A'.\n  lv_cnt = lines( lt_tabs ).\n\n  IF lv_cnt > 500.\n    lv_cnt_str = lv_cnt. CONDENSE lv_cnt_str.\n    CONCATENATE '  DD EXPORT: ' lv_cnt_str ' Tabellen - bitte einschraenken (max 500).' INTO gv_line.\n    APPEND gv_line TO gt_output.\n    APPEND '' TO gt_output. RETURN.\n  ENDIF.\n\n* Felder laden\n  SELECT tabname fieldname position datatype leng decimals rollname keyflag\n    FROM dd03l INTO CORRESPONDING FIELDS OF TABLE lt_dd\n    WHERE tabname IN s_tab AND as4local = 'A'\n      AND fieldname NOT LIKE '.%'\n    ORDER BY tabname position.\n\n* Beschreibungen per Massen-SELECT\n  DATA: lt_rollnames TYPE TABLE OF rollname, lv_roll TYPE rollname.\n  LOOP AT lt_dd INTO ls_dd WHERE rollname IS NOT INITIAL.\n    lv_roll = ls_dd-rollname. COLLECT lv_roll INTO lt_rollnames.\n  ENDLOOP.\n\n  IF lt_rollnames IS NOT INITIAL.\n    DATA: BEGIN OF ls_txt, rollname TYPE rollname, ddtext TYPE dd04t-ddtext,\n          END OF ls_txt, lt_txt LIKE TABLE OF ls_txt.\n    SELECT rollname ddtext FROM dd04t INTO TABLE lt_txt\n      FOR ALL ENTRIES IN lt_rollnames\n      WHERE rollname = lt_rollnames-table_line\n        AND ddlanguage = sy-langu AND as4local = 'A'.\n    LOOP AT lt_dd ASSIGNING FIELD-SYMBOL(<d>) WHERE rollname IS NOT INITIAL.\n      READ TABLE lt_txt INTO ls_txt WITH KEY rollname = <d>-rollname.\n      IF sy-subrc = 0. <d>-ddtext = ls_txt-ddtext. ENDIF.\n    ENDLOOP.\n  ENDIF.\n\n* Formatieren\n  APPEND '--- DATA DICTIONARY FELDER ---' TO gt_output.\n  lv_cnt_str = lv_cnt. CONDENSE lv_cnt_str.\n  CONCATENATE '  ' lv_cnt_str ' Tabellen,' INTO gv_line.\n  DATA: lv_fcnt TYPE i, lv_fcnt_str TYPE c LENGTH 10.\n  lv_fcnt = lines( lt_dd ). lv_fcnt_str = lv_fcnt. CONDENSE lv_fcnt_str.\n  CONCATENATE gv_line ' ' lv_fcnt_str ' Felder' INTO gv_line.\n  APPEND gv_line TO gt_output.\n\n  DATA: lv_prev TYPE dd03l-tabname, lv_leng TYPE c LENGTH 6.\n  LOOP AT lt_dd INTO ls_dd.\n    IF ls_dd-tabname <> lv_prev.\n      IF lv_prev IS NOT INITIAL. APPEND '' TO gt_output. ENDIF.\n      CONCATENATE '  [TABELLE] ' ls_dd-tabname INTO gv_line. APPEND gv_line TO gt_output.\n      lv_prev = ls_dd-tabname.\n    ENDIF.\n    lv_leng = ls_dd-leng.\n    CONCATENATE '    ' ls_dd-fieldname ' | ' ls_dd-datatype ' | ' lv_leng\n                ' | Key=' ls_dd-keyflag ' | ' ls_dd-ddtext INTO gv_line.\n    APPEND gv_line TO gt_output.\n  ENDLOOP.\n  APPEND '' TO gt_output.\nENDFORM.\n\n\n*&=====================================================================*\n*& 7. Benutzerdefinierte FuBas\n*&=====================================================================*\nFORM collect_custom_fuba.\n  DATA: lv_fn TYPE rs38l-name, lv_status TYPE c LENGTH 20.\n  IF s_fuba[] IS INITIAL. RETURN. ENDIF.\n\n  APPEND '--- FUNKTIONSBAUSTEINE (Benutzerdefiniert) ---' TO gt_output.\n  DATA: ls_range LIKE LINE OF s_fuba.\n  LOOP AT s_fuba INTO ls_range WHERE sign = 'I' AND option = 'EQ'.\n    lv_fn = ls_range-low.\n    CALL FUNCTION 'FUNCTION_EXISTS'\n      EXPORTING funcname = lv_fn\n      EXCEPTIONS function_not_exist = 1 OTHERS = 2.\n    IF sy-subrc = 0. lv_status = 'VORHANDEN'. ELSE. lv_status = 'NICHT VORHANDEN'. ENDIF.\n    CONCATENATE '  ' ls_range-low ': ' lv_status INTO gv_line.\n    APPEND gv_line TO gt_output.\n  ENDLOOP.\n  APPEND '' TO gt_output.\nENDFORM.\n\n\n*&=====================================================================*\n*& Export\n*&=====================================================================*\nFORM export_file.\n  DATA: lv_fp TYPE string, lv_fn TYPE string, lv_p TYPE string, lv_a TYPE i.\n  DATA: lv_default TYPE string.\n\n  CONCATENATE 'SAP_Steckbrief_' sy-sysid '_' sy-datum INTO lv_default.\n  cl_gui_frontend_services=>file_save_dialog(\n    EXPORTING window_title = 'Steckbrief speichern'\n      default_extension = 'txt' default_file_name = lv_default\n      file_filter = 'Text (*.txt)|*.txt|All|*.*'\n    CHANGING filename = lv_fn path = lv_p fullpath = lv_fp user_action = lv_a\n    EXCEPTIONS OTHERS = 4 ).\n  IF sy-subrc <> 0 OR lv_a <> 0. RETURN. ENDIF.\n\n  cl_gui_frontend_services=>gui_download(\n    EXPORTING filename = lv_fp filetype = 'ASC' codepage = '4110'\n    CHANGING data_tab = gt_output EXCEPTIONS OTHERS = 22 ).\n  IF sy-subrc = 0.\n    CONCATENATE 'Steckbrief exportiert: ' lv_fp INTO gv_line.\n    MESSAGE gv_line TYPE 'S'.\n  ENDIF.\nENDFORM.\n\n\n*&=====================================================================*\n*& Anzeige\n*&=====================================================================*\nFORM display_result.\n  DATA: lv_out TYPE string.\n  LOOP AT gt_output INTO lv_out.\n    WRITE: / lv_out.\n  ENDLOOP.\nENDFORM.\n";
     function downloadSteckbrief(){const b=new Blob([STECKBRIEF],{type:'text/plain'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='Z_SYSTEM_STECKBRIEF.abap';a.click();URL.revokeObjectURL(u)}
+
+    const T={
+      en:{
+        nav_how:"How It Works",nav_why:"Why Us",nav_pricing:"Pricing",nav_cta:"Get Started →",
+        hero_badge:"Now serving SAP ABAP · Fiori · UI5 · S/4HANA · ECC",
+        hero_h1_1:"ERP Code,",hero_h1_2:"Forged by AI.",
+        hero_sub:"Describe what you need in plain language. Upload your system profile. Get production-ready, syntax-error-free code — tailored to your exact SAP system.",
+        hero_btn1:"⚡ Start Your First Project",hero_btn2:"⬇ Download System Profiler",
+        stat1:"Faster Than Freelancers",stat2:"Cost Reduction",stat3:"SAP Releases Supported",
+        how_label:"How It Works",how_title:"Three Steps. Done.",
+        step1_title:"Profile Your System",step1_desc:"Run our free diagnostic tool in SE38. It auto-detects your release, SP level, available features, installed components, and tables. Takes 30 seconds.",
+        step2_title:"Describe What You Need",step2_desc:'Write your requirement in plain language: "I need a report that shows all open purchase orders by vendor with aging analysis." That\'s it.',
+        step3_title:"Get Forged Code",step3_desc:"Our AI generates code matched to your exact system. A senior ABAP expert reviews every line. You get production-ready code — paste into SE38 and run.",
+        dl_title:"Free System Profiler",dl_desc:"Download our ABAP program and run it in SE38. It creates a complete system profile (Steckbrief) that we use to generate code perfectly matched to your SAP system. No installation needed — just copy, paste, run.",
+        dl_s1:"Download the ABAP source code below",dl_s2:"Create a new report in SE38 and paste the code",dl_s3:"Run it — save the generated .txt file",dl_s4:"Upload the Steckbrief when you order code from us",dl_btn:"⬇ Download Z_SYSTEM_STECKBRIEF.abap",
+        why_label:"Why ERPforgeAI",why_title:"The Old Way Is Broken",
+        old_label:"❌ Traditional Approach",old1:"Weeks to find an ABAP freelancer",old2:"€800 – €1,500 per day",old3:"VPN access to your system required",old4:"Multiple iterations & bug fixes",old5:"Extensive specs needed upfront",old6:"No guarantee it works first time",
+        new_label:"⚡ ERPforgeAI",new1:"Code delivered within 24 hours",new2:"Starting at €99 per program",new3:"No system access needed",new4:"Syntax-checked for YOUR system",new5:"Describe in plain language",new6:"Expert-reviewed, production-ready",
+        price_label:"Pricing",price_title:"Simple & Transparent",
+        p1_desc:"Simple reports, lists, data exports",p1_f1:"ALV reports & data extracts",p1_f2:"Selection screen with parameters",p1_f3:"System-profile matched code",p1_f4:"Expert review included",p1_f5:"1 revision round",
+        p2_desc:"Interfaces, uploads, integrations",p2_f1:"Everything in Report",p2_f2:"File upload/download logic",p2_f3:"RFC/BAPI integrations",p2_f4:"Error handling & logging",p2_f5:"2 revision rounds",
+        p3_desc:"Enhancements, workflows, multi-module",p3_f1:"Everything in Interface",p3_f2:"User Exits / BAdIs",p3_f3:"Multi-table logic",p3_f4:"Fiori/UI5 components",p3_f5:"3 revision rounds",
+        price_btn:"Get Started",popular:"Most Popular",
+        cta_h2:"Ready to Forge<br>Your First Program?",cta_sub:"Join the waitlist. Be first when we launch.",cta_btn:"Join Waitlist →",cta_ok:"✓ Thank you! We'll notify you when we launch."
+      },
+      de:{
+        nav_how:"So funktioniert's",nav_why:"Warum wir",nav_pricing:"Preise",nav_cta:"Jetzt starten →",
+        hero_badge:"Jetzt verfügbar für SAP ABAP · Fiori · UI5 · S/4HANA · ECC",
+        hero_h1_1:"ERP Code,",hero_h1_2:"geschmiedet mit KI.",
+        hero_sub:"Beschreiben Sie Ihre Anforderung in Klartext. Laden Sie Ihr Systemprofil hoch. Erhalten Sie produktionsreifen, syntaxfehlerfreien Code — maßgeschneidert für Ihr SAP-System.",
+        hero_btn1:"⚡ Erstes Projekt starten",hero_btn2:"⬇ System-Profiler herunterladen",
+        stat1:"Schneller als Freelancer",stat2:"Kostenersparnis",stat3:"SAP Releases unterstützt",
+        how_label:"So funktioniert's",how_title:"Drei Schritte. Fertig.",
+        step1_title:"System analysieren",step1_desc:"Führen Sie unser kostenloses Diagnosetool in SE38 aus. Es erkennt automatisch Release, SP-Stand, verfügbare Features, Komponenten und Tabellen. Dauert 30 Sekunden.",
+        step2_title:"Anforderung beschreiben",step2_desc:'Schreiben Sie Ihre Anforderung in Klartext: „Ich brauche einen Report, der alle offenen Bestellungen nach Lieferant mit Altersanalyse zeigt." Das war\'s.',
+        step3_title:"Code erhalten",step3_desc:"Unsere KI generiert Code, der exakt zu Ihrem System passt. Ein erfahrener ABAP-Experte prüft jede Zeile. Sie erhalten produktionsreifen Code — in SE38 einfügen und starten.",
+        dl_title:"Kostenloser System-Profiler",dl_desc:"Laden Sie unser ABAP-Programm herunter und führen Sie es in SE38 aus. Es erstellt ein komplettes Systemprofil (Steckbrief), das wir nutzen, um Code perfekt auf Ihr SAP-System abzustimmen. Keine Installation nötig — einfach kopieren, einfügen, starten.",
+        dl_s1:"ABAP-Quellcode unten herunterladen",dl_s2:"Neuen Report in SE38 anlegen und Code einfügen",dl_s3:"Ausführen — generierte .txt-Datei speichern",dl_s4:"Steckbrief bei Ihrer Bestellung hochladen",dl_btn:"⬇ Z_SYSTEM_STECKBRIEF.abap herunterladen",
+        why_label:"Warum ERPforgeAI",why_title:"Der alte Weg ist kaputt",
+        old_label:"❌ Traditioneller Ansatz",old1:"Wochen um einen ABAP-Freelancer zu finden",old2:"€800 – €1.500 pro Tag",old3:"VPN-Zugang zu Ihrem System nötig",old4:"Mehrere Iterationen & Bugfixes",old5:"Umfangreiche Spezifikation vorab nötig",old6:"Keine Garantie dass es beim ersten Mal funktioniert",
+        new_label:"⚡ ERPforgeAI",new1:"Code-Lieferung innerhalb von 24 Stunden",new2:"Ab €99 pro Programm",new3:"Kein Systemzugang nötig",new4:"Syntax-geprüft für IHR System",new5:"In Klartext beschreiben",new6:"Experten-geprüft, produktionsreif",
+        price_label:"Preise",price_title:"Einfach & Transparent",
+        p1_desc:"Einfache Reports, Listen, Datenexporte",p1_f1:"ALV-Reports & Datenextrakte",p1_f2:"Selektionsbildschirm mit Parametern",p1_f3:"Auf Systemprofil abgestimmter Code",p1_f4:"Experten-Review inklusive",p1_f5:"1 Revisionsrunde",
+        p2_desc:"Schnittstellen, Uploads, Integrationen",p2_f1:"Alles aus Report",p2_f2:"Datei-Upload/Download-Logik",p2_f3:"RFC/BAPI-Integrationen",p2_f4:"Fehlerbehandlung & Logging",p2_f5:"2 Revisionsrunden",
+        p3_desc:"Erweiterungen, Workflows, Multi-Modul",p3_f1:"Alles aus Interface",p3_f2:"User Exits / BAdIs",p3_f3:"Multi-Tabellen-Logik",p3_f4:"Fiori/UI5-Komponenten",p3_f5:"3 Revisionsrunden",
+        price_btn:"Jetzt starten",popular:"Beliebteste",
+        cta_h2:"Bereit, Ihr erstes<br>Programm zu schmieden?",cta_sub:"Auf die Warteliste setzen. Seien Sie bei unserem Launch dabei.",cta_btn:"Warteliste beitreten →",cta_ok:"✓ Vielen Dank! Wir benachrichtigen Sie zum Launch."
+      }
+    };
+    let curLang='en';
+    function setLang(l){
+      curLang=l;
+      document.querySelectorAll('.lang-btn').forEach(b=>{b.classList.toggle('active',b.textContent===l.toUpperCase())});
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const k=el.getAttribute('data-i18n');
+        if(T[l]&&T[l][k]){
+          if(el.tagName==='INPUT'||el.tagName==='TEXTAREA'){el.placeholder=T[l][k]}
+          else{el.innerHTML=T[l][k]}
+        }
+      });
+      document.documentElement.lang=l;
+      localStorage.setItem('lang',l);
+    }
+    // Auto-detect language
+    (function(){const s=localStorage.getItem('lang');if(s){setLang(s)}else{const n=navigator.language||'';if(n.startsWith('de')){setLang('de')}}})();
   </script>
 </body>
 </html>
