@@ -7,7 +7,7 @@
   <meta name="description" content="Get production-ready SAP ABAP code tailored to your exact system. No freelancer needed. Starting at €99.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
       --bg:#06060a;--bg2:#0c0c14;--bg3:#12121e;--card:#161625;--card-hover:#1a1a2e;
@@ -18,7 +18,7 @@
     }
     *{margin:0;padding:0;box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;padding-bottom:60px}
+    body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;padding-bottom:60px}
 
     /* === LAUNCH BANNER === */
     .launch-banner{position:fixed;top:0;left:0;right:0;z-index:300;background:linear-gradient(90deg,var(--orange-dark),var(--orange),var(--orange-light));padding:10px 20px;text-align:center;font-size:13px;font-weight:600;color:#fff;letter-spacing:0.5px}
@@ -26,34 +26,41 @@
     .launch-banner .close-banner{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.7);cursor:pointer;font-size:16px}
 
     /* === NAV === */
-    nav{position:fixed;top:38px;left:0;right:0;z-index:200;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(6,6,10,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:top 0.3s}
+    nav{position:fixed;top:38px;left:0;right:0;z-index:200;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(6,6,10,0.85);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:top 0.3s}
     .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
     .nav-mark{width:32px;height:32px;background:linear-gradient(135deg,var(--orange),var(--orange-dark));border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;color:#fff}
     .nav-wordmark{font-family:'Syne',sans-serif;font-weight:700;font-size:18px;color:var(--text);letter-spacing:-0.5px}
     .nav-wordmark em{font-style:normal;color:var(--orange)}
     .nav-right{display:flex;gap:28px;align-items:center}
-    .nav-right a{text-decoration:none;color:var(--text2);font-size:13px;font-weight:500;transition:color 0.2s;letter-spacing:0.2px}
+    .nav-right a{text-decoration:none;color:var(--text2);font-size:13px;font-weight:500;transition:color 0.2s;letter-spacing:0.2px;position:relative}
+    .nav-right a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:var(--orange);border-radius:1px;transform:scaleX(0);transform-origin:right;transition:transform 0.3s ease}
     .nav-right a:hover{color:var(--text)}
+    .nav-right a:hover::after{transform:scaleX(1);transform-origin:left}
     .lang-toggle{display:flex;background:var(--card);border:1px solid var(--border);border-radius:6px;overflow:hidden}
-    .lang-toggle button{padding:5px 10px;border:none;background:transparent;color:var(--text3);font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:600;cursor:pointer;transition:all 0.2s}
+    .lang-toggle button{padding:5px 10px;border:none;background:transparent;color:var(--text3);font-family:'Outfit',sans-serif;font-size:11px;font-weight:600;cursor:pointer;transition:all 0.2s}
     .lang-toggle button.active{background:var(--orange);color:#fff}
-    .nav-cta{padding:8px 20px;background:var(--orange);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;border:none;border-radius:8px;cursor:pointer;text-decoration:none;transition:all 0.3s;box-shadow:0 2px 12px rgba(255,107,43,0.3)}
+    .nav-cta{padding:8px 20px;background:var(--orange);color:#fff;font-family:'Outfit',sans-serif;font-weight:600;font-size:13px;border:none;border-radius:8px;cursor:pointer;text-decoration:none;transition:all 0.3s;box-shadow:0 2px 12px rgba(255,107,43,0.3)}
     .nav-cta:hover{box-shadow:0 4px 24px rgba(255,107,43,0.5);transform:translateY(-1px)}
 
     /* === HERO === */
     .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:160px 24px 60px;position:relative;overflow:hidden}
-    .hero::before{content:'';position:absolute;top:-300px;left:50%;transform:translateX(-50%);width:1200px;height:1200px;background:radial-gradient(ellipse at center,rgba(255,107,43,0.06) 0%,rgba(0,212,255,0.02) 40%,transparent 70%);pointer-events:none}
+    .hero::before{content:'';position:absolute;top:-300px;left:50%;transform:translateX(-50%);width:1200px;height:1200px;background:radial-gradient(ellipse at 30% 20%,rgba(255,107,43,0.08) 0%,transparent 50%),radial-gradient(ellipse at 70% 60%,rgba(0,212,255,0.06) 0%,transparent 50%),radial-gradient(ellipse at 50% 80%,rgba(255,107,43,0.05) 0%,transparent 50%);pointer-events:none;animation:meshDrift 20s ease-in-out infinite}
     .hero::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='g' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M0 0h60v60H0z' fill='none'/%3E%3Cpath d='M0 60V0h1v60zm60 0V0h1v60zM0 0h60v1H0zm0 60h60v1H0z' fill='rgba(255,255,255,0.02)'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");pointer-events:none;opacity:0.5}
-    .hero-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 8px;background:var(--card);border:1px solid var(--border2);border-radius:100px;font-size:12px;font-weight:500;color:var(--text2);margin-bottom:40px;animation:fadeUp .8s ease both;position:relative;z-index:1}
+    .hero-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 8px;background:var(--card);border:1px solid var(--border2);border-radius:100px;font-size:12px;font-weight:500;color:var(--text2);margin-bottom:40px;animation:heroReveal .8s cubic-bezier(0.16,1,0.3,1) both;position:relative;z-index:1}
     .hero-pill-dot{width:8px;height:8px;background:var(--orange);border-radius:50%;animation:blink 2s infinite}
     .hero-pill-tag{background:var(--orange);color:#fff;padding:2px 8px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
-    .hero h1{font-family:'Syne',sans-serif;font-size:clamp(40px,6vw,80px);font-weight:800;line-height:1;letter-spacing:-3px;margin-bottom:28px;animation:fadeUp .8s .1s ease both;position:relative;z-index:1}
+    .hero h1{font-family:'Syne',sans-serif;font-size:clamp(40px,6vw,80px);font-weight:800;line-height:1;letter-spacing:-3px;margin-bottom:28px;animation:heroReveal .8s .1s cubic-bezier(0.16,1,0.3,1) both;position:relative;z-index:1}
     .hero h1 .accent{display:inline-block;max-width:100%;color:var(--orange);position:relative}
-    .hero h1 .accent::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:4px;background:var(--orange);border-radius:2px;opacity:0.4}
-    .hero-sub{font-size:clamp(16px,1.8vw,20px);font-weight:400;color:var(--text2);max-width:560px;line-height:1.7;margin-bottom:48px;animation:fadeUp .8s .2s ease both;position:relative;z-index:1}
+    .hero h1 .accent::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--orange),var(--cyan));border-radius:2px;opacity:1;animation:drawLine 0.6s 0.8s ease-out both;transform-origin:left}
+    .hero-sub{font-size:clamp(16px,1.8vw,20px);font-weight:400;color:var(--text2);max-width:560px;line-height:1.7;margin-bottom:48px;animation:heroReveal .8s .2s cubic-bezier(0.16,1,0.3,1) both;position:relative;z-index:1}
+    .hero-vignette{position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(to bottom,transparent,var(--bg));pointer-events:none;z-index:0}
+    .hero-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.12;pointer-events:none;z-index:0}
+    .hero-orb.o1{width:300px;height:300px;background:var(--orange);top:10%;left:15%;animation:orbFloat 18s ease-in-out infinite}
+    .hero-orb.o2{width:250px;height:250px;background:var(--cyan);top:60%;right:10%;animation:orbFloat 22s ease-in-out infinite reverse}
+    .hero-orb.o3{width:200px;height:200px;background:var(--orange-light);bottom:20%;left:60%;animation:orbFloat 25s ease-in-out infinite}
 
     /* === COUNTDOWN === */
-    .countdown-wrap{margin-bottom:48px;animation:fadeUp .8s .3s ease both;position:relative;z-index:1}
+    .countdown-wrap{margin-bottom:48px;animation:heroReveal .8s .3s cubic-bezier(0.16,1,0.3,1) both;position:relative;z-index:1}
     .countdown-label{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:var(--orange);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
     .countdown{display:flex;gap:12px;justify-content:center}
     .cd-unit{background:var(--card);border:1px solid var(--border2);border-radius:12px;padding:16px 20px;min-width:80px;text-align:center;position:relative;overflow:hidden}
@@ -62,26 +69,27 @@
     .cd-lbl{font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin-top:4px}
 
     /* === WAITLIST CTA === */
-    .hero-cta{display:flex;gap:10px;max-width:460px;width:100%;animation:fadeUp .8s .4s ease both;position:relative;z-index:1}
-    .hero-input{flex:1;padding:14px 20px;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:15px;outline:none;transition:border-color 0.3s}
+    .hero-cta{display:flex;gap:10px;max-width:460px;width:100%;animation:heroReveal .8s .4s cubic-bezier(0.16,1,0.3,1) both;position:relative;z-index:1}
+    .hero-input{flex:1;padding:14px 20px;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-family:'Outfit',sans-serif;font-size:15px;outline:none;transition:border-color 0.3s}
     .hero-input:focus{border-color:var(--orange)}
     .hero-input::placeholder{color:var(--text3)}
-    .hero-submit{padding:14px 28px;background:var(--orange);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;border:none;border-radius:10px;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 20px rgba(255,107,43,0.35);white-space:nowrap}
+    .hero-submit{padding:14px 28px;background:var(--orange);color:#fff;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;border:none;border-radius:10px;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 20px rgba(255,107,43,0.35);white-space:nowrap}
     .hero-submit:hover{box-shadow:0 8px 32px rgba(255,107,43,0.5);transform:translateY(-2px)}
     .hero-success{display:none;padding:16px 24px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:10px;color:#22c55e;font-weight:600;font-size:14px;max-width:460px;width:100%;position:relative;z-index:1}
-    .hero-note{font-size:12px;color:var(--text3);margin-top:12px;animation:fadeUp .8s .5s ease both;position:relative;z-index:1}
+    .hero-note{font-size:12px;color:var(--text3);margin-top:12px;animation:heroReveal .8s .5s cubic-bezier(0.16,1,0.3,1) both;position:relative;z-index:1}
     .hero-note span{color:var(--orange)}
 
     /* === SOCIAL PROOF === */
-    .proof{display:flex;gap:40px;margin-top:64px;padding-top:48px;border-top:1px solid var(--border);animation:fadeUp .8s .6s ease both;position:relative;z-index:1}
+    .proof{display:flex;gap:40px;margin-top:64px;padding-top:48px;border-top:1px solid var(--border);animation:heroReveal .8s .6s cubic-bezier(0.16,1,0.3,1) both;position:relative;z-index:1}
     .proof-item{text-align:center}
     .proof-val{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:700;color:var(--orange)}
     .proof-lbl{font-size:11px;color:var(--text3);margin-top:2px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
 
     /* === CODE PREVIEW === */
     .code-section{padding:60px 24px;display:flex;justify-content:center;position:relative}
-    .code-window{background:var(--bg2);border:1px solid var(--border2);border-radius:16px;width:100%;max-width:760px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.5)}
-    .code-bar{padding:14px 18px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--border);background:rgba(255,255,255,0.015)}
+    .code-window{background:var(--bg2);border:1px solid var(--border2);border-radius:16px;width:100%;max-width:760px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.5),0 0 40px rgba(0,0,0,0.2),inset 0 1px 0 rgba(255,255,255,0.04)}
+    .code-bar{padding:14px 18px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--border);background:rgba(255,255,255,0.015);position:relative}
+    .code-bar::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent)}
     .code-bar-dot{width:10px;height:10px;border-radius:50%}.code-bar-dot.r{background:#ff5f57}.code-bar-dot.y{background:#febc2e}.code-bar-dot.g{background:#28c840}
     .code-bar-title{margin-left:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3)}
     .code-content{padding:24px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.9;overflow-x:auto;color:var(--text2)}
@@ -91,22 +99,30 @@
     /* === SECTIONS === */
     .section{padding:100px 24px}
     .section-tag{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:12px;text-align:center}
-    .section-h{font-family:'Syne',sans-serif;font-size:clamp(32px,4vw,52px);font-weight:800;letter-spacing:-1.5px;text-align:center;margin-bottom:60px;line-height:1.1}
+    .section-h{font-family:'Syne',sans-serif;font-size:clamp(32px,4vw,52px);font-weight:800;letter-spacing:-1.5px;text-align:center;margin-bottom:60px;line-height:1.1;position:relative}
+    .section-h::after{content:'';display:block;width:60px;height:3px;background:linear-gradient(90deg,var(--orange),var(--cyan));border-radius:2px;margin:12px auto 0}
 
     /* === STEPS === */
     .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1060px;margin:0 auto;position:relative}
     .steps::before{content:'';position:absolute;top:50%;left:calc(33.33% + 10px);right:calc(33.33% + 10px);height:2px;background:linear-gradient(90deg,var(--orange),var(--cyan),var(--orange));opacity:0.2;z-index:0;transform:translateY(-50%)}
     .step-arrow{display:none;position:absolute;top:50%;font-size:20px;color:var(--orange);opacity:0.5;transform:translateY(-50%);z-index:2}
     @media(min-width:769px){.step-arrow{display:block}.step-arrow.a1{left:calc(33.33% - 10px)}.step-arrow.a2{left:calc(66.66% - 10px)}}
-    .step{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:36px 28px;position:relative;overflow:hidden;transition:all 0.4s}
-    .step:hover{border-color:rgba(255,107,43,0.25);transform:translateY(-4px);background:var(--card-hover)}
+    .step{background:rgba(22,22,37,0.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:16px;padding:36px 28px;position:relative;overflow:hidden;transition:all 0.4s}
+    .step::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.05),transparent)}
+    .glow-card{position:relative;overflow:hidden}
+    .glow-card::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(200px circle at var(--mouse-x,50%) var(--mouse-y,50%),rgba(255,107,43,0.06),transparent);opacity:0;transition:opacity 0.3s;pointer-events:none;z-index:1}
+    .glow-card:hover::after{opacity:1}
+    .step:hover{border-color:rgba(255,107,43,0.25);transform:translateY(-6px) scale(1.01);background:var(--card-hover);box-shadow:0 12px 40px rgba(0,0,0,0.3),0 0 20px rgba(255,107,43,0.05)}
     .step-num{font-family:'Syne',sans-serif;font-size:64px;font-weight:800;color:rgba(255,107,43,0.05);position:absolute;top:-8px;right:12px;line-height:1}
     .step-icon{font-size:24px;margin-bottom:20px}
     .step-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:10px;letter-spacing:-0.3px}
     .step-text{font-size:14px;color:var(--text2);line-height:1.7}
+    .steps .step:nth-child(3){margin-top:30px}
+    .steps .step:nth-child(4){margin-top:-10px}
 
     /* === DOWNLOAD === */
-    .dl-section{padding:80px 24px;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .dl-section{padding:80px 24px;background:var(--bg2);border:none;position:relative}
+    .dl-section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:800px;height:1px;background:linear-gradient(90deg,transparent,var(--orange),var(--cyan),transparent)}
     .dl-box{max-width:640px;margin:0 auto;text-align:center;background:var(--card);border:1px solid rgba(255,107,43,0.15);border-radius:16px;padding:44px 36px;position:relative;overflow:hidden}
     .dl-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--orange-dark),var(--orange),var(--orange-light))}
     .dl-box h3{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:8px}
@@ -115,14 +131,14 @@
     .dl-step{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;font-size:13px;color:var(--text2)}
     .dl-step b{width:22px;height:22px;background:var(--orange-glow);border:1px solid rgba(255,107,43,0.25);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--orange);flex-shrink:0}
     .dl-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3);margin-top:14px}
-    .btn-dl{padding:14px 36px;background:var(--orange);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;border:none;border-radius:10px;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 20px rgba(255,107,43,0.3)}
+    .btn-dl{padding:14px 36px;background:var(--orange);color:#fff;font-family:'Outfit',sans-serif;font-weight:700;font-size:15px;border:none;border-radius:10px;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 20px rgba(255,107,43,0.3)}
     .btn-dl:hover{box-shadow:0 8px 32px rgba(255,107,43,0.5);transform:translateY(-2px)}
 
     /* === COMPARISON === */
     .cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:860px;margin:0 auto}
     .cmp-card{padding:36px;border-radius:16px;border:1px solid var(--border)}
     .cmp-card.old{background:rgba(255,60,60,0.02);border-color:rgba(255,60,60,0.12)}
-    .cmp-card.new{background:var(--orange-glow);border-color:rgba(255,107,43,0.2)}
+    .cmp-card.new{background:var(--orange-glow);border-color:rgba(255,107,43,0.2);margin-left:-12px;transform:scale(1.03);position:relative;z-index:2}
     .cmp-tag{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:18px}
     .cmp-card.old .cmp-tag{color:#ff5f57}.cmp-card.new .cmp-tag{color:var(--orange)}
     .cmp-list{list-style:none;display:flex;flex-direction:column;gap:14px}
@@ -130,20 +146,22 @@
     .cmp-list li .ic{font-size:14px;flex-shrink:0;margin-top:2px}
 
     /* === PRICING === */
-    .pricing-section{padding:100px 24px;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .pricing-section{padding:100px 24px;background:var(--bg2);border:none;position:relative}
+    .pricing-section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:800px;height:1px;background:linear-gradient(90deg,transparent,var(--orange),var(--cyan),transparent)}
+    .pricing-section::after{content:'';position:absolute;top:50%;right:0;width:500px;height:500px;background:radial-gradient(circle,rgba(255,107,43,0.03) 0%,transparent 70%);pointer-events:none;transform:translate(30%,-50%)}
     .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:960px;margin:0 auto}
     .pc{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:36px 28px;text-align:center;transition:all 0.4s;position:relative}
-    .pc.feat{border-color:rgba(255,107,43,0.35);background:linear-gradient(180deg,rgba(255,107,43,0.05) 0%,var(--card) 100%)}
+    .pc.feat{border-color:rgba(255,107,43,0.35);background:linear-gradient(180deg,rgba(255,107,43,0.05) 0%,var(--card) 100%);transform:scale(1.04);box-shadow:0 8px 40px rgba(255,107,43,0.2),0 0 60px rgba(255,107,43,0.08);z-index:2}
     .pc:hover{transform:translateY(-4px)}
     .pc-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);padding:3px 14px;background:var(--orange);color:#fff;font-size:10px;font-weight:700;border-radius:100px;letter-spacing:1px;text-transform:uppercase}
     .pc-tier{font-size:12px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin-bottom:6px}
     .pc-price{font-family:'Syne',sans-serif;font-size:44px;font-weight:800;margin-bottom:4px}
-    .pc-price span{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:400;color:var(--text3)}
+    .pc-price span{font-family:'Outfit',sans-serif;font-size:14px;font-weight:400;color:var(--text3)}
     .pc-desc{font-size:13px;color:var(--text2);margin-bottom:24px}
     .pc-feats{list-style:none;text-align:left;display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
     .pc-feats li{font-size:13px;color:var(--text2);display:flex;align-items:center;gap:8px}
     .pc-feats li::before{content:'✓';color:var(--orange);font-weight:700;font-size:13px}
-    .pc-btn{display:block;padding:12px;background:transparent;border:1px solid var(--border2);border-radius:10px;color:var(--text);font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;cursor:pointer;text-decoration:none;text-align:center;transition:all 0.3s}
+    .pc-btn{display:block;padding:12px;background:transparent;border:1px solid var(--border2);border-radius:10px;color:var(--text);font-family:'Outfit',sans-serif;font-weight:600;font-size:13px;cursor:pointer;text-decoration:none;text-align:center;transition:all 0.3s}
     .pc-btn:hover{border-color:var(--orange);background:var(--orange-glow)}
     .pc-btn.primary{background:var(--orange);border-color:var(--orange);color:#fff;box-shadow:0 4px 16px rgba(255,107,43,0.3)}
     .pc-btn.primary:hover{box-shadow:0 8px 28px rgba(255,107,43,0.5)}
@@ -155,12 +173,12 @@
     .contact-box>p{color:var(--text2);font-size:14px;text-align:center;margin-bottom:28px}
     .fg{margin-bottom:16px}
     .fg label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:5px;letter-spacing:0.3px}
-    .fg input,.fg textarea,.fg select{width:100%;padding:11px 14px;background:var(--bg);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:14px;outline:none;transition:border-color 0.3s}
-    .fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--orange)}
+    .fg input,.fg textarea,.fg select{width:100%;padding:11px 14px;background:var(--bg);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-family:'Outfit',sans-serif;font-size:14px;outline:none;transition:border-color 0.3s}
+    .fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,107,43,0.15)}
     .fg textarea{min-height:100px;resize:vertical}
     .fg select option{background:var(--bg);color:var(--text)}
     .contact-ok{display:none;padding:16px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:10px;color:#22c55e;font-weight:600;text-align:center;font-size:14px}
-    .btn-send{width:100%;padding:13px;background:var(--orange);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;border:none;border-radius:10px;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 16px rgba(255,107,43,0.3)}
+    .btn-send{width:100%;padding:13px;background:var(--orange);color:#fff;font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;border:none;border-radius:10px;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 16px rgba(255,107,43,0.3)}
     .btn-send:hover{box-shadow:0 8px 28px rgba(255,107,43,0.5);transform:translateY(-2px)}
 
     /* === LEGAL === */
@@ -177,13 +195,15 @@
     .legal-back:hover{color:var(--orange)}
 
     /* === PROOF FOOTNOTE === */
-    .proof-note{text-align:center;margin-top:12px;font-size:11px;color:var(--text3);font-style:italic;position:relative;z-index:1;animation:fadeUp .8s .7s ease both}
+    .proof-note{text-align:center;margin-top:12px;font-size:11px;color:var(--text3);font-style:italic;position:relative;z-index:1;animation:heroReveal .8s .7s cubic-bezier(0.16,1,0.3,1) both}
 
     /* === ABOUT/TEAM === */
     .about-section{padding:80px 24px}
 
     /* === ORDER PORTAL === */
-    .order-section{padding:100px 24px;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .order-section{padding:100px 24px;background:var(--bg2);border:none;position:relative}
+    .order-section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:800px;height:1px;background:linear-gradient(90deg,transparent,var(--orange),var(--cyan),transparent)}
+    .order-section::after{content:'';position:absolute;bottom:0;left:0;width:400px;height:400px;background:radial-gradient(circle,rgba(0,212,255,0.03) 0%,transparent 70%);pointer-events:none;transform:translate(-30%,30%)}
     .order-box{max-width:640px;margin:0 auto;background:var(--card);border:1px solid rgba(255,107,43,0.2);border-radius:16px;padding:44px 36px;position:relative;overflow:hidden}
     .order-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange-dark),var(--orange),var(--orange-light))}
     .order-box h3{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:4px;text-align:center}
@@ -203,7 +223,7 @@
     .order-ok{display:none;padding:20px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:10px;color:#22c55e;font-weight:600;text-align:center;font-size:14px;line-height:1.6}
     @media(max-width:768px){.fg-row{grid-template-columns:1fr}.order-box{padding:28px 20px}}
     .about-box{max-width:800px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:40px 36px}
-    .about-avatar{width:80px;height:80px;background:linear-gradient(135deg,var(--orange),var(--orange-dark));border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:36px;flex-shrink:0}
+    .about-avatar{width:80px;height:80px;background:linear-gradient(135deg,var(--orange),var(--orange-dark));border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:36px;flex-shrink:0;margin-top:-20px}
     .about-info h3{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:4px}
     .about-info .about-role{font-size:13px;color:var(--orange);font-weight:600;margin-bottom:10px}
     .about-info p{font-size:14px;color:var(--text2);line-height:1.7}
@@ -233,12 +253,48 @@
     .fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
     .fade-in.visible{opacity:1;transform:translateY(0)}
 
+    /* === REVEAL ANIMATIONS === */
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal-stagger .reveal-item{opacity:0;transform:translateY(30px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1)}
+    .reveal-stagger.visible .reveal-item{opacity:1;transform:translateY(0)}
+    .reveal-stagger.visible .reveal-item:nth-child(1){transition-delay:0s}
+    .reveal-stagger.visible .reveal-item:nth-child(2){transition-delay:0.1s}
+    .reveal-stagger.visible .reveal-item:nth-child(3){transition-delay:0.2s}
+    .reveal-stagger.visible .reveal-item:nth-child(4){transition-delay:0.3s}
+    .reveal-stagger.visible .reveal-item:nth-child(5){transition-delay:0.4s}
+    .reveal-stagger.visible .reveal-item:nth-child(6){transition-delay:0.5s}
+
     /* Enhanced micro-interactions */
     .step:hover .step-icon{animation:float 1.5s ease infinite}
-    .pc:hover{box-shadow:0 12px 40px rgba(0,0,0,0.3)}
-    .pc.feat:hover{box-shadow:0 12px 40px rgba(255,107,43,0.15)}
-    .cmp-card.new:hover{border-color:rgba(255,107,43,0.4);box-shadow:0 8px 32px rgba(255,107,43,0.1)}
+    .pc:hover{box-shadow:0 12px 40px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.05)}
+    .pc.feat:hover{transform:scale(1.04) translateY(-4px);box-shadow:0 12px 40px rgba(255,107,43,0.15),inset 0 1px 0 rgba(255,255,255,0.05)}
+    .cmp-card.new:hover{border-color:rgba(255,107,43,0.5);box-shadow:0 12px 40px rgba(255,107,43,0.15),0 0 60px rgba(255,107,43,0.05)}
     .code-window:hover{border-color:rgba(255,107,43,0.2);box-shadow:0 40px 80px rgba(0,0,0,0.6),0 0 40px rgba(255,107,43,0.05)}
+
+    /* === GRAIN OVERLAY === */
+    .grain-overlay{position:fixed;top:0;left:0;right:0;bottom:0;z-index:500;pointer-events:none;opacity:0.035;mix-blend-mode:overlay;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+    /* === BUTTON RIPPLE === */
+    .btn-ripple{position:relative;overflow:hidden}
+    .btn-ripple::after{content:'';position:absolute;top:50%;left:50%;width:300%;padding-bottom:300%;border-radius:50%;background:rgba(255,255,255,0.1);transform:translate(-50%,-50%) scale(0);opacity:1;transition:transform 0.6s ease,opacity 0.6s ease}
+    .btn-ripple:hover::after{transform:translate(-50%,-50%) scale(1);opacity:0}
+
+    /* === NEW ANIMATIONS === */
+    @keyframes meshDrift{0%{transform:translateX(-50%) translate(0,0) scale(1)}33%{transform:translateX(-50%) translate(30px,-20px) scale(1.03)}66%{transform:translateX(-50%) translate(-20px,15px) scale(0.97)}100%{transform:translateX(-50%) translate(0,0) scale(1)}}
+    @keyframes orbFloat{0%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-20px) scale(1.03)}66%{transform:translate(-20px,15px) scale(0.97)}100%{transform:translate(0,0) scale(1)}}
+    @keyframes drawLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+    @keyframes heroReveal{from{opacity:0;transform:translateY(20px) scale(0.98);filter:blur(4px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+    @keyframes tick{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
+    .cd-num.tick{animation:tick 0.3s ease}
+    @keyframes hlPulse{0%,100%{border-left-color:var(--orange)}50%{border-left-color:var(--cyan)}}
+
+    /* === REDUCED MOTION === */
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important}
+      .hero-orb,.grain-overlay{display:none}
+      .reveal,.reveal-stagger .reveal-item,.fade-in{opacity:1;transform:none}
+    }
 
     /* === MOBILE === */
     @media(max-width:768px){
@@ -248,10 +304,18 @@
       .countdown{gap:8px}.cd-unit{min-width:60px;padding:12px 10px}.cd-num{font-size:28px}
       footer{flex-direction:column;gap:12px;text-align:center}
       .dl-box,.contact-box{padding:28px 20px}
+      .steps .step:nth-child(3),.steps .step:nth-child(4){margin-top:0}
+      .cmp-card.new{margin-left:0;transform:none}
+      .pc.feat{transform:none;box-shadow:0 4px 20px rgba(255,107,43,0.15)}
+      .about-avatar{margin-top:0}
+      .hero-orb{display:none}
+      .grain-overlay{opacity:0.02}
     }
   </style>
 </head>
 <body>
+  <div class="grain-overlay" aria-hidden="true"></div>
+
   <!-- LAUNCH BANNER -->
   <div class="launch-banner" id="launchBanner">
     <span data-i18n="banner_text">🚀 Launching Q2 2026 — Early access for waitlist members</span>
@@ -269,13 +333,16 @@
       <a href="#order" onclick="showMain()" data-i18n="nav_order">Order</a>
       <a href="#contact" onclick="showMain()" data-i18n="nav_contact">Contact</a>
       <div class="lang-toggle"><button class="active" onclick="setLang('en')">EN</button><button onclick="setLang('de')">DE</button></div>
-      <a href="#order" class="nav-cta" onclick="showMain()" data-i18n="nav_cta">Join Waitlist</a>
+      <a href="#order" class="nav-cta btn-ripple" onclick="showMain()" data-i18n="nav_cta">Join Waitlist</a>
     </div>
   </nav>
 
   <div id="mainContent">
     <!-- HERO -->
     <section class="hero" id="start">
+      <div class="hero-orb o1" aria-hidden="true"></div>
+      <div class="hero-orb o2" aria-hidden="true"></div>
+      <div class="hero-orb o3" aria-hidden="true"></div>
       <div class="hero-pill"><div class="hero-pill-dot"></div><span class="hero-pill-tag">Beta</span><span data-i18n="hero_badge">SAP ABAP · Fiori · UI5 · S/4HANA · ECC</span></div>
       <h1><span data-i18n="hero_h1_1">SAP Code,</span><br><span class="accent" data-i18n="hero_h1_2">Forged by AI.</span></h1>
       <p class="hero-sub" data-i18n="hero_sub">Describe what you need. Upload your system profile. Get production-ready ABAP code — tailored to your exact SAP release. No freelancer. No VPN access. No guesswork.</p>
@@ -293,7 +360,7 @@
       <form class="hero-cta" id="waitlistForm" action="https://formspree.io/f/xvzbbwka" method="POST">
         <input type="email" name="waitlist_email" class="hero-input" autocomplete="new-password" placeholder="your@company.com" required>
         <input type="hidden" name="_subject" value="ERPforgeAI Waitlist Signup">
-        <button type="submit" class="hero-submit" data-i18n="hero_btn">Join Waitlist →</button>
+        <button type="submit" class="hero-submit btn-ripple" data-i18n="hero_btn">Join Waitlist →</button>
       </form>
       <div class="hero-success" id="waitlistOk" data-i18n="hero_ok">✓ You're on the list! We'll email you before launch.</div>
       <p class="hero-note" data-i18n="hero_note"><span>→</span> Free early access · No credit card · Cancel anytime</p>
@@ -305,6 +372,7 @@
         <div class="proof-item"><div class="proof-val">24h</div><div class="proof-lbl" data-i18n="stat4">Delivery</div></div>
       </div>
       <p class="proof-note" data-i18n="proof_note">* Compared to traditional freelancer engagements for standard ABAP reports</p>
+      <div class="hero-vignette" aria-hidden="true"></div>
     </section>
 
     <!-- CODE PREVIEW -->
@@ -326,20 +394,20 @@
     </section>
 
     <!-- HOW IT WORKS -->
-    <section class="section fade-in" id="how">
+    <section class="section reveal" id="how">
       <div class="section-tag" data-i18n="how_label">How It Works</div>
       <h2 class="section-h" data-i18n="how_title">Three Steps. Done.</h2>
-      <div class="steps">
+      <div class="steps reveal-stagger">
         <span class="step-arrow a1">→</span>
         <span class="step-arrow a2">→</span>
-        <div class="step"><div class="step-num">01</div><div class="step-icon">📋</div><div class="step-title" data-i18n="step1_title">Profile Your System</div><div class="step-text" data-i18n="step1_desc">Run our free diagnostic tool in SE38. It auto-detects release, SP level, features, components, and tables. Takes 30 seconds.</div></div>
-        <div class="step"><div class="step-num">02</div><div class="step-icon">💬</div><div class="step-title" data-i18n="step2_title">Describe What You Need</div><div class="step-text" data-i18n="step2_desc">Write your requirement in plain language: "I need a report showing open POs by vendor with aging analysis." That's it.</div></div>
-        <div class="step"><div class="step-num">03</div><div class="step-icon">⚡</div><div class="step-title" data-i18n="step3_title">Get Forged Code</div><div class="step-text" data-i18n="step3_desc">AI generates code matched to your exact system. Expert ABAP review on every line. Paste into SE38 and run.</div></div>
+        <div class="step glow-card reveal-item"><div class="step-num">01</div><div class="step-icon">📋</div><div class="step-title" data-i18n="step1_title">Profile Your System</div><div class="step-text" data-i18n="step1_desc">Run our free diagnostic tool in SE38. It auto-detects release, SP level, features, components, and tables. Takes 30 seconds.</div></div>
+        <div class="step glow-card reveal-item"><div class="step-num">02</div><div class="step-icon">💬</div><div class="step-title" data-i18n="step2_title">Describe What You Need</div><div class="step-text" data-i18n="step2_desc">Write your requirement in plain language: "I need a report showing open POs by vendor with aging analysis." That's it.</div></div>
+        <div class="step glow-card reveal-item"><div class="step-num">03</div><div class="step-icon">⚡</div><div class="step-title" data-i18n="step3_title">Get Forged Code</div><div class="step-text" data-i18n="step3_desc">AI generates code matched to your exact system. Expert ABAP review on every line. Paste into SE38 and run.</div></div>
       </div>
     </section>
 
     <!-- DOWNLOAD -->
-    <section class="dl-section fade-in" id="download">
+    <section class="dl-section reveal" id="download">
       <div class="dl-box">
         <div style="font-size:40px;margin-bottom:16px">🔧</div>
         <h3 data-i18n="dl_title">Free System Profiler</h3>
@@ -361,17 +429,17 @@
           <div class="dl-step"><b>3</b><span data-i18n="dl_s3">Run it — save the .txt output</span></div>
           <div class="dl-step"><b>4</b><span data-i18n="dl_s4">Upload when ordering code</span></div>
         </div>
-        <button class="btn-dl" onclick="downloadSteckbrief()" data-i18n="dl_btn">⬇ Download Z_SYSTEM_STECKBRIEF.abap</button>
+        <button class="btn-dl btn-ripple" onclick="downloadSteckbrief()" data-i18n="dl_btn">⬇ Download Z_SYSTEM_STECKBRIEF.abap</button>
         <div class="dl-meta">425 lines · SAP 7.00+ compatible · MIT-style license</div>
       </div>
     </section>
 
     <!-- WHY US -->
-    <section class="section fade-in" id="why">
+    <section class="section reveal" id="why">
       <div class="section-tag" data-i18n="why_label">Why ERPforgeAI</div>
       <h2 class="section-h" data-i18n="why_title">The Old Way Is Broken</h2>
       <div class="cmp-grid">
-        <div class="cmp-card old">
+        <div class="cmp-card old glow-card">
           <div class="cmp-tag" data-i18n="old_label">❌ Traditional</div>
           <ul class="cmp-list">
             <li><span class="ic">⏳</span><span data-i18n="old1">Weeks to find a freelancer</span></li>
@@ -382,7 +450,7 @@
             <li><span class="ic">🤷</span><span data-i18n="old6">No first-time guarantee</span></li>
           </ul>
         </div>
-        <div class="cmp-card new">
+        <div class="cmp-card new glow-card">
           <div class="cmp-tag" data-i18n="new_label">⚡ ERPforgeAI</div>
           <ul class="cmp-list">
             <li><span class="ic">🚀</span><span data-i18n="new1">Delivered in 24 hours</span></li>
@@ -397,22 +465,22 @@
     </section>
 
     <!-- PRICING -->
-    <section class="pricing-section fade-in" id="pricing">
+    <section class="pricing-section reveal" id="pricing">
       <div class="section-tag" data-i18n="price_label">Pricing</div>
       <h2 class="section-h" data-i18n="price_title">Simple & Transparent</h2>
-      <div class="pricing-grid">
-        <div class="pc">
+      <div class="pricing-grid reveal-stagger">
+        <div class="pc glow-card reveal-item">
           <div class="pc-tier">Report</div><div class="pc-price">€99<span> /prog</span></div><div class="pc-desc" data-i18n="p1_desc">Reports, lists, exports</div>
           <ul class="pc-feats"><li data-i18n="p1_f1">ALV reports & extracts</li><li data-i18n="p1_f2">Selection screen</li><li data-i18n="p1_f3">System-matched code</li><li data-i18n="p1_f4">Expert review</li><li data-i18n="p1_f5">1 revision</li></ul>
           <a href="#order" class="pc-btn" data-i18n="price_btn">Get Started</a>
         </div>
-        <div class="pc feat">
+        <div class="pc feat glow-card reveal-item">
           <div class="pc-badge" data-i18n="popular">Popular</div>
           <div class="pc-tier">Interface</div><div class="pc-price">€249<span> /prog</span></div><div class="pc-desc" data-i18n="p2_desc">Interfaces, integrations</div>
           <ul class="pc-feats"><li data-i18n="p2_f1">Everything in Report</li><li data-i18n="p2_f2">File upload/download</li><li data-i18n="p2_f3">RFC/BAPI</li><li data-i18n="p2_f4">Error handling</li><li data-i18n="p2_f5">2 revisions</li></ul>
           <a href="#order" class="pc-btn primary" data-i18n="price_btn">Get Started</a>
         </div>
-        <div class="pc">
+        <div class="pc glow-card reveal-item">
           <div class="pc-tier">Complex</div><div class="pc-price">€499<span> /prog</span></div><div class="pc-desc" data-i18n="p3_desc">Enhancements, workflows</div>
           <ul class="pc-feats"><li data-i18n="p3_f1">Everything in Interface</li><li data-i18n="p3_f2">User Exits / BAdIs</li><li data-i18n="p3_f3">Multi-table logic</li><li data-i18n="p3_f4">Fiori / UI5</li><li data-i18n="p3_f5">3 revisions</li></ul>
           <a href="#order" class="pc-btn" data-i18n="price_btn">Get Started</a>
@@ -421,7 +489,7 @@
     </section>
 
     <!-- ORDER PORTAL -->
-    <section class="order-section fade-in" id="order">
+    <section class="order-section reveal" id="order">
       <div class="section-tag" data-i18n="order_label">Order Code</div>
       <h2 class="section-h" data-i18n="order_title">Submit Your Project</h2>
       <div class="order-box">
@@ -470,14 +538,14 @@
             <textarea name="notes" placeholder="Budget constraints, deadline, special requirements..."></textarea>
           </div>
 
-          <button type="submit" class="btn-send" data-i18n="of_submit">🚀 Submit Order →</button>
+          <button type="submit" class="btn-send btn-ripple" data-i18n="of_submit">🚀 Submit Order →</button>
         </form>
         <div class="order-ok" id="orderOk" data-i18n="of_ok">✓ Order received! We'll review your Steckbrief and reply within 24 hours with a detailed quote and timeline.</div>
       </div>
     </section>
 
     <!-- ABOUT -->
-    <section class="about-section fade-in" id="about">
+    <section class="about-section reveal" id="about">
       <div class="section-tag" data-i18n="about_label">Who We Are</div>
       <h2 class="section-h" data-i18n="about_title">Built by SAP Veterans</h2>
       <div class="about-box">
@@ -498,7 +566,7 @@
     </section>
 
     <!-- CONTACT -->
-    <section class="contact-section fade-in" id="contact">
+    <section class="contact-section reveal" id="contact">
       <div class="contact-box">
         <h3 data-i18n="contact_title">Get In Touch</h3>
         <p data-i18n="contact_desc">Question about your project? We reply within 24h.</p>
@@ -508,7 +576,7 @@
           <div class="fg"><label data-i18n="cf_email">Email</label><input type="email" name="contact_email" required autocomplete="new-password"></div>
           <div class="fg"><label data-i18n="cf_subject">Subject</label><select name="subject"><option value="Project Inquiry" data-i18n="cf_subj1">Project Inquiry</option><option value="Question" data-i18n="cf_subj2">General Question</option><option value="Steckbrief" data-i18n="cf_subj3">Steckbrief Help</option><option value="Other" data-i18n="cf_subj4">Other</option></select></div>
           <div class="fg"><label data-i18n="cf_msg">Message</label><textarea name="message" required></textarea></div>
-          <button type="submit" class="btn-send" data-i18n="cf_send">Send Message →</button>
+          <button type="submit" class="btn-send btn-ripple" data-i18n="cf_send">Send Message →</button>
         </form>
         <div class="contact-ok" id="contactOk" data-i18n="cf_ok">✓ Sent! We'll reply within 24 hours.</div>
       </div>
@@ -583,6 +651,15 @@
       });
     });
 
+    // Mouse-following glow on cards
+    document.querySelectorAll('.glow-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+        card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+      });
+    });
+
     // Countdown to April 1, 2026
     function updateCD(){
       const t=new Date('2026-04-01T09:00:00+02:00')-new Date();
@@ -591,7 +668,11 @@
       document.getElementById('cd-d').textContent=String(d).padStart(2,'0');
       document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
       document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
-      document.getElementById('cd-s').textContent=String(s).padStart(2,'0');
+      const secEl = document.getElementById('cd-s');
+      secEl.textContent = String(s).padStart(2,'0');
+      secEl.classList.remove('tick');
+      void secEl.offsetWidth; // force reflow
+      secEl.classList.add('tick');
     }
     updateCD();setInterval(updateCD,1000);
     document.querySelectorAll('input[type="email"]').forEach(i=>{i.value='';});
@@ -678,9 +759,20 @@
     }
     (function(){try{const s=localStorage.getItem('lang');if(s){setLang(s)}else{const n=navigator.language||'';if(n.startsWith('de')){setLang('de')}}}catch(e){}})();
 
-    // Scroll-triggered animations
-    const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.15});
-    document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+    // Scroll-triggered reveal animations
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => revealObs.observe(el));
+
+    // Code highlight pulse
+    const hlEl = document.querySelector('.code-content .hl');
+    if (hlEl) { hlEl.style.animation = 'hlPulse 3s ease infinite'; }
   </script>
 </body>
 </html>
