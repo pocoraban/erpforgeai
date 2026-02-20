@@ -173,6 +173,26 @@
     .legal-back{display:inline-flex;align-items:center;gap:6px;margin-bottom:20px;color:var(--text2);text-decoration:none;font-size:13px;transition:color 0.2s}
     .legal-back:hover{color:var(--orange)}
 
+    /* === PROOF FOOTNOTE === */
+    .proof-note{text-align:center;margin-top:12px;font-size:11px;color:var(--text3);font-style:italic;position:relative;z-index:1;animation:fadeUp .8s .7s ease both}
+
+    /* === ABOUT/TEAM === */
+    .about-section{padding:80px 24px}
+    .about-box{max-width:800px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:40px 36px}
+    .about-avatar{width:80px;height:80px;background:linear-gradient(135deg,var(--orange),var(--orange-dark));border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:36px;flex-shrink:0}
+    .about-info h3{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:4px}
+    .about-info .about-role{font-size:13px;color:var(--orange);font-weight:600;margin-bottom:10px}
+    .about-info p{font-size:14px;color:var(--text2);line-height:1.7}
+    .about-badges{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+    .about-badge{padding:4px 10px;background:var(--orange-glow);border:1px solid rgba(255,107,43,0.2);border-radius:6px;font-size:11px;font-weight:600;color:var(--orange)}
+
+    /* === STECKBRIEF PREVIEW === */
+    .steckbrief-preview{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin:20px auto 24px;max-width:440px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.7;color:var(--text3);overflow-x:auto}
+    .steckbrief-preview .sp-h{color:var(--orange);font-weight:700}
+    .steckbrief-preview .sp-v{color:var(--text2)}
+
+    @media(max-width:768px){.about-box{grid-template-columns:1fr;text-align:center}.about-badges{justify-content:center}}
+
     /* === FOOTER === */
     footer{padding:40px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
     .f-left{font-size:12px;color:var(--text3)}.f-left em{font-style:normal;color:var(--orange)}
@@ -247,6 +267,7 @@
         <div class="proof-item"><div class="proof-val">7.00+</div><div class="proof-lbl" data-i18n="stat3">SAP Releases</div></div>
         <div class="proof-item"><div class="proof-val">24h</div><div class="proof-lbl" data-i18n="stat4">Delivery</div></div>
       </div>
+      <p class="proof-note" data-i18n="proof_note">* Compared to traditional freelancer engagements for standard ABAP reports</p>
     </section>
 
     <!-- CODE PREVIEW -->
@@ -284,6 +305,17 @@
         <div style="font-size:40px;margin-bottom:16px">🔧</div>
         <h3 data-i18n="dl_title">Free System Profiler</h3>
         <p data-i18n="dl_desc">Run this ABAP program in SE38 — it creates a Steckbrief we use to generate perfectly matched code for your system.</p>
+        <div class="steckbrief-preview">
+          <span class="sp-h">--- SYSTEM-RELEASE ---</span><br>
+          &nbsp;&nbsp;SAP System ID: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sp-v">HA0</span><br>
+          &nbsp;&nbsp;SAP Release: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sp-v">740</span><br>
+          &nbsp;&nbsp;SAP_BASIS Release: &nbsp;<span class="sp-v">740</span><br>
+          <span class="sp-h">--- ABAP SPRACHFEATURES ---</span><br>
+          &nbsp;&nbsp;Inline DATA(...): &nbsp;<span class="sp-v">JA</span><br>
+          &nbsp;&nbsp;CONV Ausdruck: &nbsp;&nbsp;&nbsp;&nbsp;<span class="sp-v">JA</span><br>
+          &nbsp;&nbsp;ENUM Typ: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sp-v">NEIN</span><br>
+          <span style="color:var(--text3);font-style:italic">→ We use exactly this to tailor your code</span>
+        </div>
         <div class="dl-steps">
           <div class="dl-step"><b>1</b><span data-i18n="dl_s1">Download the ABAP source code</span></div>
           <div class="dl-step"><b>2</b><span data-i18n="dl_s2">Paste into a new report in SE38</span></div>
@@ -345,6 +377,27 @@
           <div class="pc-tier">Complex</div><div class="pc-price">€499<span> /prog</span></div><div class="pc-desc" data-i18n="p3_desc">Enhancements, workflows</div>
           <ul class="pc-feats"><li data-i18n="p3_f1">Everything in Interface</li><li data-i18n="p3_f2">User Exits / BAdIs</li><li data-i18n="p3_f3">Multi-table logic</li><li data-i18n="p3_f4">Fiori / UI5</li><li data-i18n="p3_f5">3 revisions</li></ul>
           <a href="#start" class="pc-btn" data-i18n="price_btn">Get Started</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-section" id="about">
+      <div class="section-tag" data-i18n="about_label">Who We Are</div>
+      <h2 class="section-h" data-i18n="about_title">Built by SAP Veterans</h2>
+      <div class="about-box">
+        <div class="about-avatar">👨‍💻</div>
+        <div class="about-info">
+          <h3 data-i18n="about_name">The ERPforgeAI Team</h3>
+          <div class="about-role" data-i18n="about_role">SAP Consulting · AI Engineering · ABAP Development</div>
+          <p data-i18n="about_bio">Every line of code generated by ERPforgeAI is reviewed by senior SAP consultants with 10+ years of hands-on ABAP experience across ECC, S/4HANA, and industry solutions. We combine deep SAP domain expertise with cutting-edge AI to deliver code that doesn't just compile — it follows best practices, handles edge cases, and matches your exact system configuration.</p>
+          <div class="about-badges">
+            <span class="about-badge">SAP Certified</span>
+            <span class="about-badge">10+ Years ABAP</span>
+            <span class="about-badge">S/4HANA</span>
+            <span class="about-badge">ECC 6.0</span>
+            <span class="about-badge">Fiori/UI5</span>
+          </div>
         </div>
       </div>
     </section>
@@ -474,7 +527,9 @@
         contact_title:"Get In Touch",contact_desc:"Question about your project? We reply within 24h.",
         cf_name:"Name",cf_email:"Email",cf_subject:"Subject",cf_msg:"Message",cf_send:"Send Message →",cf_ok:"✓ Sent! We'll reply within 24 hours.",
         cf_subj1:"Project Inquiry",cf_subj2:"General Question",cf_subj3:"Steckbrief Help",cf_subj4:"Other",
-        footer_contact:"Contact"
+        footer_contact:"Contact",
+        proof_note:"* Compared to traditional freelancer engagements for standard ABAP reports",
+        about_label:"Who We Are",about_title:"Built by SAP Veterans",about_name:"The ERPforgeAI Team",about_role:"SAP Consulting · AI Engineering · ABAP Development",about_bio:"Every line of code is reviewed by senior SAP consultants with 10+ years of hands-on ABAP experience across ECC, S/4HANA, and industry solutions. We combine deep SAP expertise with cutting-edge AI to deliver code that compiles, follows best practices, and matches your exact system."
       },
       de:{
         nav_how:"So geht's",nav_why:"Warum wir",nav_pricing:"Preise",nav_contact:"Kontakt",nav_cta:"Warteliste",
@@ -501,7 +556,7 @@
         contact_title:"Kontakt",contact_desc:"Frage zu Ihrem Projekt? Antwort innerhalb 24h.",
         cf_name:"Name",cf_email:"E-Mail",cf_subject:"Betreff",cf_msg:"Nachricht",cf_send:"Nachricht senden →",cf_ok:"✓ Gesendet! Antwort innerhalb 24 Stunden.",
         cf_subj1:"Projektanfrage",cf_subj2:"Allgemeine Frage",cf_subj3:"Steckbrief-Hilfe",cf_subj4:"Sonstiges",
-        footer_contact:"Kontakt"
+        footer_contact:"Kontakt",proof_note:"* Im Vergleich zu traditionellen Freelancer-Beauftragungen für Standard-ABAP-Reports",about_label:"Wer wir sind",about_title:"Von SAP-Veteranen gebaut",about_name:"Das ERPforgeAI Team",about_role:"SAP Beratung · KI-Entwicklung · ABAP-Programmierung",about_bio:"Jede Zeile Code wird von erfahrenen SAP-Beratern mit 10+ Jahren praktischer ABAP-Erfahrung in ECC, S/4HANA und Branchenlösungen geprüft. Wir kombinieren tiefes SAP-Know-how mit modernster KI für Code, der kompiliert, Best Practices folgt und exakt zu Ihrem System passt."
       }
     };
     let curLang='en';
