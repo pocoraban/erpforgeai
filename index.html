@@ -4,928 +4,291 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ERPforgeAI — AI-Powered ERP Code, Tailored to Your System</title>
+  <meta name="description" content="Get production-ready SAP ABAP code tailored to your exact system. No freelancer needed. Starting at €99.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg-primary: #0a0a0c;
-      --bg-secondary: #111116;
-      --bg-card: #16161c;
-      --bg-card-hover: #1c1c24;
-      --ember-500: #f97316;
-      --ember-400: #fb923c;
-      --ember-300: #fdba74;
-      --ember-600: #ea580c;
-      --ember-glow: rgba(249, 115, 22, 0.15);
-      --steel-100: #f1f5f9;
-      --steel-200: #e2e8f0;
-      --steel-300: #cbd5e1;
-      --steel-400: #94a3b8;
-      --steel-500: #64748b;
-      --steel-600: #475569;
-      --steel-700: #334155;
-      --steel-800: #1e293b;
-      --text-primary: #f1f5f9;
-      --text-secondary: #94a3b8;
-      --text-muted: #64748b;
-      --border: rgba(148, 163, 184, 0.08);
-      --radius: 12px;
-      --radius-lg: 20px;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Outfit', sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
-
-    /* ============== NOISE OVERLAY ============== */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
-    }
-
-    /* ============== NAVIGATION ============== */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 20px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(10, 10, 12, 0.8);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
-
-    .nav-logo-icon {
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(135deg, var(--ember-500), var(--ember-600));
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 700;
-      font-size: 14px;
-      color: #fff;
-      box-shadow: 0 0 20px var(--ember-glow);
-    }
-
-    .nav-logo-text {
-      font-weight: 700;
-      font-size: 20px;
-      color: var(--text-primary);
-      letter-spacing: -0.5px;
-    }
-
-    .nav-logo-text span { color: var(--ember-500); }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      align-items: center;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text-secondary);
-      font-size: 14px;
-      font-weight: 500;
-      transition: color 0.2s;
-      letter-spacing: 0.3px;
-    }
-
-    .nav-links a:hover { color: var(--text-primary); }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 28px;
-      background: linear-gradient(135deg, var(--ember-500), var(--ember-600));
-      color: #fff;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 600;
-      font-size: 14px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.3s;
-      box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
-      letter-spacing: 0.3px;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(249, 115, 22, 0.4);
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 28px;
-      background: transparent;
-      color: var(--text-primary);
-      font-family: 'Outfit', sans-serif;
-      font-weight: 500;
-      font-size: 14px;
-      border: 1px solid var(--steel-700);
-      border-radius: 10px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.3s;
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--ember-500);
-      background: var(--ember-glow);
-    }
-
-    /* ============== HERO ============== */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 140px 24px 80px;
-      position: relative;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -200px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 800px;
-      height: 800px;
-      background: radial-gradient(ellipse, rgba(249, 115, 22, 0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-secondary);
-      margin-bottom: 32px;
-      animation: fadeInUp 0.8s ease both;
-    }
-
-    .hero-badge-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--ember-500);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(48px, 7vw, 88px);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -2px;
-      max-width: 900px;
-      margin-bottom: 24px;
-      animation: fadeInUp 0.8s 0.1s ease both;
-    }
-
-    .hero h1 .gradient-text {
-      background: linear-gradient(135deg, var(--ember-400), var(--ember-500), var(--ember-300));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-sub {
-      font-size: clamp(17px, 2vw, 20px);
-      font-weight: 300;
-      color: var(--text-secondary);
-      max-width: 600px;
-      line-height: 1.7;
-      margin-bottom: 48px;
-      animation: fadeInUp 0.8s 0.2s ease both;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: center;
-      animation: fadeInUp 0.8s 0.3s ease both;
-    }
-
-    .hero-stats {
-      display: flex;
-      gap: 48px;
-      margin-top: 80px;
-      padding-top: 48px;
-      border-top: 1px solid var(--border);
-      animation: fadeInUp 0.8s 0.5s ease both;
-    }
-
-    .hero-stat {
-      text-align: center;
-    }
-
-    .hero-stat-value {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--ember-500);
-    }
-
-    .hero-stat-label {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 4px;
-      font-weight: 500;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    /* ============== CODE PREVIEW ============== */
-    .code-section {
-      padding: 80px 24px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .code-window {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      width: 100%;
-      max-width: 800px;
-      overflow: hidden;
-      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
-    }
-
-    .code-header {
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      border-bottom: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    .code-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
-
-    .code-dot.red { background: #ef4444; }
-    .code-dot.yellow { background: #eab308; }
-    .code-dot.green { background: #22c55e; }
-
-    .code-title {
-      margin-left: 12px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .code-body {
-      padding: 24px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      line-height: 1.8;
-      overflow-x: auto;
-    }
-
-    .code-body .comment { color: var(--steel-600); }
-    .code-body .keyword { color: #c084fc; }
-    .code-body .string { color: #34d399; }
-    .code-body .type { color: var(--ember-400); }
-    .code-body .function { color: #60a5fa; }
-    .code-body .highlight {
-      background: rgba(249, 115, 22, 0.1);
-      border-left: 2px solid var(--ember-500);
-      display: block;
-      padding: 2px 8px;
-      margin: 2px -8px;
-    }
-
-    /* ============== HOW IT WORKS ============== */
-    .how-section {
-      padding: 120px 24px;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 72px;
-    }
-
-    .section-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--ember-500);
-      margin-bottom: 16px;
-    }
-
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(36px, 4.5vw, 56px);
-      font-weight: 800;
-      letter-spacing: -1px;
-      line-height: 1.1;
-    }
-
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .step-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 40px 32px;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s;
-    }
-
-    .step-card:hover {
-      background: var(--bg-card-hover);
-      border-color: rgba(249, 115, 22, 0.2);
-      transform: translateY(-4px);
-    }
-
-    .step-number {
-      font-family: 'Playfair Display', serif;
-      font-size: 72px;
-      font-weight: 900;
-      color: rgba(249, 115, 22, 0.07);
-      position: absolute;
-      top: -10px;
-      right: 16px;
-      line-height: 1;
-    }
-
-    .step-icon {
-      width: 48px;
-      height: 48px;
-      background: var(--ember-glow);
-      border: 1px solid rgba(249, 115, 22, 0.2);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      margin-bottom: 24px;
-    }
-
-    .step-title {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      letter-spacing: -0.3px;
-    }
-
-    .step-desc {
-      font-size: 15px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      font-weight: 300;
-    }
-
-    /* ============== FEATURES / WHY ============== */
-    .why-section {
-      padding: 120px 24px;
-      background: var(--bg-secondary);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .comparison-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .comparison-card {
-      padding: 40px;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-    }
-
-    .comparison-card.old {
-      background: rgba(239, 68, 68, 0.03);
-      border-color: rgba(239, 68, 68, 0.15);
-    }
-
-    .comparison-card.new {
-      background: var(--ember-glow);
-      border-color: rgba(249, 115, 22, 0.25);
-    }
-
-    .comparison-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    .comparison-card.old .comparison-label { color: #ef4444; }
-    .comparison-card.new .comparison-label { color: var(--ember-500); }
-
-    .comparison-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .comparison-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: 15px;
-      font-weight: 400;
-      color: var(--text-secondary);
-      line-height: 1.5;
-    }
-
-    .comparison-list li .icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
-
-    /* ============== PRICING ============== */
-    .pricing-section {
-      padding: 120px 24px;
-    }
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .price-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 40px 32px;
-      text-align: center;
-      transition: all 0.4s;
-      position: relative;
-    }
-
-    .price-card.featured {
-      border-color: rgba(249, 115, 22, 0.4);
-      background: linear-gradient(180deg, rgba(249, 115, 22, 0.06) 0%, var(--bg-card) 100%);
-    }
-
-    .price-card:hover { transform: translateY(-4px); }
-
-    .price-card-badge {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 4px 16px;
-      background: linear-gradient(135deg, var(--ember-500), var(--ember-600));
-      color: #fff;
-      font-size: 11px;
-      font-weight: 700;
-      border-radius: 100px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .price-tier {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 8px;
-    }
-
-    .price-value {
-      font-family: 'Playfair Display', serif;
-      font-size: 48px;
-      font-weight: 800;
-      margin-bottom: 4px;
-    }
-
-    .price-value span {
-      font-family: 'Outfit', sans-serif;
-      font-size: 16px;
-      font-weight: 400;
-      color: var(--text-muted);
-    }
-
-    .price-desc {
-      font-size: 14px;
-      color: var(--text-secondary);
-      margin-bottom: 28px;
-      font-weight: 300;
-    }
-
-    .price-features {
-      list-style: none;
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 32px;
-    }
-
-    .price-features li {
-      font-size: 14px;
-      color: var(--text-secondary);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .price-features li::before {
-      content: '✓';
-      color: var(--ember-500);
-      font-weight: 700;
-      font-size: 14px;
-    }
-
-    /* ============== CTA ============== */
-    .cta-section {
-      padding: 120px 24px;
-      text-align: center;
-      position: relative;
-    }
-
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 600px;
-      height: 400px;
-      background: radial-gradient(ellipse, rgba(249, 115, 22, 0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .cta-section h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(36px, 4.5vw, 52px);
-      font-weight: 800;
-      letter-spacing: -1px;
-      margin-bottom: 16px;
-    }
-
-    .cta-section p {
-      font-size: 18px;
-      color: var(--text-secondary);
-      margin-bottom: 40px;
-      font-weight: 300;
-    }
-
-    .cta-form {
-      display: flex;
-      gap: 12px;
-      max-width: 480px;
-      margin: 0 auto;
-    }
-
-    .cta-input {
-      flex: 1;
-      padding: 14px 20px;
-      background: var(--bg-card);
-      border: 1px solid var(--steel-700);
-      border-radius: 10px;
-      color: var(--text-primary);
-      font-family: 'Outfit', sans-serif;
-      font-size: 15px;
-      outline: none;
-      transition: border-color 0.3s;
-    }
-
-    .cta-input:focus { border-color: var(--ember-500); }
-
-    .cta-input::placeholder { color: var(--text-muted); }
-
-    /* ============== FOOTER ============== */
-    footer {
-      padding: 48px 40px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .footer-text {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .footer-text span { color: var(--ember-500); }
-
-    .footer-links {
-      display: flex;
-      gap: 24px;
-    }
-
-    .footer-links a {
-      font-size: 13px;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover { color: var(--text-secondary); }
-
-    /* ============== ANIMATIONS ============== */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    /* ============== RESPONSIVE ============== */
-    @media (max-width: 768px) {
-      nav { padding: 16px 20px; }
-      .nav-links { display: none; }
-      .steps-grid, .pricing-grid { grid-template-columns: 1fr; }
-      .comparison-grid { grid-template-columns: 1fr; }
-      .hero-stats { flex-direction: column; gap: 24px; }
-      .cta-form { flex-direction: column; }
-      footer { flex-direction: column; gap: 16px; text-align: center; }
-    }
+    :root{--bg-primary:#0a0a0c;--bg-secondary:#111116;--bg-card:#16161c;--bg-card-hover:#1c1c24;--ember-500:#f97316;--ember-400:#fb923c;--ember-300:#fdba74;--ember-600:#ea580c;--ember-glow:rgba(249,115,22,0.15);--steel-100:#f1f5f9;--steel-200:#e2e8f0;--steel-300:#cbd5e1;--steel-400:#94a3b8;--steel-500:#64748b;--steel-600:#475569;--steel-700:#334155;--steel-800:#1e293b;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-muted:#64748b;--border:rgba(148,163,184,0.08);--radius:12px;--radius-lg:20px}
+    *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+    body{font-family:'Outfit',sans-serif;background:var(--bg-primary);color:var(--text-primary);overflow-x:hidden;line-height:1.6}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,12,0.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .nav-logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--ember-500),var(--ember-600));border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;color:#fff;box-shadow:0 0 20px var(--ember-glow)}
+    .nav-logo-text{font-weight:700;font-size:20px;color:var(--text-primary);letter-spacing:-0.5px}
+    .nav-logo-text span{color:var(--ember-500)}
+    .nav-links{display:flex;gap:32px;align-items:center}
+    .nav-links a{text-decoration:none;color:var(--text-secondary);font-size:14px;font-weight:500;transition:color 0.2s;letter-spacing:0.3px}
+    .nav-links a:hover{color:var(--text-primary)}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:linear-gradient(135deg,var(--ember-500),var(--ember-600));color:#fff;font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;border:none;border-radius:10px;cursor:pointer;text-decoration:none;transition:all 0.3s;box-shadow:0 4px 20px rgba(249,115,22,0.3);letter-spacing:0.3px}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(249,115,22,0.4)}
+    .btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:transparent;color:var(--text-primary);font-family:'Outfit',sans-serif;font-weight:500;font-size:14px;border:1px solid var(--steel-700);border-radius:10px;cursor:pointer;text-decoration:none;transition:all 0.3s}
+    .btn-secondary:hover{border-color:var(--ember-500);background:var(--ember-glow)}
+    .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px 24px 80px;position:relative}
+    .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(ellipse,rgba(249,115,22,0.08) 0%,transparent 70%);pointer-events:none}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-secondary);margin-bottom:32px;animation:fadeInUp 0.8s ease both}
+    .hero-badge-dot{width:8px;height:8px;background:var(--ember-500);border-radius:50%;animation:pulse 2s infinite}
+    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(48px,7vw,88px);font-weight:800;line-height:1.05;letter-spacing:-2px;max-width:900px;margin-bottom:24px;animation:fadeInUp 0.8s 0.1s ease both}
+    .hero h1 .gradient-text{background:linear-gradient(135deg,var(--ember-400),var(--ember-500),var(--ember-300));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-sub{font-size:clamp(17px,2vw,20px);font-weight:300;color:var(--text-secondary);max-width:600px;line-height:1.7;margin-bottom:48px;animation:fadeInUp 0.8s 0.2s ease both}
+    .hero-actions{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;animation:fadeInUp 0.8s 0.3s ease both}
+    .hero-stats{display:flex;gap:48px;margin-top:80px;padding-top:48px;border-top:1px solid var(--border);animation:fadeInUp 0.8s 0.5s ease both}
+    .hero-stat{text-align:center}
+    .hero-stat-value{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;color:var(--ember-500)}
+    .hero-stat-label{font-size:13px;color:var(--text-muted);margin-top:4px;font-weight:500;letter-spacing:1px;text-transform:uppercase}
+    .code-section{padding:80px 24px;display:flex;justify-content:center}
+    .code-window{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-lg);width:100%;max-width:800px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.4)}
+    .code-header{padding:16px 20px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);background:rgba(255,255,255,0.02)}
+    .code-dot{width:12px;height:12px;border-radius:50%}.code-dot.red{background:#ef4444}.code-dot.yellow{background:#eab308}.code-dot.green{background:#22c55e}
+    .code-title{margin-left:12px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-muted)}
+    .code-body{padding:24px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.8;overflow-x:auto}
+    .code-body .comment{color:var(--steel-600)}.code-body .keyword{color:#c084fc}.code-body .type{color:var(--ember-400)}.code-body .function{color:#60a5fa}
+    .code-body .highlight{background:rgba(249,115,22,0.1);border-left:2px solid var(--ember-500);display:block;padding:2px 8px;margin:2px -8px}
+    .section-header{text-align:center;margin-bottom:72px}
+    .section-label{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--ember-500);margin-bottom:16px}
+    .section-title{font-family:'Playfair Display',serif;font-size:clamp(36px,4.5vw,56px);font-weight:800;letter-spacing:-1px;line-height:1.1}
+    .how-section{padding:120px 24px}
+    .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto}
+    .step-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px 32px;position:relative;overflow:hidden;transition:all 0.4s}
+    .step-card:hover{background:var(--bg-card-hover);border-color:rgba(249,115,22,0.2);transform:translateY(-4px)}
+    .step-number{font-family:'Playfair Display',serif;font-size:72px;font-weight:900;color:rgba(249,115,22,0.07);position:absolute;top:-10px;right:16px;line-height:1}
+    .step-icon{width:48px;height:48px;background:var(--ember-glow);border:1px solid rgba(249,115,22,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:24px}
+    .step-title{font-size:20px;font-weight:700;margin-bottom:12px;letter-spacing:-0.3px}
+    .step-desc{font-size:15px;color:var(--text-secondary);line-height:1.7;font-weight:300}
+    .download-section{padding:80px 24px;background:var(--bg-secondary);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .download-box{max-width:700px;margin:0 auto;text-align:center;background:var(--bg-card);border:1px solid rgba(249,115,22,0.2);border-radius:var(--radius-lg);padding:48px 40px;position:relative;overflow:hidden}
+    .download-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--ember-600),var(--ember-400),var(--ember-600))}
+    .download-icon{font-size:48px;margin-bottom:20px}
+    .download-box h3{font-family:'Playfair Display',serif;font-size:28px;font-weight:800;margin-bottom:12px}
+    .download-box p{color:var(--text-secondary);font-size:15px;line-height:1.7;margin-bottom:32px;font-weight:300}
+    .download-steps{text-align:left;max-width:440px;margin:0 auto 32px}
+    .download-step{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;font-size:14px;color:var(--text-secondary)}
+    .download-step-num{width:24px;height:24px;background:var(--ember-glow);border:1px solid rgba(249,115,22,0.3);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--ember-500);flex-shrink:0}
+    .download-filename{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-muted);margin-top:16px}
+    .why-section{padding:120px 24px}
+    .comparison-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:900px;margin:0 auto}
+    .comparison-card{padding:40px;border-radius:var(--radius-lg);border:1px solid var(--border)}
+    .comparison-card.old{background:rgba(239,68,68,0.03);border-color:rgba(239,68,68,0.15)}
+    .comparison-card.new{background:var(--ember-glow);border-color:rgba(249,115,22,0.25)}
+    .comparison-label{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+    .comparison-card.old .comparison-label{color:#ef4444}.comparison-card.new .comparison-label{color:var(--ember-500)}
+    .comparison-list{list-style:none;display:flex;flex-direction:column;gap:16px}
+    .comparison-list li{display:flex;align-items:flex-start;gap:12px;font-size:15px;font-weight:400;color:var(--text-secondary);line-height:1.5}
+    .comparison-list li .icon{font-size:16px;flex-shrink:0;margin-top:2px}
+    .pricing-section{padding:120px 24px;background:var(--bg-secondary);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:0 auto}
+    .price-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px 32px;text-align:center;transition:all 0.4s;position:relative}
+    .price-card.featured{border-color:rgba(249,115,22,0.4);background:linear-gradient(180deg,rgba(249,115,22,0.06) 0%,var(--bg-card) 100%)}
+    .price-card:hover{transform:translateY(-4px)}
+    .price-card-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);padding:4px 16px;background:linear-gradient(135deg,var(--ember-500),var(--ember-600));color:#fff;font-size:11px;font-weight:700;border-radius:100px;letter-spacing:1px;text-transform:uppercase}
+    .price-tier{font-size:14px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+    .price-value{font-family:'Playfair Display',serif;font-size:48px;font-weight:800;margin-bottom:4px}
+    .price-value span{font-family:'Outfit',sans-serif;font-size:16px;font-weight:400;color:var(--text-muted)}
+    .price-desc{font-size:14px;color:var(--text-secondary);margin-bottom:28px;font-weight:300}
+    .price-features{list-style:none;text-align:left;display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+    .price-features li{font-size:14px;color:var(--text-secondary);display:flex;align-items:center;gap:10px}
+    .price-features li::before{content:'✓';color:var(--ember-500);font-weight:700;font-size:14px}
+    .cta-section{padding:120px 24px;text-align:center;position:relative}
+    .cta-section::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(249,115,22,0.06) 0%,transparent 70%);pointer-events:none}
+    .cta-section h2{font-family:'Playfair Display',serif;font-size:clamp(36px,4.5vw,52px);font-weight:800;letter-spacing:-1px;margin-bottom:16px}
+    .cta-section p{font-size:18px;color:var(--text-secondary);margin-bottom:40px;font-weight:300}
+    .cta-form{display:flex;gap:12px;max-width:480px;margin:0 auto}
+    .cta-input{flex:1;padding:14px 20px;background:var(--bg-card);border:1px solid var(--steel-700);border-radius:10px;color:var(--text-primary);font-family:'Outfit',sans-serif;font-size:15px;outline:none;transition:border-color 0.3s}
+    .cta-input:focus{border-color:var(--ember-500)}.cta-input::placeholder{color:var(--text-muted)}
+    .cta-success{display:none;padding:20px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:10px;max-width:480px;margin:0 auto;color:#22c55e;font-weight:500}
+    footer{padding:48px 40px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+    .footer-text{font-size:13px;color:var(--text-muted)}.footer-text span{color:var(--ember-500)}
+    .footer-links{display:flex;gap:24px}
+    .footer-links a{font-size:13px;color:var(--text-muted);text-decoration:none;transition:color 0.2s}.footer-links a:hover{color:var(--text-secondary)}
+    .legal-page{display:none;padding:120px 24px 80px;max-width:800px;margin:0 auto}
+    .legal-page.active{display:block}
+    .legal-page h1{font-family:'Playfair Display',serif;font-size:36px;font-weight:800;margin-bottom:32px;color:var(--ember-500)}
+    .legal-page h2{font-size:20px;font-weight:700;margin-top:32px;margin-bottom:12px}
+    .legal-page p,.legal-page li{font-size:15px;color:var(--text-secondary);line-height:1.8;margin-bottom:12px}
+    .legal-page ul{padding-left:24px}.legal-page a{color:var(--ember-400);text-decoration:none}.legal-page a:hover{text-decoration:underline}
+    .legal-back{display:inline-flex;align-items:center;gap:8px;margin-bottom:24px;color:var(--text-secondary);text-decoration:none;font-size:14px;transition:color 0.2s}.legal-back:hover{color:var(--ember-500)}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    @media(max-width:768px){nav{padding:16px 20px}.nav-links{display:none}.steps-grid,.pricing-grid{grid-template-columns:1fr}.comparison-grid{grid-template-columns:1fr}.hero-stats{flex-direction:column;gap:24px}.cta-form{flex-direction:column}footer{flex-direction:column;gap:16px;text-align:center}.download-box{padding:32px 24px}}
   </style>
 </head>
 <body>
-
-  <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">
-      <div class="nav-logo-icon">{}</div>
-      <div class="nav-logo-text">ERPforge<span>AI</span></div>
-    </a>
+    <a href="#" class="nav-logo" onclick="showMain();return false;"><div class="nav-logo-icon">{}</div><div class="nav-logo-text">ERPforge<span>AI</span></div></a>
     <div class="nav-links">
-      <a href="#how">How It Works</a>
-      <a href="#why">Why Us</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#start" class="btn-primary">Get Started →</a>
+      <a href="#how" onclick="showMain()">How It Works</a>
+      <a href="#why" onclick="showMain()">Why Us</a>
+      <a href="#pricing" onclick="showMain()">Pricing</a>
+      <a href="#start" class="btn-primary" onclick="showMain()">Get Started →</a>
     </div>
   </nav>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-badge">
-      <div class="hero-badge-dot"></div>
-      Now serving SAP ABAP · Fiori · UI5 · S/4HANA · ECC
-    </div>
-    <h1>
-      ERP Code,<br>
-      <span class="gradient-text">Forged by AI.</span>
-    </h1>
-    <p class="hero-sub">
-      Describe what you need in plain language. Upload your system profile.
-      Get production-ready, syntax-error-free code — tailored to your exact SAP system.
-    </p>
-    <div class="hero-actions">
-      <a href="#start" class="btn-primary">⚡ Start Your First Project</a>
-      <a href="#how" class="btn-secondary">See How It Works</a>
-    </div>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-value">10×</div>
-        <div class="hero-stat-label">Faster Than Freelancers</div>
+  <div id="mainContent">
+    <section class="hero">
+      <div class="hero-badge"><div class="hero-badge-dot"></div>Now serving SAP ABAP · Fiori · UI5 · S/4HANA · ECC</div>
+      <h1>ERP Code,<br><span class="gradient-text">Forged by AI.</span></h1>
+      <p class="hero-sub">Describe what you need in plain language. Upload your system profile. Get production-ready, syntax-error-free code — tailored to your exact SAP system.</p>
+      <div class="hero-actions">
+        <a href="#start" class="btn-primary">⚡ Start Your First Project</a>
+        <a href="#download" class="btn-secondary">⬇ Download System Profiler</a>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-value">90%</div>
-        <div class="hero-stat-label">Cost Reduction</div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-value">10×</div><div class="hero-stat-label">Faster Than Freelancers</div></div>
+        <div class="hero-stat"><div class="hero-stat-value">90%</div><div class="hero-stat-label">Cost Reduction</div></div>
+        <div class="hero-stat"><div class="hero-stat-value">7.00+</div><div class="hero-stat-label">SAP Releases Supported</div></div>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-value">7.00+</div>
-        <div class="hero-stat-label">SAP Releases Supported</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CODE PREVIEW -->
-  <section class="code-section">
-    <div class="code-window">
-      <div class="code-header">
-        <div class="code-dot red"></div>
-        <div class="code-dot yellow"></div>
-        <div class="code-dot green"></div>
-        <span class="code-title">system_steckbrief.txt → AI → your_program.abap</span>
-      </div>
-      <div class="code-body">
-        <span class="comment">* Generated by ERPforgeAI for System HA0 (7.40 SP30)</span><br>
-        <span class="comment">* Features: COND ✓ | VALUE ✓ | String Templates ✓ | ENUM ✗</span><br>
-        <br>
-        <span class="keyword">REPORT</span> z_sales_analysis.<br>
-        <br>
-        <span class="highlight">
-        <span class="keyword">DATA</span>(lt_orders) = <span class="type">VALUE</span> <span class="function">ty_t_orders</span>( ).<br>
-        </span>
-        <span class="keyword">SELECT</span> vbeln erdat netwr waerk<br>
-        &nbsp;&nbsp;<span class="keyword">FROM</span> vbak<br>
-        &nbsp;&nbsp;<span class="keyword">INTO TABLE</span> <span class="function">lt_orders</span><br>
-        &nbsp;&nbsp;<span class="keyword">WHERE</span> erdat <span class="keyword">IN</span> s_date.<br>
-        <br>
-        <span class="comment">* Tailored to YOUR system. Zero syntax errors. Ready to run.</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section class="how-section" id="how">
-    <div class="section-header">
-      <div class="section-label">How It Works</div>
-      <h2 class="section-title">Three Steps. Done.</h2>
-    </div>
-    <div class="steps-grid">
-      <div class="step-card">
-        <div class="step-number">01</div>
-        <div class="step-icon">📋</div>
-        <div class="step-title">Profile Your System</div>
-        <div class="step-desc">
-          Run our free diagnostic tool in SE38. It auto-detects your release, SP level,
-          available features, installed components, and tables. Takes 30 seconds.
+    </section>
+    <section class="code-section">
+      <div class="code-window">
+        <div class="code-header"><div class="code-dot red"></div><div class="code-dot yellow"></div><div class="code-dot green"></div><span class="code-title">system_steckbrief.txt → AI → your_program.abap</span></div>
+        <div class="code-body">
+          <span class="comment">* Generated by ERPforgeAI for System HA0 (7.40 SP30)</span><br>
+          <span class="comment">* Features: COND ✓ | VALUE ✓ | String Templates ✓ | ENUM ✗</span><br><br>
+          <span class="keyword">REPORT</span> z_sales_analysis.<br><br>
+          <span class="highlight"><span class="keyword">DATA</span>(lt_orders) = <span class="type">VALUE</span> <span class="function">ty_t_orders</span>( ).<br></span>
+          <span class="keyword">SELECT</span> vbeln erdat netwr waerk<br>
+          &nbsp;&nbsp;<span class="keyword">FROM</span> vbak<br>
+          &nbsp;&nbsp;<span class="keyword">INTO TABLE</span> <span class="function">lt_orders</span><br>
+          &nbsp;&nbsp;<span class="keyword">WHERE</span> erdat <span class="keyword">IN</span> s_date.<br><br>
+          <span class="comment">* Tailored to YOUR system. Zero syntax errors. Ready to run.</span>
         </div>
       </div>
-      <div class="step-card">
-        <div class="step-number">02</div>
-        <div class="step-icon">💬</div>
-        <div class="step-title">Describe What You Need</div>
-        <div class="step-desc">
-          Write your requirement in plain language: "I need a report that shows all
-          open purchase orders by vendor with aging analysis." That's it.
+    </section>
+    <section class="how-section" id="how">
+      <div class="section-header"><div class="section-label">How It Works</div><h2 class="section-title">Three Steps. Done.</h2></div>
+      <div class="steps-grid">
+        <div class="step-card"><div class="step-number">01</div><div class="step-icon">📋</div><div class="step-title">Profile Your System</div><div class="step-desc">Run our free diagnostic tool in SE38. It auto-detects your release, SP level, available features, installed components, and tables. Takes 30 seconds.</div></div>
+        <div class="step-card"><div class="step-number">02</div><div class="step-icon">💬</div><div class="step-title">Describe What You Need</div><div class="step-desc">Write your requirement in plain language: "I need a report that shows all open purchase orders by vendor with aging analysis." That's it.</div></div>
+        <div class="step-card"><div class="step-number">03</div><div class="step-icon">⚡</div><div class="step-title">Get Forged Code</div><div class="step-desc">Our AI generates code matched to your exact system. A senior ABAP expert reviews every line. You get production-ready code — paste into SE38 and run.</div></div>
+      </div>
+    </section>
+    <section class="download-section" id="download">
+      <div class="download-box">
+        <div class="download-icon">🔧</div>
+        <h3>Free System Profiler</h3>
+        <p>Download our ABAP program and run it in SE38. It creates a complete system profile (Steckbrief) that we use to generate code perfectly matched to your SAP system. No installation needed — just copy, paste, run.</p>
+        <div class="download-steps">
+          <div class="download-step"><div class="download-step-num">1</div><span>Download the ABAP source code below</span></div>
+          <div class="download-step"><div class="download-step-num">2</div><span>Create a new report in SE38 and paste the code</span></div>
+          <div class="download-step"><div class="download-step-num">3</div><span>Run it — save the generated .txt file</span></div>
+          <div class="download-step"><div class="download-step-num">4</div><span>Upload the Steckbrief when you order code from us</span></div>
+        </div>
+        <button class="btn-primary" onclick="downloadSteckbrief()" style="font-size:16px;padding:16px 40px;">⬇ Download Z_SYSTEM_STECKBRIEF.abap</button>
+        <div class="download-filename">Z_SYSTEM_STECKBRIEF.abap · 425 lines · Compatible with SAP 7.00+</div>
+      </div>
+    </section>
+    <section class="why-section" id="why">
+      <div class="section-header"><div class="section-label">Why ERPforgeAI</div><h2 class="section-title">The Old Way Is Broken</h2></div>
+      <div class="comparison-grid">
+        <div class="comparison-card old">
+          <div class="comparison-label">❌ Traditional Approach</div>
+          <ul class="comparison-list">
+            <li><span class="icon">⏳</span>Weeks to find an ABAP freelancer</li>
+            <li><span class="icon">💸</span>€800 – €1,500 per day</li>
+            <li><span class="icon">🔒</span>VPN access to your system required</li>
+            <li><span class="icon">🐛</span>Multiple iterations &amp; bug fixes</li>
+            <li><span class="icon">📄</span>Extensive specs needed upfront</li>
+            <li><span class="icon">🤷</span>No guarantee it works first time</li>
+          </ul>
+        </div>
+        <div class="comparison-card new">
+          <div class="comparison-label">⚡ ERPforgeAI</div>
+          <ul class="comparison-list">
+            <li><span class="icon">🚀</span>Code delivered within 24 hours</li>
+            <li><span class="icon">💰</span>Starting at €99 per program</li>
+            <li><span class="icon">🛡️</span>No system access needed</li>
+            <li><span class="icon">✅</span>Syntax-checked for YOUR system</li>
+            <li><span class="icon">💬</span>Describe in plain language</li>
+            <li><span class="icon">👨‍💻</span>Expert-reviewed, production-ready</li>
+          </ul>
         </div>
       </div>
-      <div class="step-card">
-        <div class="step-number">03</div>
-        <div class="step-icon">⚡</div>
-        <div class="step-title">Get Forged Code</div>
-        <div class="step-desc">
-          Our AI generates code matched to your exact system. A senior ABAP expert reviews
-          every line. You get production-ready code — paste into SE38 and run.
+    </section>
+    <section class="pricing-section" id="pricing">
+      <div class="section-header"><div class="section-label">Pricing</div><h2 class="section-title">Simple &amp; Transparent</h2></div>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="price-tier">Report</div><div class="price-value">€99 <span>/ program</span></div><div class="price-desc">Simple reports, lists, data exports</div>
+          <ul class="price-features"><li>ALV reports &amp; data extracts</li><li>Selection screen with parameters</li><li>System-profile matched code</li><li>Expert review included</li><li>1 revision round</li></ul>
+          <a href="#start" class="btn-secondary" style="width:100%;justify-content:center;">Get Started</a>
+        </div>
+        <div class="price-card featured">
+          <div class="price-card-badge">Most Popular</div>
+          <div class="price-tier">Interface</div><div class="price-value">€249 <span>/ program</span></div><div class="price-desc">Interfaces, uploads, integrations</div>
+          <ul class="price-features"><li>Everything in Report</li><li>File upload/download logic</li><li>RFC/BAPI integrations</li><li>Error handling &amp; logging</li><li>2 revision rounds</li></ul>
+          <a href="#start" class="btn-primary" style="width:100%;justify-content:center;">Get Started</a>
+        </div>
+        <div class="price-card">
+          <div class="price-tier">Complex</div><div class="price-value">€499 <span>/ program</span></div><div class="price-desc">Enhancements, workflows, multi-module</div>
+          <ul class="price-features"><li>Everything in Interface</li><li>User Exits / BAdIs</li><li>Multi-table logic</li><li>Fiori/UI5 components</li><li>3 revision rounds</li></ul>
+          <a href="#start" class="btn-secondary" style="width:100%;justify-content:center;">Get Started</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- WHY US -->
-  <section class="why-section" id="why">
-    <div class="section-header">
-      <div class="section-label">Why ERPforgeAI</div>
-      <h2 class="section-title">The Old Way Is Broken</h2>
-    </div>
-    <div class="comparison-grid">
-      <div class="comparison-card old">
-        <div class="comparison-label">❌ Traditional Approach</div>
-        <ul class="comparison-list">
-          <li><span class="icon">⏳</span> Weeks to find an ABAP freelancer</li>
-          <li><span class="icon">💸</span> €800 – €1,500 per day</li>
-          <li><span class="icon">🔒</span> VPN access to your system required</li>
-          <li><span class="icon">🐛</span> Multiple iterations & bug fixes</li>
-          <li><span class="icon">📄</span> Extensive specs needed upfront</li>
-          <li><span class="icon">🤷</span> No guarantee it works first time</li>
-        </ul>
-      </div>
-      <div class="comparison-card new">
-        <div class="comparison-label">⚡ ERPforgeAI</div>
-        <ul class="comparison-list">
-          <li><span class="icon">🚀</span> Code delivered within 24 hours</li>
-          <li><span class="icon">💰</span> Starting at €99 per program</li>
-          <li><span class="icon">🛡️</span> No system access needed</li>
-          <li><span class="icon">✅</span> Syntax-checked for YOUR system</li>
-          <li><span class="icon">💬</span> Describe in plain language</li>
-          <li><span class="icon">👨‍💻</span> Expert-reviewed, production-ready</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section class="pricing-section" id="pricing">
-    <div class="section-header">
-      <div class="section-label">Pricing</div>
-      <h2 class="section-title">Simple & Transparent</h2>
-    </div>
-    <div class="pricing-grid">
-      <div class="price-card">
-        <div class="price-tier">Report</div>
-        <div class="price-value">€99 <span>/ program</span></div>
-        <div class="price-desc">Simple reports, lists, data exports</div>
-        <ul class="price-features">
-          <li>ALV reports & data extracts</li>
-          <li>Selection screen with parameters</li>
-          <li>System-profile matched code</li>
-          <li>Expert review included</li>
-          <li>1 revision round</li>
-        </ul>
-        <a href="#start" class="btn-secondary" style="width:100%;justify-content:center;">Get Started</a>
-      </div>
-      <div class="price-card featured">
-        <div class="price-card-badge">Most Popular</div>
-        <div class="price-tier">Interface</div>
-        <div class="price-value">€249 <span>/ program</span></div>
-        <div class="price-desc">Interfaces, uploads, integrations</div>
-        <ul class="price-features">
-          <li>Everything in Report</li>
-          <li>File upload/download logic</li>
-          <li>RFC/BAPI integrations</li>
-          <li>Error handling & logging</li>
-          <li>2 revision rounds</li>
-        </ul>
-        <a href="#start" class="btn-primary" style="width:100%;justify-content:center;">Get Started</a>
-      </div>
-      <div class="price-card">
-        <div class="price-tier">Complex</div>
-        <div class="price-value">€499 <span>/ program</span></div>
-        <div class="price-desc">Enhancements, workflows, multi-module</div>
-        <ul class="price-features">
-          <li>Everything in Interface</li>
-          <li>User Exits / BAdIs</li>
-          <li>Multi-table logic</li>
-          <li>Fiori/UI5 components</li>
-          <li>3 revision rounds</li>
-        </ul>
-        <a href="#start" class="btn-secondary" style="width:100%;justify-content:center;">Get Started</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta-section" id="start">
-    <h2>Ready to Forge<br>Your First Program?</h2>
-    <p>Join the waitlist. Be first when we launch.</p>
-    <div class="cta-form">
-      <input type="email" class="cta-input" placeholder="your@company.com">
-      <button class="btn-primary" onclick="alert('Thank you! We\'ll notify you at launch.')">Join Waitlist →</button>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
+    </section>
+    <section class="cta-section" id="start">
+      <h2>Ready to Forge<br>Your First Program?</h2>
+      <p>Join the waitlist. Be first when we launch.</p>
+      <form class="cta-form" id="waitlistForm" action="https://formspree.io/f/xvzbbwka" method="POST">
+        <input type="email" name="email" class="cta-input" placeholder="your@company.com" required>
+        <input type="hidden" name="_subject" value="New ERPforgeAI Waitlist Signup">
+        <button type="submit" class="btn-primary">Join Waitlist →</button>
+      </form>
+      <div class="cta-success" id="waitlistSuccess">✓ Thank you! We'll notify you when we launch. Check your inbox.</div>
+    </section>
+  </div>
+  <div class="legal-page" id="impressumPage">
+    <a href="#" class="legal-back" onclick="showMain();return false;">← Back to Home</a>
+    <h1>Impressum</h1>
+    <h2>Angaben gemäß § 5 TMG</h2>
+    <p>Youssef Boukachabine<br>50679 Köln<br>Deutschland</p>
+    <h2>Kontakt</h2>
+    <p>E-Mail: <a href="mailto:info@erpforgeai.com">info@erpforgeai.com</a></p>
+    <h2>Verantwortlich für den Inhalt gemäß § 55 Abs. 2 RStV</h2>
+    <p>Youssef Boukachabine<br>50679 Köln</p>
+    <h2>Haftungsausschluss</h2>
+    <p><strong>Haftung für Inhalte:</strong> Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.</p>
+    <p><strong>Haftung für Links:</strong> Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen.</p>
+    <h2>Urheberrecht</h2>
+    <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+  </div>
+  <div class="legal-page" id="datenschutzPage">
+    <a href="#" class="legal-back" onclick="showMain();return false;">← Back to Home</a>
+    <h1>Datenschutzerklärung</h1>
+    <h2>1. Verantwortlicher</h2>
+    <p>Youssef Boukachabine<br>50679 Köln<br>E-Mail: <a href="mailto:info@erpforgeai.com">info@erpforgeai.com</a></p>
+    <h2>2. Erhebung und Speicherung personenbezogener Daten</h2>
+    <p>Beim Besuch unserer Website werden automatisch folgende Daten erhoben, die Ihr Browser übermittelt (Server-Logfiles):</p>
+    <ul><li>Browsertyp und -version</li><li>Verwendetes Betriebssystem</li><li>Referrer URL</li><li>Hostname des zugreifenden Rechners</li><li>Uhrzeit der Serveranfrage</li><li>IP-Adresse</li></ul>
+    <p>Diese Daten sind nicht bestimmten Personen zuordenbar. Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.</p>
+    <h2>3. Kontaktformular / Waitlist</h2>
+    <p>Wenn Sie sich für unsere Waitlist anmelden, werden folgende Daten übermittelt und gespeichert:</p>
+    <ul><li>E-Mail-Adresse</li></ul>
+    <p>Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO (Einwilligung). Die Daten werden über den Dienst <strong>Formspree</strong> (Formspree Inc., USA) verarbeitet. Formspree ist gemäß EU-U.S. Data Privacy Framework zertifiziert. Weitere Informationen: <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener">Formspree Privacy Policy</a>.</p>
+    <h2>4. Hosting</h2>
+    <p>Diese Website wird bei <strong>Vercel Inc.</strong> (USA) gehostet. Vercel kann Zugriffsdaten in Server-Logfiles erheben. Vercel ist gemäß EU-U.S. Data Privacy Framework zertifiziert. Weitere Informationen: <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">Vercel Privacy Policy</a>.</p>
+    <h2>5. Ihre Rechte</h2>
+    <p>Sie haben folgende Rechte hinsichtlich Ihrer gespeicherten personenbezogenen Daten:</p>
+    <ul><li>Recht auf Auskunft</li><li>Recht auf Berichtigung oder Löschung</li><li>Recht auf Einschränkung der Verarbeitung</li><li>Recht auf Widerspruch gegen die Verarbeitung</li><li>Recht auf Datenübertragbarkeit</li><li>Recht auf Widerruf einer erteilten Einwilligung</li></ul>
+    <p>Zur Ausübung Ihrer Rechte wenden Sie sich bitte an: <a href="mailto:info@erpforgeai.com">info@erpforgeai.com</a></p>
+    <h2>6. Cookies</h2>
+    <p>Diese Website verwendet <strong>keine Cookies</strong> und kein Tracking. Es werden keine Analyse-Tools wie Google Analytics eingesetzt.</p>
+    <h2>7. Änderung der Datenschutzerklärung</h2>
+    <p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen. Die aktuelle Fassung finden Sie stets auf dieser Seite. Stand: Februar 2026.</p>
+  </div>
   <footer>
     <div class="footer-text">© 2026 <span>ERPforgeAI</span>. Forging enterprise code with intelligence.</div>
     <div class="footer-links">
-      <a href="#">Privacy</a>
-      <a href="#">Terms</a>
-      <a href="#">Contact</a>
+      <a href="#" onclick="showPage('impressumPage');return false;">Impressum</a>
+      <a href="#" onclick="showPage('datenschutzPage');return false;">Datenschutz</a>
+      <a href="mailto:info@erpforgeai.com">Contact</a>
     </div>
   </footer>
-
+  <script>
+    function showPage(id){document.getElementById('mainContent').style.display='none';document.getElementById('impressumPage').classList.remove('active');document.getElementById('datenschutzPage').classList.remove('active');document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+    function showMain(){document.getElementById('mainContent').style.display='block';document.getElementById('impressumPage').classList.remove('active');document.getElementById('datenschutzPage').classList.remove('active')}
+    document.getElementById('waitlistForm').addEventListener('submit',async function(e){e.preventDefault();const f=this;try{const r=await fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}});if(r.ok){f.style.display='none';document.getElementById('waitlistSuccess').style.display='block'}else{alert('Something went wrong. Please try again or contact info@erpforgeai.com')}}catch(err){alert('Something went wrong. Please contact info@erpforgeai.com')}});
+    const STECKBRIEF = "*&---------------------------------------------------------------------*\n*& Report Z_SYSTEM_STECKBRIEF\n*&---------------------------------------------------------------------*\n*& System-Steckbrief V4 - Sequentiell, optimiert, robust\n*& Kompatibel mit 7.40 SP02+ (alle Features laut Steckbrief)\n*&---------------------------------------------------------------------*\nREPORT z_system_steckbrief.\n\nDATA: gt_output TYPE TABLE OF string,\n      gv_line   TYPE string.\n\n*----------------------------------------------------------------------*\nSELECTION-SCREEN BEGIN OF BLOCK b01 WITH FRAME TITLE gt_b01.\n  SELECTION-SCREEN BEGIN OF LINE.\n    PARAMETERS p_sys AS CHECKBOX DEFAULT 'X'.\n    SELECTION-SCREEN COMMENT 3(40) t_sys.\n  SELECTION-SCREEN END OF LINE.\n  SELECTION-SCREEN BEGIN OF LINE.\n    PARAMETERS p_abap AS CHECKBOX DEFAULT 'X'.\n    SELECTION-SCREEN COMMENT 3(40) t_abap.\n  SELECTION-SCREEN END OF LINE.\n  SELECTION-SCREEN BEGIN OF LINE.\n    PARAMETERS p_comp AS CHECKBOX DEFAULT 'X'.\n    SELECTION-SCREEN COMMENT 3(40) t_comp.\n  SELECTION-SCREEN END OF LINE.\n  SELECTION-SCREEN BEGIN OF LINE.\n    PARAMETERS p_fuba AS CHECKBOX DEFAULT 'X'.\n    SELECTION-SCREEN COMMENT 3(40) t_fuba.\n  SELECTION-SCREEN END OF LINE.\nSELECTION-SCREEN END OF BLOCK b01.\n\nSELECTION-SCREEN BEGIN OF BLOCK b02 WITH FRAME TITLE gt_b02.\n  SELECTION-SCREEN BEGIN OF LINE.\n    PARAMETERS p_dd AS CHECKBOX DEFAULT ' '.\n    SELECTION-SCREEN COMMENT 3(40) t_dd.\n  SELECTION-SCREEN END OF LINE.\n  SELECT-OPTIONS s_tab FOR sy-tcode VISIBLE LENGTH 40.\n  SELECTION-SCREEN BEGIN OF LINE.\n    PARAMETERS p_cktab AS CHECKBOX DEFAULT 'X'.\n    SELECTION-SCREEN COMMENT 3(40) t_cktab.\n  SELECTION-SCREEN END OF LINE.\nSELECTION-SCREEN END OF BLOCK b02.\n\nSELECTION-SCREEN BEGIN OF BLOCK b03 WITH FRAME TITLE gt_b03.\n  SELECTION-SCREEN BEGIN OF LINE.\n    PARAMETERS p_ckfb AS CHECKBOX DEFAULT ' '.\n    SELECTION-SCREEN COMMENT 3(40) t_ckfb.\n  SELECTION-SCREEN END OF LINE.\n  SELECT-OPTIONS s_fuba FOR sy-tcode VISIBLE LENGTH 40.\nSELECTION-SCREEN END OF BLOCK b03.\n\nINITIALIZATION.\n  gt_b01 = 'System-Informationen'.\n  gt_b02 = 'Data Dictionary'.\n  gt_b03 = 'Funktionsbausteine pruefen'.\n  t_sys   = 'Release, Kernel, SP-Stand'.\n  t_abap  = 'ABAP Sprachfeatures testen'.\n  t_comp  = 'Installierte Komponenten'.\n  t_fuba  = 'Wichtige FuBas pruefen'.\n  t_dd    = 'DD-Felder exportieren (Tabellen unten)'.\n  t_cktab = 'Tabellen auf Existenz pruefen'.\n  t_ckfb  = 'FuBas auf Existenz pruefen'.\n\n*----------------------------------------------------------------------*\nSTART-OF-SELECTION.\n\n  APPEND '================================================================' TO gt_output.\n  APPEND '  SAP SYSTEM-STECKBRIEF FUER ABAP-ENTWICKLUNG' TO gt_output.\n  CONCATENATE '  Erstellt: ' sy-datum ' ' sy-uzeit INTO gv_line.\n  APPEND gv_line TO gt_output.\n  CONCATENATE '  System:   ' sy-sysid ' / Mandant: ' sy-mandt INTO gv_line.\n  APPEND gv_line TO gt_output.\n  CONCATENATE '  Benutzer: ' sy-uname INTO gv_line.\n  APPEND gv_line TO gt_output.\n  APPEND '================================================================' TO gt_output.\n  APPEND '' TO gt_output.\n\n  IF p_sys  = 'X'. PERFORM collect_system_info.   ENDIF.\n  IF p_abap = 'X'. PERFORM collect_abap_features. ENDIF.\n  IF p_comp = 'X'. PERFORM collect_components.     ENDIF.\n  IF p_fuba = 'X'. PERFORM collect_fuba_check.     ENDIF.\n  IF p_cktab = 'X'. PERFORM collect_table_check.   ENDIF.\n  IF p_dd   = 'X'. PERFORM collect_dd_export.      ENDIF.\n  IF p_ckfb = 'X'. PERFORM collect_custom_fuba.    ENDIF.\n\n  PERFORM export_file.\n  PERFORM display_result.\n\n\n*&=====================================================================*\n*& 1. System-Informationen\n*&=====================================================================*\nFORM collect_system_info.\n  DATA: lv_release TYPE c LENGTH 10, lv_sp TYPE c LENGTH 10.\n\n  APPEND '--- SYSTEM-RELEASE ---' TO gt_output.\n  CONCATENATE '  SAP System ID:       ' sy-sysid INTO gv_line. APPEND gv_line TO gt_output.\n  CONCATENATE '  Mandant:             ' sy-mandt INTO gv_line. APPEND gv_line TO gt_output.\n  CONCATENATE '  Host:                ' sy-host INTO gv_line. APPEND gv_line TO gt_output.\n  CONCATENATE '  Datenbank:           ' sy-dbsys INTO gv_line. APPEND gv_line TO gt_output.\n  CONCATENATE '  Betriebssystem:      ' sy-opsys INTO gv_line. APPEND gv_line TO gt_output.\n  CONCATENATE '  SAP Release:         ' sy-saprl INTO gv_line. APPEND gv_line TO gt_output.\n\n  SELECT SINGLE release extrelease FROM cvers INTO (lv_release, lv_sp)\n    WHERE component = 'SAP_BASIS'.\n  IF sy-subrc = 0.\n    CONCATENATE '  SAP_BASIS Release:   ' lv_release INTO gv_line. APPEND gv_line TO gt_output.\n    CONCATENATE '  SAP_BASIS ExtRelease:' lv_sp INTO gv_line. APPEND gv_line TO gt_output.\n  ENDIF.\n  CLEAR: lv_release, lv_sp.\n  SELECT SINGLE release extrelease FROM cvers INTO (lv_release, lv_sp)\n    WHERE component = 'SAP_ABA'.\n  IF sy-subrc = 0.\n    CONCATENATE '  SAP_ABA Release:     ' lv_release INTO gv_line. APPEND gv_line TO gt_output.\n    CONCATENATE '  SAP_ABA ExtRelease:  ' lv_sp INTO gv_line. APPEND gv_line TO gt_output.\n  ENDIF.\n\n  DATA: BEGIN OF ls_cv, component TYPE c LENGTH 30, release TYPE c LENGTH 10,\n          extrelease TYPE c LENGTH 10, comp_type TYPE c LENGTH 1,\n        END OF ls_cv, lt_cv LIKE TABLE OF ls_cv.\n  SELECT component release extrelease comp_type FROM cvers INTO TABLE lt_cv\n    WHERE component IN ('SAP_BASIS','SAP_ABA','SAP_APPL','SAP_HR',\n          'EA-HR','EA-APPL','SAP_BW','PI_BASIS','SAP_GWFND','SAP_UI','SAP_FIORI')\n    ORDER BY component.\n  APPEND '' TO gt_output.\n  APPEND '--- HAUPTKOMPONENTEN (CVERS) ---' TO gt_output.\n  APPEND '  Komponente          | Release  | Ext.Rel  | Typ' TO gt_output.\n  APPEND '  --------------------|----------|----------|----' TO gt_output.\n  LOOP AT lt_cv INTO ls_cv.\n    CONCATENATE '  ' ls_cv-component '|' ls_cv-release '|' ls_cv-extrelease '|' ls_cv-comp_type\n      INTO gv_line SEPARATED BY space.\n    APPEND gv_line TO gt_output.\n  ENDLOOP.\n  APPEND '' TO gt_output.\nENDFORM.\n\n\n*&=====================================================================*\n*& 2. ABAP Sprachfeatures\n*&=====================================================================*\nFORM collect_abap_features.\n  DATA: lv_source TYPE TABLE OF string, lv_msg TYPE string,\n        lv_word TYPE string, lv_lin TYPE i,\n        lv_result TYPE c LENGTH 4, lv_code TYPE string.\n\n  APPEND '--- ABAP SPRACHFEATURES ---' TO gt_output.\n  APPEND '  (Getestet durch dynamische Syntax-Pruefung)' TO gt_output.\n  APPEND '' TO gt_output.\n\n  DEFINE test_feature.\n    CLEAR: lv_source, lv_msg.\n    APPEND 'REPORT ztest.' TO lv_source.\n    lv_code = &2.\n    APPEND lv_code TO lv_source.\n    SYNTAX-CHECK FOR lv_source MESSAGE lv_msg LINE lv_lin WORD lv_word PROGRAM sy-repid.\n    IF lv_msg IS INITIAL. lv_result = 'JA'. ELSE. lv_result = 'NEIN'. ENDIF.\n    CONCATENATE '  ' &1 ': ' lv_result INTO gv_line.\n    APPEND gv_line TO gt_output.\n  END-OF-DEFINITION.\n\n  test_feature 'Inline DATA(...)  [7.40 SP02]' 'DATA(lv_x) = 1.'.\n  test_feature 'Inline FS <..>    [7.40 SP02]'\n    'DATA lt TYPE TABLE OF i. LOOP AT lt ASSIGNING FIELD-SYMBOL(<f>). ENDLOOP.'.\n  test_feature 'String Templates  [7.40 SP02]' 'DATA lv TYPE string. lv = |hello|.'.\n  test_feature 'String Tmpl {..}  [7.40 SP02]' 'DATA lv TYPE string. lv = |test { sy-uname }|.'.\n  test_feature 'CONV Ausdruck     [7.40 SP05]' 'DATA lv TYPE string. lv = CONV string( 123 ).'.\n  test_feature 'COND Ausdruck     [7.40 SP08]'\n    'DATA lv TYPE i. lv = COND #( WHEN 1 = 1 THEN 1 ELSE 2 ).'.\n  test_feature 'SWITCH Ausdruck   [7.40 SP08]'\n    'DATA lv TYPE i. lv = SWITCH #( 1 WHEN 1 THEN 1 ELSE 2 ).'.\n  test_feature 'NEW Operator      [7.40 SP02]'\n    'CLASS lcl DEFINITION. PUBLIC SECTION. ENDCLASS. CLASS lcl IMPLEMENTATION. ENDCLASS. DATA lo TYPE REF TO lcl. lo = NEW #( ).'.\n  test_feature 'VALUE Operator    [7.40 SP08]'\n    'TYPES ty TYPE TABLE OF i WITH DEFAULT KEY. DATA lt TYPE ty. lt = VALUE #( ( 1 ) ( 2 ) ).'.\n  test_feature 'FOR ... IN        [7.40 SP05]'\n    'TYPES ty TYPE TABLE OF i WITH DEFAULT KEY. DATA lt TYPE ty. lt = VALUE #( FOR i = 1 UNTIL i > 3 ( i ) ).'.\n  test_feature 'CORRESPONDING     [7.40 SP05]'\n    'TYPES: BEGIN OF t1, a TYPE i, END OF t1. DATA ls1 TYPE t1. DATA(ls2) = CORRESPONDING t1( ls1 ).'.\n  test_feature 'REDUCE Ausdruck   [7.40 SP08]'\n    'TYPES ty TYPE TABLE OF i WITH DEFAULT KEY. DATA(lv) = REDUCE i( INIT s = 0 FOR x IN VALUE ty( ( 1 ) ) NEXT s = s + x ).'.\n  test_feature 'LOOP GROUP BY     [7.40 SP08]'\n    'TYPES: BEGIN OF ty, g TYPE c LENGTH 1, END OF ty. DATA lt TYPE TABLE OF ty. LOOP AT lt INTO DATA(ls) GROUP BY ls-g. ENDLOOP.'.\n  test_feature 'ENUM Typ          [7.51]'\n    'TYPES: BEGIN OF ENUM t_color, red, green, blue, END OF ENUM t_color.'.\n\n  APPEND '' TO gt_output.\n  APPEND '  -> Nur Features mit JA verwenden!' TO gt_output.\n  APPEND '' TO gt_output.\nENDFORM.\n\n\n*&=====================================================================*\n*& 3. Komponenten\n*&=====================================================================*\nFORM collect_components.\n  DATA: BEGIN OF ls_cv, component TYPE c LENGTH 30, release TYPE c LENGTH 10,\n          extrelease TYPE c LENGTH 10, comp_type TYPE c LENGTH 1,\n        END OF ls_cv, lt_cv LIKE TABLE OF ls_cv.\n\n  SELECT component release extrelease comp_type FROM cvers INTO TABLE lt_cv ORDER BY component.\n\n  APPEND '--- ALLE INSTALLIERTEN KOMPONENTEN ---' TO gt_output.\n  DATA: lv_cnt TYPE i, lv_cnt_str TYPE c LENGTH 10.\n  lv_cnt = lines( lt_cv ). lv_cnt_str = lv_cnt. CONDENSE lv_cnt_str.\n  CONCATENATE '  Anzahl: ' lv_cnt_str INTO gv_line. APPEND gv_line TO gt_output.\n  APPEND '  Komponente          | Release  | Ext.Rel  | Typ' TO gt_output.\n  APPEND '  --------------------|----------|----------|----' TO gt_output.\n  LOOP AT lt_cv INTO ls_cv.\n    CONCATENATE '  ' ls_cv-component '|' ls_cv-release '|' ls_cv-extrelease '|' ls_cv-comp_type\n      INTO gv_line SEPARATED BY space.\n    APPEND gv_line TO gt_output.\n  ENDLOOP.\n  APPEND '' TO gt_output.\nENDFORM.\n\n\n*&=====================================================================*\n*& 4. Standard FuBas\n*&=====================================================================*\nFORM collect_fuba_check.\n  DATA: lv_fn TYPE rs38l-name, lv_status TYPE c LENGTH 20.\n  APPEND '--- FUNKTIONSBAUSTEINE (Standard) ---' TO gt_output.\n\n  DEFINE check_fuba.\n    lv_fn = &1.\n    CALL FUNCTION 'FUNCTION_EXISTS'\n      EXPORTING funcname = lv_fn\n      EXCEPTIONS function_not_exist = 1 OTHERS = 2.\n    IF sy-subrc = 0. lv_status = 'VORHANDEN'. ELSE. lv_status = 'NICHT VORHANDEN'. ENDIF.\n    CONCATENATE '  ' &1 ': ' lv_status INTO gv_line.\n    APPEND gv_line TO gt_output.\n  END-OF-DEFINITION.\n\n  check_fuba 'DELIVERY_GET_INSTALLED_COMP'.\n  check_fuba 'TH_SERVER_LIST'.\n  check_fuba 'RFC_READ_TABLE'.\n  check_fuba 'GUI_DOWNLOAD'.\n  check_fuba 'SAPWL_WORKLOAD_GET_STATISTIC'.\n  check_fuba 'SAPWL_STATREC_READ_RFC_C'.\n  check_fuba 'SWNC_GET_WORKLOAD_SNAPSHOT'.\n  check_fuba 'IDOC_STATUS_WRITE_TO_DATABASE'.\n  check_fuba 'MASTER_IDOC_DISTRIBUTE'.\n  check_fuba 'SXMB_GET_MESSAGE_LIST'.\n  check_fuba 'ARCHIV_GET_CONNECTIONS'.\n  check_fuba 'SWO_QUERY_OBJTYPES'.\n  check_fuba 'SO_NEW_DOCUMENT_SEND_API1'.\n  APPEND '' TO gt_output.\nENDFORM.\n\n\n*&=====================================================================*\n*& 5. Tabellen Existenz (Wildcards erlaubt)\n*&=====================================================================*\nFORM collect_table_check.\n  DATA: lt_tabs TYPE TABLE OF dd02l-tabname, lv_tab TYPE dd02l-tabname.\n  DATA: lv_cnt TYPE i, lv_cnt_str TYPE c LENGTH 10.\n\n  IF s_tab[] IS INITIAL. RETURN. ENDIF.\n\n  APPEND '--- TABELLEN EXISTENZ-CHECK ---' TO gt_output.\n\n  SELECT tabname FROM dd02l INTO TABLE lt_tabs\n    WHERE tabname IN s_tab AND as4local = 'A'\n    ORDER BY tabname.\n\n  lv_cnt = lines( lt_tabs ). lv_cnt_str = lv_cnt. CONDENSE lv_cnt_str.\n  CONCATENATE '  Gefunden: ' lv_cnt_str ' Tabellen' INTO gv_line.\n  APPEND gv_line TO gt_output.\n\n  IF lv_cnt <= 200.\n    LOOP AT lt_tabs INTO lv_tab.\n      CONCATENATE '  ' lv_tab INTO gv_line.\n      APPEND gv_line TO gt_output.\n    ENDLOOP.\n  ELSE.\n    APPEND '  (Liste zu lang - nur Anzahl angezeigt)' TO gt_output.\n  ENDIF.\n  APPEND '' TO gt_output.\nENDFORM.\n\n\n*&=====================================================================*\n*& 6. DD Export - optimiert mit FOR ALL ENTRIES\n*&=====================================================================*\nFORM collect_dd_export.\n  DATA: BEGIN OF ls_dd,\n          tabname   TYPE dd03l-tabname,\n          fieldname TYPE dd03l-fieldname,\n          position  TYPE dd03l-position,\n          datatype  TYPE dd03l-datatype,\n          leng      TYPE dd03l-leng,\n          decimals  TYPE dd03l-decimals,\n          rollname  TYPE dd03l-rollname,\n          keyflag   TYPE dd03l-keyflag,\n          ddtext    TYPE dd04t-ddtext,\n        END OF ls_dd.\n  DATA: lt_dd LIKE TABLE OF ls_dd.\n  DATA: lt_tabs TYPE TABLE OF dd03l-tabname.\n  DATA: lv_cnt TYPE i, lv_cnt_str TYPE c LENGTH 10.\n\n  IF s_tab[] IS INITIAL.\n    APPEND '--- DATA DICTIONARY: Keine Tabellen angegeben ---' TO gt_output.\n    APPEND '' TO gt_output. RETURN.\n  ENDIF.\n\n* Pruefen wieviele Tabellen betroffen\n  SELECT DISTINCT tabname FROM dd03l INTO TABLE lt_tabs\n    WHERE tabname IN s_tab AND as4local = 'A'.\n  lv_cnt = lines( lt_tabs ).\n\n  IF lv_cnt > 500.\n    lv_cnt_str = lv_cnt. CONDENSE lv_cnt_str.\n    CONCATENATE '  DD EXPORT: ' lv_cnt_str ' Tabellen - bitte einschraenken (max 500).' INTO gv_line.\n    APPEND gv_line TO gt_output.\n    APPEND '' TO gt_output. RETURN.\n  ENDIF.\n\n* Felder laden\n  SELECT tabname fieldname position datatype leng decimals rollname keyflag\n    FROM dd03l INTO CORRESPONDING FIELDS OF TABLE lt_dd\n    WHERE tabname IN s_tab AND as4local = 'A'\n      AND fieldname NOT LIKE '.%'\n    ORDER BY tabname position.\n\n* Beschreibungen per Massen-SELECT\n  DATA: lt_rollnames TYPE TABLE OF rollname, lv_roll TYPE rollname.\n  LOOP AT lt_dd INTO ls_dd WHERE rollname IS NOT INITIAL.\n    lv_roll = ls_dd-rollname. COLLECT lv_roll INTO lt_rollnames.\n  ENDLOOP.\n\n  IF lt_rollnames IS NOT INITIAL.\n    DATA: BEGIN OF ls_txt, rollname TYPE rollname, ddtext TYPE dd04t-ddtext,\n          END OF ls_txt, lt_txt LIKE TABLE OF ls_txt.\n    SELECT rollname ddtext FROM dd04t INTO TABLE lt_txt\n      FOR ALL ENTRIES IN lt_rollnames\n      WHERE rollname = lt_rollnames-table_line\n        AND ddlanguage = sy-langu AND as4local = 'A'.\n    LOOP AT lt_dd ASSIGNING FIELD-SYMBOL(<d>) WHERE rollname IS NOT INITIAL.\n      READ TABLE lt_txt INTO ls_txt WITH KEY rollname = <d>-rollname.\n      IF sy-subrc = 0. <d>-ddtext = ls_txt-ddtext. ENDIF.\n    ENDLOOP.\n  ENDIF.\n\n* Formatieren\n  APPEND '--- DATA DICTIONARY FELDER ---' TO gt_output.\n  lv_cnt_str = lv_cnt. CONDENSE lv_cnt_str.\n  CONCATENATE '  ' lv_cnt_str ' Tabellen,' INTO gv_line.\n  DATA: lv_fcnt TYPE i, lv_fcnt_str TYPE c LENGTH 10.\n  lv_fcnt = lines( lt_dd ). lv_fcnt_str = lv_fcnt. CONDENSE lv_fcnt_str.\n  CONCATENATE gv_line ' ' lv_fcnt_str ' Felder' INTO gv_line.\n  APPEND gv_line TO gt_output.\n\n  DATA: lv_prev TYPE dd03l-tabname, lv_leng TYPE c LENGTH 6.\n  LOOP AT lt_dd INTO ls_dd.\n    IF ls_dd-tabname <> lv_prev.\n      IF lv_prev IS NOT INITIAL. APPEND '' TO gt_output. ENDIF.\n      CONCATENATE '  [TABELLE] ' ls_dd-tabname INTO gv_line. APPEND gv_line TO gt_output.\n      lv_prev = ls_dd-tabname.\n    ENDIF.\n    lv_leng = ls_dd-leng.\n    CONCATENATE '    ' ls_dd-fieldname ' | ' ls_dd-datatype ' | ' lv_leng\n                ' | Key=' ls_dd-keyflag ' | ' ls_dd-ddtext INTO gv_line.\n    APPEND gv_line TO gt_output.\n  ENDLOOP.\n  APPEND '' TO gt_output.\nENDFORM.\n\n\n*&=====================================================================*\n*& 7. Benutzerdefinierte FuBas\n*&=====================================================================*\nFORM collect_custom_fuba.\n  DATA: lv_fn TYPE rs38l-name, lv_status TYPE c LENGTH 20.\n  IF s_fuba[] IS INITIAL. RETURN. ENDIF.\n\n  APPEND '--- FUNKTIONSBAUSTEINE (Benutzerdefiniert) ---' TO gt_output.\n  DATA: ls_range LIKE LINE OF s_fuba.\n  LOOP AT s_fuba INTO ls_range WHERE sign = 'I' AND option = 'EQ'.\n    lv_fn = ls_range-low.\n    CALL FUNCTION 'FUNCTION_EXISTS'\n      EXPORTING funcname = lv_fn\n      EXCEPTIONS function_not_exist = 1 OTHERS = 2.\n    IF sy-subrc = 0. lv_status = 'VORHANDEN'. ELSE. lv_status = 'NICHT VORHANDEN'. ENDIF.\n    CONCATENATE '  ' ls_range-low ': ' lv_status INTO gv_line.\n    APPEND gv_line TO gt_output.\n  ENDLOOP.\n  APPEND '' TO gt_output.\nENDFORM.\n\n\n*&=====================================================================*\n*& Export\n*&=====================================================================*\nFORM export_file.\n  DATA: lv_fp TYPE string, lv_fn TYPE string, lv_p TYPE string, lv_a TYPE i.\n  DATA: lv_default TYPE string.\n\n  CONCATENATE 'SAP_Steckbrief_' sy-sysid '_' sy-datum INTO lv_default.\n  cl_gui_frontend_services=>file_save_dialog(\n    EXPORTING window_title = 'Steckbrief speichern'\n      default_extension = 'txt' default_file_name = lv_default\n      file_filter = 'Text (*.txt)|*.txt|All|*.*'\n    CHANGING filename = lv_fn path = lv_p fullpath = lv_fp user_action = lv_a\n    EXCEPTIONS OTHERS = 4 ).\n  IF sy-subrc <> 0 OR lv_a <> 0. RETURN. ENDIF.\n\n  cl_gui_frontend_services=>gui_download(\n    EXPORTING filename = lv_fp filetype = 'ASC' codepage = '4110'\n    CHANGING data_tab = gt_output EXCEPTIONS OTHERS = 22 ).\n  IF sy-subrc = 0.\n    CONCATENATE 'Steckbrief exportiert: ' lv_fp INTO gv_line.\n    MESSAGE gv_line TYPE 'S'.\n  ENDIF.\nENDFORM.\n\n\n*&=====================================================================*\n*& Anzeige\n*&=====================================================================*\nFORM display_result.\n  DATA: lv_out TYPE string.\n  LOOP AT gt_output INTO lv_out.\n    WRITE: / lv_out.\n  ENDLOOP.\nENDFORM.\n";
+    function downloadSteckbrief(){const b=new Blob([STECKBRIEF],{type:'text/plain'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='Z_SYSTEM_STECKBRIEF.abap';a.click();URL.revokeObjectURL(u)}
+  </script>
 </body>
 </html>
