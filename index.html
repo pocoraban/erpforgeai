@@ -181,6 +181,27 @@
 
     /* === ABOUT/TEAM === */
     .about-section{padding:80px 24px}
+
+    /* === ORDER PORTAL === */
+    .order-section{padding:100px 24px;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .order-box{max-width:640px;margin:0 auto;background:var(--card);border:1px solid rgba(255,107,43,0.2);border-radius:16px;padding:44px 36px;position:relative;overflow:hidden}
+    .order-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange-dark),var(--orange),var(--orange-light))}
+    .order-box h3{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:4px;text-align:center}
+    .order-box>p{color:var(--text2);font-size:14px;text-align:center;margin-bottom:28px;line-height:1.6}
+    .order-steps-info{display:flex;gap:12px;margin-bottom:28px;padding:16px;background:var(--bg);border:1px solid var(--border);border-radius:10px}
+    .order-steps-info .osi-num{width:28px;height:28px;background:var(--orange-glow);border:1px solid rgba(255,107,43,0.25);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--orange);flex-shrink:0}
+    .order-steps-info p{font-size:13px;color:var(--text2);line-height:1.6;margin:0}
+    .order-steps-info code{background:rgba(255,107,43,0.1);color:var(--orange);padding:1px 6px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:12px}
+    .fg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .fg-radio-group{display:flex;flex-wrap:wrap;gap:8px}
+    .fg-radio{position:relative}
+    .fg-radio input{position:absolute;opacity:0}
+    .fg-radio label{display:block;padding:10px 16px;background:var(--bg);border:1px solid var(--border);border-radius:8px;font-size:13px;font-weight:600;color:var(--text2);cursor:pointer;transition:all 0.2s;text-align:center}
+    .fg-radio input:checked+label{border-color:var(--orange);background:var(--orange-glow);color:var(--orange)}
+    .fg-radio label:hover{border-color:rgba(255,107,43,0.3)}
+    .fg-radio .radio-price{display:block;font-size:11px;font-weight:400;color:var(--text3);margin-top:2px}
+    .order-ok{display:none;padding:20px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:10px;color:#22c55e;font-weight:600;text-align:center;font-size:14px;line-height:1.6}
+    @media(max-width:768px){.fg-row{grid-template-columns:1fr}.order-box{padding:28px 20px}}
     .about-box{max-width:800px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:40px 36px}
     .about-avatar{width:80px;height:80px;background:linear-gradient(135deg,var(--orange),var(--orange-dark));border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:36px;flex-shrink:0}
     .about-info h3{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:4px}
@@ -245,9 +266,10 @@
       <a href="#how" onclick="showMain()" data-i18n="nav_how">How It Works</a>
       <a href="#why" onclick="showMain()" data-i18n="nav_why">Why Us</a>
       <a href="#pricing" onclick="showMain()" data-i18n="nav_pricing">Pricing</a>
+      <a href="#order" onclick="showMain()" data-i18n="nav_order">Order</a>
       <a href="#contact" onclick="showMain()" data-i18n="nav_contact">Contact</a>
       <div class="lang-toggle"><button class="active" onclick="setLang('en')">EN</button><button onclick="setLang('de')">DE</button></div>
-      <a href="#start" class="nav-cta" onclick="showMain()" data-i18n="nav_cta">Join Waitlist</a>
+      <a href="#order" class="nav-cta" onclick="showMain()" data-i18n="nav_cta">Join Waitlist</a>
     </div>
   </nav>
 
@@ -382,19 +404,75 @@
         <div class="pc">
           <div class="pc-tier">Report</div><div class="pc-price">€99<span> /prog</span></div><div class="pc-desc" data-i18n="p1_desc">Reports, lists, exports</div>
           <ul class="pc-feats"><li data-i18n="p1_f1">ALV reports & extracts</li><li data-i18n="p1_f2">Selection screen</li><li data-i18n="p1_f3">System-matched code</li><li data-i18n="p1_f4">Expert review</li><li data-i18n="p1_f5">1 revision</li></ul>
-          <a href="#start" class="pc-btn" data-i18n="price_btn">Get Started</a>
+          <a href="#order" class="pc-btn" data-i18n="price_btn">Get Started</a>
         </div>
         <div class="pc feat">
           <div class="pc-badge" data-i18n="popular">Popular</div>
           <div class="pc-tier">Interface</div><div class="pc-price">€249<span> /prog</span></div><div class="pc-desc" data-i18n="p2_desc">Interfaces, integrations</div>
           <ul class="pc-feats"><li data-i18n="p2_f1">Everything in Report</li><li data-i18n="p2_f2">File upload/download</li><li data-i18n="p2_f3">RFC/BAPI</li><li data-i18n="p2_f4">Error handling</li><li data-i18n="p2_f5">2 revisions</li></ul>
-          <a href="#start" class="pc-btn primary" data-i18n="price_btn">Get Started</a>
+          <a href="#order" class="pc-btn primary" data-i18n="price_btn">Get Started</a>
         </div>
         <div class="pc">
           <div class="pc-tier">Complex</div><div class="pc-price">€499<span> /prog</span></div><div class="pc-desc" data-i18n="p3_desc">Enhancements, workflows</div>
           <ul class="pc-feats"><li data-i18n="p3_f1">Everything in Interface</li><li data-i18n="p3_f2">User Exits / BAdIs</li><li data-i18n="p3_f3">Multi-table logic</li><li data-i18n="p3_f4">Fiori / UI5</li><li data-i18n="p3_f5">3 revisions</li></ul>
-          <a href="#start" class="pc-btn" data-i18n="price_btn">Get Started</a>
+          <a href="#order" class="pc-btn" data-i18n="price_btn">Get Started</a>
         </div>
+      </div>
+    </section>
+
+    <!-- ORDER PORTAL -->
+    <section class="order-section fade-in" id="order">
+      <div class="section-tag" data-i18n="order_label">Order Code</div>
+      <h2 class="section-h" data-i18n="order_title">Submit Your Project</h2>
+      <div class="order-box">
+        <h3 data-i18n="order_h">Request ABAP Code</h3>
+        <p data-i18n="order_desc">Paste your Steckbrief output below and describe what you need. We'll review your request and deliver production-ready code within 24 hours.</p>
+
+        <div class="order-steps-info">
+          <div class="osi-num">💡</div>
+          <p data-i18n="order_hint">Don't have a Steckbrief yet? <a href="#download" onclick="showMain()">Download the free profiler</a>, run it in SE38, then paste the <code>.txt</code> output below.</p>
+        </div>
+
+        <form id="orderForm" action="https://formspree.io/f/xvzbbwka" method="POST">
+          <input type="hidden" name="_subject" value="🔥 New ERPforgeAI Order">
+
+          <div class="fg-row">
+            <div class="fg"><label data-i18n="of_name">Name *</label><input type="text" name="customer_name" required autocomplete="new-password"></div>
+            <div class="fg"><label data-i18n="of_email">Email *</label><input type="email" name="customer_email" required autocomplete="new-password"></div>
+          </div>
+          <div class="fg-row">
+            <div class="fg"><label data-i18n="of_company">Company</label><input type="text" name="company" autocomplete="new-password"></div>
+            <div class="fg"><label data-i18n="of_sap">SAP System ID</label><input type="text" name="sap_system_id" placeholder="e.g. PRD, QAS" autocomplete="off"></div>
+          </div>
+
+          <div class="fg">
+            <label data-i18n="of_tier">Project Tier *</label>
+            <div class="fg-radio-group">
+              <div class="fg-radio"><input type="radio" name="tier" id="t1" value="Report (€99)" required><label for="t1">📋 Report<span class="radio-price">€99</span></label></div>
+              <div class="fg-radio"><input type="radio" name="tier" id="t2" value="Interface (€249)"><label for="t2">🔗 Interface<span class="radio-price">€249</span></label></div>
+              <div class="fg-radio"><input type="radio" name="tier" id="t3" value="Complex (€499)"><label for="t3">⚡ Complex<span class="radio-price">€499</span></label></div>
+              <div class="fg-radio"><input type="radio" name="tier" id="t4" value="Custom"><label for="t4">💬 Custom<span class="radio-price" data-i18n="of_discuss">Let's talk</span></label></div>
+            </div>
+          </div>
+
+          <div class="fg">
+            <label data-i18n="of_req">Requirement Description *</label>
+            <textarea name="requirement" required placeholder="e.g. I need a report that shows all open purchase orders by vendor with aging analysis, exported as ALV with Excel download..." style="min-height:120px"></textarea>
+          </div>
+
+          <div class="fg">
+            <label data-i18n="of_steckbrief">System Steckbrief (paste .txt content) *</label>
+            <textarea name="steckbrief" required placeholder="Paste the full content of your Steckbrief .txt file here..." style="min-height:180px;font-family:'JetBrains Mono',monospace;font-size:12px"></textarea>
+          </div>
+
+          <div class="fg">
+            <label data-i18n="of_notes">Additional Notes</label>
+            <textarea name="notes" placeholder="Budget constraints, deadline, special requirements..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-send" data-i18n="of_submit">🚀 Submit Order →</button>
+        </form>
+        <div class="order-ok" id="orderOk" data-i18n="of_ok">✓ Order received! We'll review your Steckbrief and reply within 24 hours with a detailed quote and timeline.</div>
       </div>
     </section>
 
@@ -473,8 +551,8 @@
     <h2>5. Datenerfassung</h2>
     <h3>Server-Log-Dateien</h3>
     <p>Browsertyp, Betriebssystem, Referrer URL, IP-Adresse, Uhrzeit (Art. 6 Abs. 1 lit. f DSGVO).</p>
-    <h3>Kontaktformular & Waitlist</h3>
-    <p>Verarbeitung über <strong>Formspree</strong> (USA, EU-U.S. Data Privacy Framework). Rechtsgrundlage: Art. 6 Abs. 1 lit. a/b DSGVO. <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener">Formspree Privacy Policy</a>.</p>
+    <h3>Kontaktformular, Bestellformular &amp; Waitlist</h3>
+    <p>Wenn Sie unser Bestell-, Kontaktformular oder die Waitlist nutzen, werden Ihre Angaben (Name, E-Mail, ggf. Unternehmen, SAP-System-ID, Anforderung, Steckbrief-Daten) zur Bearbeitung gespeichert. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen) bzw. Art. 6 Abs. 1 lit. a DSGVO (Einwilligung). Verarbeitung über <strong>Formspree</strong> (USA, EU-U.S. Data Privacy Framework). <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener">Formspree Privacy Policy</a>.</p>
     <h2>6. Cookies</h2>
     <p>Diese Website verwendet <strong>keine Cookies</strong> und kein Tracking.</p>
     <p><em>Stand: Februar 2026</em></p>
@@ -494,11 +572,13 @@
     function showMain(){document.getElementById('mainContent').style.display='block';document.querySelectorAll('.legal-page').forEach(p=>p.classList.remove('active'))}
 
     // Forms
-    ['waitlistForm','contactForm'].forEach(fid=>{
-      document.getElementById(fid).addEventListener('submit',async function(e){
-        e.preventDefault();const f=this;
+    ['waitlistForm','contactForm','orderForm'].forEach(fid=>{
+      const f=document.getElementById(fid);
+      if(!f)return;
+      f.addEventListener('submit',async function(e){
+        e.preventDefault();
         try{const r=await fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}});
-        if(r.ok){f.style.display='none';document.getElementById(fid==='waitlistForm'?'waitlistOk':'contactOk').style.display='block'}
+        if(r.ok){f.style.display='none';document.getElementById(fid==='waitlistForm'?'waitlistOk':fid==='contactForm'?'contactOk':'orderOk').style.display='block'}
         else{alert('Error — please email info@erpforgeai.com')}}catch(err){alert('Error — please email info@erpforgeai.com')}
       });
     });
@@ -520,7 +600,7 @@
 
     const T={
       en:{
-        nav_how:"How It Works",nav_why:"Why Us",nav_pricing:"Pricing",nav_contact:"Contact",nav_cta:"Join Waitlist",
+        nav_how:"How It Works",nav_why:"Why Us",nav_pricing:"Pricing",nav_order:"Order",nav_contact:"Contact",nav_cta:"Order Now",
         banner_text:"🚀 Launching Q2 2026 — Early access for waitlist members",banner_btn:"Join now",
         hero_badge:"SAP ABAP · Fiori · UI5 · S/4HANA · ECC",hero_h1_1:"SAP Code,",hero_h1_2:"Forged by AI.",
         hero_sub:"Describe what you need. Upload your system profile. Get production-ready ABAP code — tailored to your exact SAP release. No freelancer. No VPN access. No guesswork.",
@@ -546,10 +626,14 @@
         cf_subj1:"Project Inquiry",cf_subj2:"General Question",cf_subj3:"Steckbrief Help",cf_subj4:"Other",
         footer_contact:"Contact",
         proof_note:"* Compared to traditional freelancer engagements for standard ABAP reports",
+        order_label:"Order Code",order_title:"Submit Your Project",order_h:"Request ABAP Code",order_desc:"Paste your Steckbrief output below and describe what you need. We'll review your request and deliver production-ready code within 24 hours.",
+        order_hint:'Don\'t have a Steckbrief yet? <a href="#download" onclick="showMain()">Download the free profiler</a>, run it in SE38, then paste the <code>.txt</code> output below.',
+        of_name:"Name *",of_email:"Email *",of_company:"Company",of_sap:"SAP System ID",of_tier:"Project Tier *",of_discuss:"Let's talk",
+        of_req:"Requirement Description *",of_steckbrief:"System Steckbrief (paste .txt content) *",of_notes:"Additional Notes",of_submit:"🚀 Submit Order →",of_ok:"✓ Order received! We'll review your Steckbrief and reply within 24 hours with a detailed quote and timeline.",
         about_label:"Who We Are",about_title:"Built by SAP Veterans",about_name:"The ERPforgeAI Team",about_role:"SAP Consulting · AI Engineering · ABAP Development",about_bio:"Every line of code is reviewed by senior SAP consultants with 10+ years of hands-on ABAP experience across ECC, S/4HANA, and industry solutions. We combine deep SAP expertise with cutting-edge AI to deliver code that compiles, follows best practices, and matches your exact system."
       },
       de:{
-        nav_how:"So geht's",nav_why:"Warum wir",nav_pricing:"Preise",nav_contact:"Kontakt",nav_cta:"Warteliste",
+        nav_how:"So geht's",nav_why:"Warum wir",nav_pricing:"Preise",nav_order:"Bestellen",nav_contact:"Kontakt",nav_cta:"Jetzt bestellen",
         banner_text:"🚀 Launch Q2 2026 — Frühzugang für Warteliste",banner_btn:"Jetzt eintragen",
         hero_badge:"SAP ABAP · Fiori · UI5 · S/4HANA · ECC",hero_h1_1:"SAP Code,",hero_h1_2:"KI-geschmiedet.",
         hero_sub:"Beschreiben Sie Ihre Anforderung. Laden Sie Ihr Systemprofil hoch. Erhalten Sie produktionsreifen ABAP-Code — exakt für Ihr SAP-Release. Kein Freelancer. Kein VPN. Kein Rätselraten.",
@@ -573,7 +657,12 @@
         contact_title:"Kontakt",contact_desc:"Frage zu Ihrem Projekt? Antwort innerhalb 24h.",
         cf_name:"Name",cf_email:"E-Mail",cf_subject:"Betreff",cf_msg:"Nachricht",cf_send:"Nachricht senden →",cf_ok:"✓ Gesendet! Antwort innerhalb 24 Stunden.",
         cf_subj1:"Projektanfrage",cf_subj2:"Allgemeine Frage",cf_subj3:"Steckbrief-Hilfe",cf_subj4:"Sonstiges",
-        footer_contact:"Kontakt",proof_note:"* Im Vergleich zu traditionellen Freelancer-Beauftragungen für Standard-ABAP-Reports",about_label:"Wer wir sind",about_title:"Von SAP-Veteranen gebaut",about_name:"Das ERPforgeAI Team",about_role:"SAP Beratung · KI-Entwicklung · ABAP-Programmierung",about_bio:"Jede Zeile Code wird von erfahrenen SAP-Beratern mit 10+ Jahren praktischer ABAP-Erfahrung in ECC, S/4HANA und Branchenlösungen geprüft. Wir kombinieren tiefes SAP-Know-how mit modernster KI für Code, der kompiliert, Best Practices folgt und exakt zu Ihrem System passt."
+        footer_contact:"Kontakt",proof_note:"* Im Vergleich zu traditionellen Freelancer-Beauftragungen für Standard-ABAP-Reports",
+        order_label:"Code bestellen",order_title:"Projekt einreichen",order_h:"ABAP-Code anfordern",order_desc:"Fügen Sie Ihren Steckbrief-Output unten ein und beschreiben Sie Ihre Anforderung. Wir prüfen Ihre Anfrage und liefern produktionsreifen Code innerhalb von 24 Stunden.",
+        order_hint:'Noch keinen Steckbrief? <a href="#download" onclick="showMain()">Kostenlosen Profiler herunterladen</a>, in SE38 ausführen, dann den <code>.txt</code>-Output unten einfügen.',
+        of_name:"Name *",of_email:"E-Mail *",of_company:"Unternehmen",of_sap:"SAP System ID",of_tier:"Projekt-Tier *",of_discuss:"Sprechen wir",
+        of_req:"Anforderungsbeschreibung *",of_steckbrief:"System-Steckbrief (.txt-Inhalt einfügen) *",of_notes:"Zusätzliche Hinweise",of_submit:"🚀 Bestellung absenden →",of_ok:"✓ Bestellung eingegangen! Wir prüfen Ihren Steckbrief und antworten innerhalb von 24 Stunden mit einem detaillierten Angebot.",
+        about_label:"Wer wir sind",about_title:"Von SAP-Veteranen gebaut",about_name:"Das ERPforgeAI Team",about_role:"SAP Beratung · KI-Entwicklung · ABAP-Programmierung",about_bio:"Jede Zeile Code wird von erfahrenen SAP-Beratern mit 10+ Jahren praktischer ABAP-Erfahrung in ECC, S/4HANA und Branchenlösungen geprüft. Wir kombinieren tiefes SAP-Know-how mit modernster KI für Code, der kompiliert, Best Practices folgt und exakt zu Ihrem System passt."
       }
     };
     let curLang='en';
