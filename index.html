@@ -137,10 +137,23 @@
     /* === COMPARISON === */
     .cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:860px;margin:0 auto}
     .cmp-card{padding:36px;border-radius:16px;border:1px solid var(--border)}
-    .cmp-card.old{background:rgba(255,60,60,0.02);border-color:rgba(255,60,60,0.12)}
+    .cmp-card.old{background:rgba(255,255,255,0.02);border-color:rgba(255,255,255,0.08)}
     .cmp-card.new{background:var(--orange-glow);border-color:rgba(255,107,43,0.2);margin-left:-12px;transform:scale(1.03);position:relative;z-index:2}
     .cmp-tag{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:18px}
-    .cmp-card.old .cmp-tag{color:#ff5f57}.cmp-card.new .cmp-tag{color:var(--orange)}
+    .cmp-card.old .cmp-tag{color:var(--text2)}.cmp-card.new .cmp-tag{color:var(--orange)}
+
+    /* === S/4HANA MIGRATION === */
+    .mig-box{max-width:960px;margin:0 auto;text-align:center}
+    .mig-intro{color:var(--text2);font-size:15px;line-height:1.8;max-width:720px;margin:0 auto 32px}
+    .mig-sub{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:24px;color:var(--text)}
+    .mig-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+    .mig-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 14px;text-align:center;transition:all 0.3s;display:flex;flex-direction:column;gap:6px}
+    .mig-item:hover{border-color:rgba(255,107,43,0.25);transform:translateY(-3px)}
+    .mig-icon{font-size:24px}
+    .mig-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--text)}
+    .mig-detail{font-size:11px;color:var(--text3);line-height:1.4}
+    .mig-volume{color:var(--text3);font-size:13px;line-height:1.7;max-width:640px;margin:0 auto;font-style:italic}
+    @media(max-width:768px){.mig-grid{grid-template-columns:repeat(2,1fr)}}
     .cmp-list{list-style:none;display:flex;flex-direction:column;gap:14px}
     .cmp-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--text2);line-height:1.5}
     .cmp-list li .ic{font-size:14px;flex-shrink:0;margin-top:2px}
@@ -329,6 +342,7 @@
     <div class="nav-right">
       <a href="#how" onclick="showMain()" data-i18n="nav_how">How It Works</a>
       <a href="#why" onclick="showMain()" data-i18n="nav_why">Why Us</a>
+      <a href="#migration" onclick="showMain()" data-i18n="nav_migration">S/4HANA</a>
       <a href="#pricing" onclick="showMain()" data-i18n="nav_pricing">Pricing</a>
       <a href="#order" onclick="showMain()" data-i18n="nav_order">Order</a>
       <a href="#contact" onclick="showMain()" data-i18n="nav_contact">Contact</a>
@@ -345,7 +359,7 @@
       <div class="hero-orb o3" aria-hidden="true"></div>
       <div class="hero-pill"><div class="hero-pill-dot"></div><span class="hero-pill-tag">Beta</span><span data-i18n="hero_badge">SAP ABAP · Fiori · UI5 · S/4HANA · ECC</span></div>
       <h1><span data-i18n="hero_h1_1">SAP Code,</span><br><span class="accent" data-i18n="hero_h1_2">Forged by AI.</span></h1>
-      <p class="hero-sub" data-i18n="hero_sub">Describe what you need. Upload your system profile. Get production-ready ABAP code — tailored to your exact SAP release. No freelancer. No VPN access. No guesswork.</p>
+      <p class="hero-sub" data-i18n="hero_sub">Describe what you need. Upload your system profile. Get production-ready ABAP code — tailored to your exact SAP release. Give your team the freedom to focus on what truly matters.</p>
 
       <div class="countdown-wrap">
         <div class="countdown-label" data-i18n="cd_label">Launch Countdown</div>
@@ -371,7 +385,7 @@
         <div class="proof-item"><div class="proof-val">7.00+</div><div class="proof-lbl" data-i18n="stat3">SAP Releases</div></div>
         <div class="proof-item"><div class="proof-val">24h</div><div class="proof-lbl" data-i18n="stat4">Delivery</div></div>
       </div>
-      <p class="proof-note" data-i18n="proof_note">* Compared to traditional freelancer engagements for standard ABAP reports</p>
+      <p class="proof-note" data-i18n="proof_note">* Based on average project timelines for standard ABAP development</p>
       <div class="hero-vignette" aria-hidden="true"></div>
     </section>
 
@@ -437,30 +451,57 @@
     <!-- WHY US -->
     <section class="section reveal" id="why">
       <div class="section-tag" data-i18n="why_label">Why ERPforgeAI</div>
-      <h2 class="section-h" data-i18n="why_title">The Old Way Is Broken</h2>
+      <h2 class="section-h" data-i18n="why_title">More Freedom for Your Team</h2>
+      <p style="text-align:center;max-width:680px;margin:-40px auto 48px;color:var(--text2);font-size:15px;line-height:1.8" data-i18n="why_intro">We know how hard it is to find qualified SAP specialists. Your developers are stretched thin between day-to-day operations and strategic projects like S/4HANA migration. ERPforgeAI is not here to replace anyone — we're here to give your team the breathing room they need.</p>
       <div class="cmp-grid">
         <div class="cmp-card old glow-card">
-          <div class="cmp-tag" data-i18n="old_label">❌ Traditional</div>
+          <div class="cmp-tag" data-i18n="old_label">🎯 The Challenge</div>
           <ul class="cmp-list">
-            <li><span class="ic">⏳</span><span data-i18n="old1">Weeks to find a freelancer</span></li>
-            <li><span class="ic">💸</span><span data-i18n="old2">€800–€1,500 per day</span></li>
-            <li><span class="ic">🔒</span><span data-i18n="old3">VPN access required</span></li>
-            <li><span class="ic">🐛</span><span data-i18n="old4">Multiple iterations</span></li>
-            <li><span class="ic">📄</span><span data-i18n="old5">Extensive specs upfront</span></li>
-            <li><span class="ic">🤷</span><span data-i18n="old6">No first-time guarantee</span></li>
+            <li><span class="ic">🔍</span><span data-i18n="old1">Qualified ABAP specialists are hard to find</span></li>
+            <li><span class="ic">⏳</span><span data-i18n="old2">Your team is overloaded with routine tasks</span></li>
+            <li><span class="ic">🚧</span><span data-i18n="old3">Strategic projects like S/4HANA get delayed</span></li>
+            <li><span class="ic">📋</span><span data-i18n="old4">Standard reports & interfaces pile up</span></li>
+            <li><span class="ic">💼</span><span data-i18n="old5">External consultants are expensive & slow</span></li>
+            <li><span class="ic">⚡</span><span data-i18n="old6">Business needs code faster than teams can deliver</span></li>
           </ul>
         </div>
         <div class="cmp-card new glow-card">
-          <div class="cmp-tag" data-i18n="new_label">⚡ ERPforgeAI</div>
+          <div class="cmp-tag" data-i18n="new_label">💡 How We Help</div>
           <ul class="cmp-list">
-            <li><span class="ic">🚀</span><span data-i18n="new1">Delivered in 24 hours</span></li>
-            <li><span class="ic">💰</span><span data-i18n="new2">From €99 per program</span></li>
-            <li><span class="ic">🛡️</span><span data-i18n="new3">No system access needed</span></li>
-            <li><span class="ic">✅</span><span data-i18n="new4">Syntax-checked for YOUR system</span></li>
-            <li><span class="ic">💬</span><span data-i18n="new5">Describe in plain language</span></li>
-            <li><span class="ic">👨‍💻</span><span data-i18n="new6">Expert-reviewed code</span></li>
+            <li><span class="ic">🚀</span><span data-i18n="new1">We handle routine ABAP — your team focuses on what matters</span></li>
+            <li><span class="ic">🤝</span><span data-i18n="new2">Complement your team, never replace them</span></li>
+            <li><span class="ic">🛡️</span><span data-i18n="new3">No system access needed — zero security risk</span></li>
+            <li><span class="ic">✅</span><span data-i18n="new4">Production-ready code, matched to your exact system</span></li>
+            <li><span class="ic">⏱️</span><span data-i18n="new5">Delivered in 24h — free up weeks of developer time</span></li>
+            <li><span class="ic">👨‍💻</span><span data-i18n="new6">Expert-reviewed by senior SAP consultants</span></li>
           </ul>
         </div>
+      </div>
+    </section>
+
+    <!-- S/4HANA MIGRATION SUPPORT -->
+    <section class="section reveal" id="migration">
+      <div class="section-tag" data-i18n="mig_label">S/4HANA Migration</div>
+      <h2 class="section-h" data-i18n="mig_title">Ready for S/4HANA?</h2>
+      <div class="mig-box">
+        <p class="mig-intro" data-i18n="mig_intro">Planning your S/4HANA migration? We provide ready-to-use analysis tools that automatically discover and map every interface and connection in your system — combined with real volume data from runtime statistics (EDIDC, ST03N workload, RFC/HTTP calls) so you know exactly what's active and what's legacy.</p>
+        <h3 class="mig-sub" data-i18n="mig_sub">Full Interface & Connection Discovery</h3>
+        <div class="mig-grid">
+          <div class="mig-item glow-card"><span class="mig-icon">📨</span><span class="mig-name">IDoc Interfaces</span><span class="mig-detail">EDIDC message types & partners</span></div>
+          <div class="mig-item glow-card"><span class="mig-icon">🔗</span><span class="mig-name">RFC Connections</span><span class="mig-detail">SM59 destinations & call volume</span></div>
+          <div class="mig-item glow-card"><span class="mig-icon">🌐</span><span class="mig-name">SOAP Web Services</span><span class="mig-detail">SOAMANAGER endpoints</span></div>
+          <div class="mig-item glow-card"><span class="mig-icon">📡</span><span class="mig-name">OData / REST</span><span class="mig-detail">Gateway services & usage</span></div>
+          <div class="mig-item glow-card"><span class="mig-icon">📁</span><span class="mig-name">File Interfaces</span><span class="mig-detail">DATA file transfers</span></div>
+          <div class="mig-item glow-card"><span class="mig-icon">🗄️</span><span class="mig-name">Database (DBCO)</span><span class="mig-detail">External DB connections</span></div>
+          <div class="mig-item glow-card"><span class="mig-icon">🔄</span><span class="mig-name">Proxy / XI Services</span><span class="mig-detail">Enterprise Services & PI/PO</span></div>
+          <div class="mig-item glow-card"><span class="mig-icon">⚙️</span><span class="mig-name">BAPI / BOR Objects</span><span class="mig-detail">Business object interfaces</span></div>
+          <div class="mig-item glow-card"><span class="mig-icon">🖥️</span><span class="mig-name">HTTP / ICF (SICF)</span><span class="mig-detail">ICF service tree & handlers</span></div>
+          <div class="mig-item glow-card"><span class="mig-icon">👥</span><span class="mig-name">SuccessFactors HCM</span><span class="mig-detail">Employee Central integration</span></div>
+          <div class="mig-item glow-card"><span class="mig-icon">📎</span><span class="mig-name">OpenText / ArchiveLink</span><span class="mig-detail">Document management links</span></div>
+          <div class="mig-item glow-card"><span class="mig-icon">📱</span><span class="mig-name">Fiori / UI5 Apps</span><span class="mig-detail">Launchpad tiles & OData bindings</span></div>
+        </div>
+        <p class="mig-volume" data-i18n="mig_volume">All results enriched with runtime volume data from EDIDC statistics, ST03N workload analysis, and RFC/HTTP call tracking — so you see which interfaces are actively used and which can be decommissioned.</p>
+        <a href="#contact" class="pc-btn primary btn-ripple" style="display:inline-block;margin-top:20px;padding:14px 32px;font-size:14px" data-i18n="mig_cta">Contact Us About Migration Support</a>
       </div>
     </section>
 
@@ -681,10 +722,10 @@
 
     const T={
       en:{
-        nav_how:"How It Works",nav_why:"Why Us",nav_pricing:"Pricing",nav_order:"Order",nav_contact:"Contact",nav_cta:"Order Now",
+        nav_how:"How It Works",nav_why:"Why Us",nav_migration:"S/4HANA",nav_pricing:"Pricing",nav_order:"Order",nav_contact:"Contact",nav_cta:"Order Now",
         banner_text:"🚀 Launching Q2 2026 — Early access for waitlist members",banner_btn:"Join now",
         hero_badge:"SAP ABAP · Fiori · UI5 · S/4HANA · ECC",hero_h1_1:"SAP Code,",hero_h1_2:"Forged by AI.",
-        hero_sub:"Describe what you need. Upload your system profile. Get production-ready ABAP code — tailored to your exact SAP release. No freelancer. No VPN access. No guesswork.",
+        hero_sub:"Describe what you need. Upload your system profile. Get production-ready ABAP code — tailored to your exact SAP release. Give your team the freedom to focus on what truly matters.",
         hero_btn:"Join Waitlist →",hero_ok:"✓ You're on the list! We'll email you before launch.",hero_note:"<span>→</span> Free early access · No credit card · Cancel anytime",
         cd_label:"Launch Countdown",cd_days:"Days",cd_hrs:"Hours",cd_min:"Min",cd_sec:"Sec",
         stat1:"Faster",stat2:"Cost Saved",stat3:"SAP Releases",stat4:"Delivery",
@@ -694,9 +735,10 @@
         step3_title:"Get Forged Code",step3_desc:"AI generates system-matched code. Expert ABAP review. Paste into SE38, run.",
         dl_title:"Free System Profiler",dl_desc:"Run this ABAP program in SE38 — it creates a Steckbrief we use to generate perfectly matched code for your system.",
         dl_s1:"Download the ABAP source code",dl_s2:"Paste into a new report in SE38",dl_s3:"Run it — save the .txt output",dl_s4:"Upload when ordering code",dl_btn:"⬇ Download Z_SYSTEM_STECKBRIEF.abap",
-        why_label:"Why ERPforgeAI",why_title:"The Old Way Is Broken",
-        old_label:"❌ Traditional",old1:"Weeks to find a freelancer",old2:"€800–€1,500 per day",old3:"VPN access required",old4:"Multiple iterations",old5:"Extensive specs upfront",old6:"No first-time guarantee",
-        new_label:"⚡ ERPforgeAI",new1:"Delivered in 24 hours",new2:"From €99 per program",new3:"No system access needed",new4:"Syntax-checked for YOUR system",new5:"Describe in plain language",new6:"Expert-reviewed code",
+        why_label:"Why ERPforgeAI",why_title:"More Freedom for Your Team",why_intro:"We know how hard it is to find qualified SAP specialists. Your developers are stretched thin between day-to-day operations and strategic projects like S/4HANA migration. ERPforgeAI is not here to replace anyone — we're here to give your team the breathing room they need.",
+        old_label:"🎯 The Challenge",old1:"Qualified ABAP specialists are hard to find",old2:"Your team is overloaded with routine tasks",old3:"Strategic projects like S/4HANA get delayed",old4:"Standard reports & interfaces pile up",old5:"External consultants are expensive & slow",old6:"Business needs code faster than teams can deliver",
+        new_label:"💡 How We Help",new1:"We handle routine ABAP — your team focuses on what matters",new2:"Complement your team, never replace them",new3:"No system access needed — zero security risk",new4:"Production-ready code, matched to your exact system",new5:"Delivered in 24h — free up weeks of developer time",new6:"Expert-reviewed by senior SAP consultants",
+        mig_label:"S/4HANA Migration",mig_title:"Ready for S/4HANA?",mig_intro:"Planning your S/4HANA migration? We provide ready-to-use analysis tools that automatically discover and map every interface and connection in your system — combined with real volume data from runtime statistics (EDIDC, ST03N workload, RFC/HTTP calls) so you know exactly what's active and what's legacy.",mig_sub:"Full Interface & Connection Discovery",mig_volume:"All results enriched with runtime volume data from EDIDC statistics, ST03N workload analysis, and RFC/HTTP call tracking — so you see which interfaces are actively used and which can be decommissioned.",mig_cta:"Contact Us About Migration Support",
         price_label:"Pricing",price_title:"Simple & Transparent",
         p1_desc:"Reports, lists, exports",p1_f1:"ALV reports & extracts",p1_f2:"Selection screen",p1_f3:"System-matched code",p1_f4:"Expert review",p1_f5:"1 revision",
         p2_desc:"Interfaces, integrations",p2_f1:"Everything in Report",p2_f2:"File upload/download",p2_f3:"RFC/BAPI",p2_f4:"Error handling",p2_f5:"2 revisions",
@@ -706,7 +748,7 @@
         cf_name:"Name",cf_email:"Email",cf_subject:"Subject",cf_msg:"Message",cf_send:"Send Message →",cf_ok:"✓ Sent! We'll reply within 24 hours.",
         cf_subj1:"Project Inquiry",cf_subj2:"General Question",cf_subj3:"Steckbrief Help",cf_subj4:"Other",
         footer_contact:"Contact",
-        proof_note:"* Compared to traditional freelancer engagements for standard ABAP reports",
+        proof_note:"* Based on average project timelines for standard ABAP development",
         order_label:"Order Code",order_title:"Submit Your Project",order_h:"Request ABAP Code",order_desc:"Paste your Steckbrief output below and describe what you need. We'll review your request and deliver production-ready code within 24 hours.",
         order_hint:'Don\'t have a Steckbrief yet? <a href="#download" onclick="showMain()">Download the free profiler</a>, run it in SE38, then paste the <code>.txt</code> output below.',
         of_name:"Name *",of_email:"Email *",of_company:"Company",of_sap:"SAP System ID",of_tier:"Project Tier *",of_discuss:"Let's talk",
@@ -714,10 +756,10 @@
         about_label:"Who We Are",about_title:"Built by SAP Veterans",about_name:"The ERPforgeAI Team",about_role:"SAP Consulting · AI Engineering · ABAP Development",about_bio:"Every line of code is reviewed by senior SAP consultants with 10+ years of hands-on ABAP experience across ECC, S/4HANA, and industry solutions. We combine deep SAP expertise with cutting-edge AI to deliver code that compiles, follows best practices, and matches your exact system."
       },
       de:{
-        nav_how:"So geht's",nav_why:"Warum wir",nav_pricing:"Preise",nav_order:"Bestellen",nav_contact:"Kontakt",nav_cta:"Jetzt bestellen",
+        nav_how:"So geht's",nav_why:"Warum wir",nav_migration:"S/4HANA",nav_pricing:"Preise",nav_order:"Bestellen",nav_contact:"Kontakt",nav_cta:"Jetzt bestellen",
         banner_text:"🚀 Launch Q2 2026 — Frühzugang für Warteliste",banner_btn:"Jetzt eintragen",
         hero_badge:"SAP ABAP · Fiori · UI5 · S/4HANA · ECC",hero_h1_1:"SAP Code,",hero_h1_2:"KI-geschmiedet.",
-        hero_sub:"Beschreiben Sie Ihre Anforderung. Laden Sie Ihr Systemprofil hoch. Erhalten Sie produktionsreifen ABAP-Code — exakt für Ihr SAP-Release. Kein Freelancer. Kein VPN. Kein Rätselraten.",
+        hero_sub:"Beschreiben Sie Ihre Anforderung. Laden Sie Ihr Systemprofil hoch. Erhalten Sie produktionsreifen ABAP-Code — exakt für Ihr SAP-Release. Geben Sie Ihrem Team den Freiraum für das Wesentliche.",
         hero_btn:"Warteliste beitreten →",hero_ok:"✓ Sie sind dabei! Wir melden uns vor dem Launch.",hero_note:"<span>→</span> Kostenloser Frühzugang · Keine Kreditkarte · Jederzeit kündbar",
         cd_label:"Launch Countdown",cd_days:"Tage",cd_hrs:"Std",cd_min:"Min",cd_sec:"Sek",
         stat1:"Schneller",stat2:"Ersparnis",stat3:"SAP Releases",stat4:"Lieferung",
@@ -727,9 +769,10 @@
         step3_title:"Code erhalten",step3_desc:"KI generiert systemabgestimmten Code. ABAP-Experten-Review. In SE38 einfügen, starten.",
         dl_title:"Kostenloser System-Profiler",dl_desc:"ABAP-Programm in SE38 ausführen — erstellt einen Steckbrief für perfekt abgestimmten Code.",
         dl_s1:"ABAP-Quellcode herunterladen",dl_s2:"In neuen Report in SE38 einfügen",dl_s3:"Ausführen — .txt speichern",dl_s4:"Bei Bestellung hochladen",dl_btn:"⬇ Z_SYSTEM_STECKBRIEF.abap",
-        why_label:"Warum ERPforgeAI",why_title:"Der alte Weg ist kaputt",
-        old_label:"❌ Traditionell",old1:"Wochen für Freelancer-Suche",old2:"€800–€1.500 pro Tag",old3:"VPN-Zugang nötig",old4:"Mehrere Iterationen",old5:"Umfangreiche Specs vorab",old6:"Keine Erstversuch-Garantie",
-        new_label:"⚡ ERPforgeAI",new1:"Lieferung in 24 Stunden",new2:"Ab €99 pro Programm",new3:"Kein Systemzugang nötig",new4:"Syntax-geprüft für IHR System",new5:"In Klartext beschreiben",new6:"Experten-geprüfter Code",
+        why_label:"Warum ERPforgeAI",why_title:"Mehr Freiraum für Ihr Team",why_intro:"Wir wissen, wie schwer es ist, qualifizierte SAP-Spezialisten zu finden. Ihre Entwickler sind zwischen Tagesgeschäft und strategischen Projekten wie der S/4HANA-Migration aufgerieben. ERPforgeAI will niemanden ersetzen — wir geben Ihrem Team den Freiraum, den es braucht.",
+        old_label:"🎯 Die Herausforderung",old1:"Qualifizierte ABAP-Spezialisten sind schwer zu finden",old2:"Ihr Team ist mit Routineaufgaben überlastet",old3:"Strategische Projekte wie S/4HANA verzögern sich",old4:"Standard-Reports & Schnittstellen stauen sich",old5:"Externe Berater sind teuer & langsam verfügbar",old6:"Das Business braucht Code schneller als Teams liefern können",
+        new_label:"💡 Wie wir helfen",new1:"Wir übernehmen Routine-ABAP — Ihr Team fokussiert sich aufs Wesentliche",new2:"Wir ergänzen Ihr Team, ersetzen niemanden",new3:"Kein Systemzugang nötig — kein Sicherheitsrisiko",new4:"Produktionsreifer Code, exakt auf Ihr System abgestimmt",new5:"Lieferung in 24h — Wochen an Entwicklerzeit freisetzen",new6:"Von erfahrenen SAP-Beratern geprüft",
+        mig_label:"S/4HANA-Migration",mig_title:"Bereit für S/4HANA?",mig_intro:"Planen Sie Ihre S/4HANA-Migration? Wir bieten sofort einsetzbare Analysetools, die automatisch alle Schnittstellen und Verbindungen in Ihrem System erkennen und kartieren — kombiniert mit echten Volumendaten aus Laufzeitstatistiken (EDIDC, ST03N-Workload, RFC/HTTP-Calls), damit Sie genau wissen, was aktiv genutzt wird und was stillgelegt werden kann.",mig_sub:"Vollständige Schnittstellen- & Verbindungsanalyse",mig_volume:"Alle Ergebnisse angereichert mit Laufzeit-Volumendaten aus EDIDC-Statistiken, ST03N-Workload-Analyse und RFC/HTTP-Call-Tracking — damit Sie sehen, welche Schnittstellen aktiv genutzt werden und welche stillgelegt werden können.",mig_cta:"Kontaktieren Sie uns zur Migrationsunterstützung",
         price_label:"Preise",price_title:"Einfach & Transparent",
         p1_desc:"Reports, Listen, Exporte",p1_f1:"ALV-Reports & Exporte",p1_f2:"Selektionsbildschirm",p1_f3:"Systemabgestimmter Code",p1_f4:"Experten-Review",p1_f5:"1 Revision",
         p2_desc:"Schnittstellen, Integrationen",p2_f1:"Alles aus Report",p2_f2:"Datei-Upload/Download",p2_f3:"RFC/BAPI",p2_f4:"Fehlerbehandlung",p2_f5:"2 Revisionen",
@@ -738,7 +781,7 @@
         contact_title:"Kontakt",contact_desc:"Frage zu Ihrem Projekt? Antwort innerhalb 24h.",
         cf_name:"Name",cf_email:"E-Mail",cf_subject:"Betreff",cf_msg:"Nachricht",cf_send:"Nachricht senden →",cf_ok:"✓ Gesendet! Antwort innerhalb 24 Stunden.",
         cf_subj1:"Projektanfrage",cf_subj2:"Allgemeine Frage",cf_subj3:"Steckbrief-Hilfe",cf_subj4:"Sonstiges",
-        footer_contact:"Kontakt",proof_note:"* Im Vergleich zu traditionellen Freelancer-Beauftragungen für Standard-ABAP-Reports",
+        footer_contact:"Kontakt",proof_note:"* Basierend auf durchschnittlichen Projektlaufzeiten für Standard-ABAP-Entwicklung",
         order_label:"Code bestellen",order_title:"Projekt einreichen",order_h:"ABAP-Code anfordern",order_desc:"Fügen Sie Ihren Steckbrief-Output unten ein und beschreiben Sie Ihre Anforderung. Wir prüfen Ihre Anfrage und liefern produktionsreifen Code innerhalb von 24 Stunden.",
         order_hint:'Noch keinen Steckbrief? <a href="#download" onclick="showMain()">Kostenlosen Profiler herunterladen</a>, in SE38 ausführen, dann den <code>.txt</code>-Output unten einfügen.',
         of_name:"Name *",of_email:"E-Mail *",of_company:"Unternehmen",of_sap:"SAP System ID",of_tier:"Projekt-Tier *",of_discuss:"Sprechen wir",
