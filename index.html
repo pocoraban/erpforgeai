@@ -337,6 +337,7 @@
       <form class="hero-cta" id="waitlistForm" action="https://formspree.io/f/xvzbbwka" method="POST">
         <input type="email" name="waitlist_email" class="hero-input" autocomplete="new-password" placeholder="your@company.com" required>
         <input type="hidden" name="_subject" value="ERPforgeAI Waitlist Signup">
+        <div style="position:absolute;left:-9999px" aria-hidden="true"><input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
         <button type="submit" class="hero-submit" data-i18n="hero_btn">Join Waitlist &rarr;</button>
       </form>
       <div class="hero-success" id="waitlistOk" data-i18n="hero_ok">&#10003; You're on the list! We'll email you before launch.</div>
@@ -512,6 +513,7 @@
 
         <form id="orderForm" action="https://formspree.io/f/xvzbbwka" method="POST">
           <input type="hidden" name="_subject" value="New ERPforgeAI Order">
+          <div style="position:absolute;left:-9999px" aria-hidden="true"><input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
 
           <div class="fg-row">
             <div class="fg"><label data-i18n="of_name">Name *</label><input type="text" name="customer_name" required autocomplete="new-password"></div>
@@ -581,6 +583,7 @@
         <p data-i18n="contact_desc">Question about your project? We reply within 24h.</p>
         <form id="contactForm" action="https://formspree.io/f/xvzbbwka" method="POST">
           <input type="hidden" name="_subject" value="ERPforgeAI Contact">
+          <div style="position:absolute;left:-9999px" aria-hidden="true"><input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
           <div class="fg"><label data-i18n="cf_name">Name</label><input type="text" name="name" required></div>
           <div class="fg"><label data-i18n="cf_email">Email</label><input type="email" name="contact_email" required autocomplete="new-password"></div>
           <div class="fg"><label data-i18n="cf_subject">Subject</label><select name="subject"><option value="Project Inquiry" data-i18n="cf_subj1">Project Inquiry</option><option value="Question" data-i18n="cf_subj2">General Question</option><option value="Steckbrief" data-i18n="cf_subj3">Steckbrief Help</option><option value="Other" data-i18n="cf_subj4">Other</option></select></div>
@@ -620,16 +623,16 @@
     <h2>2. Verantwortlicher</h2>
     <p>Poco Rabanne<br>Klarastrasse 53<br>45130 Essen<br>Nordrhein-Westfalen<br>Telefon: 0201 564164<br>E-Mail: <a href="mailto:info@erpforgeai.com">info@erpforgeai.com</a></p>
     <h2>3. Hosting</h2>
-    <p>Hosting bei <strong>Vercel Inc.</strong> (USA, EU-U.S. Data Privacy Framework). <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">Vercel Privacy Policy</a>.</p>
+    <p>Hosting bei <strong>Vercel Inc.</strong> (USA, EU-U.S. Data Privacy Framework). <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Vercel Privacy Policy</a>.</p>
     <h2>4. Ihre Rechte</h2>
     <p>Auskunft, Berichtigung, L&ouml;schung, Einschr&auml;nkung, Widerspruch, Daten&uuml;bertragbarkeit. Kontakt: <a href="mailto:info@erpforgeai.com">info@erpforgeai.com</a></p>
     <h3>Beschwerderecht</h3>
-    <p>Landesbeauftragte f&uuml;r Datenschutz und Informationsfreiheit NRW<br>Postfach 20 04 44, 40102 D&uuml;sseldorf<br><a href="https://www.ldi.nrw.de" target="_blank" rel="noopener">www.ldi.nrw.de</a></p>
+    <p>Landesbeauftragte f&uuml;r Datenschutz und Informationsfreiheit NRW<br>Postfach 20 04 44, 40102 D&uuml;sseldorf<br><a href="https://www.ldi.nrw.de" target="_blank" rel="noopener noreferrer">www.ldi.nrw.de</a></p>
     <h2>5. Datenerfassung</h2>
     <h3>Server-Log-Dateien</h3>
     <p>Browsertyp, Betriebssystem, Referrer URL, IP-Adresse, Uhrzeit (Art. 6 Abs. 1 lit. f DSGVO).</p>
     <h3>Kontaktformular, Bestellformular &amp; Waitlist</h3>
-    <p>Wenn Sie unser Bestell-, Kontaktformular oder die Waitlist nutzen, werden Ihre Angaben (Name, E-Mail, ggf. Unternehmen, SAP-System-ID, Anforderung, Steckbrief-Daten) zur Bearbeitung gespeichert. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Ma&szlig;nahmen) bzw. Art. 6 Abs. 1 lit. a DSGVO (Einwilligung). Verarbeitung &uuml;ber <strong>Formspree</strong> (USA, EU-U.S. Data Privacy Framework). <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener">Formspree Privacy Policy</a>.</p>
+    <p>Wenn Sie unser Bestell-, Kontaktformular oder die Waitlist nutzen, werden Ihre Angaben (Name, E-Mail, ggf. Unternehmen, SAP-System-ID, Anforderung, Steckbrief-Daten) zur Bearbeitung gespeichert. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Ma&szlig;nahmen) bzw. Art. 6 Abs. 1 lit. a DSGVO (Einwilligung). Verarbeitung &uuml;ber <strong>Formspree</strong> (USA, EU-U.S. Data Privacy Framework). <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">Formspree Privacy Policy</a>.</p>
     <h2>6. Cookies</h2>
     <p>Diese Website verwendet <strong>keine Cookies</strong> und kein Tracking.</p>
     <p><em>Stand: Februar 2026</em></p>
@@ -673,7 +676,7 @@
     // Countdown to April 1, 2026
     function updateCD(){
       const t=new Date('2026-04-01T09:00:00+02:00')-new Date();
-      if(t<=0){document.getElementById('countdown').innerHTML='<div style="font-family:DM Serif Display,serif;font-size:18px;font-weight:400;color:var(--ember)">We are LIVE!</div>';return}
+      if(t<=0){const cdEl=document.getElementById('countdown');cdEl.textContent='';const liveDiv=document.createElement('div');liveDiv.style.cssText='font-family:DM Serif Display,serif;font-size:18px;font-weight:400;color:var(--ember)';liveDiv.textContent='We are LIVE!';cdEl.appendChild(liveDiv);return}
       const d=Math.floor(t/864e5),h=Math.floor(t%864e5/36e5),m=Math.floor(t%36e5/6e4),s=Math.floor(t%6e4/1e3);
       document.getElementById('cd-d').textContent=String(d).padStart(2,'0');
       document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
@@ -769,7 +772,7 @@
       document.querySelectorAll('.lang-toggle button').forEach(b=>{b.classList.toggle('active',b.textContent===l.toUpperCase())});
       document.querySelectorAll('[data-i18n]').forEach(el=>{
         const k=el.getAttribute('data-i18n');
-        if(T[l]&&T[l][k]){if(el.tagName==='INPUT'||el.tagName==='TEXTAREA'){el.placeholder=T[l][k]}else{el.innerHTML=T[l][k]}}
+        if(T[l]&&T[l][k]){if(el.tagName==='INPUT'||el.tagName==='TEXTAREA'){el.placeholder=T[l][k]}else{const htmlKeys=['hero_note','order_hint','old_label','new_label'];if(htmlKeys.includes(k)){el.innerHTML=T[l][k]}else{el.textContent=T[l][k]}}}
       });
       document.documentElement.lang=l;
       try{localStorage.setItem('lang',l)}catch(e){}
